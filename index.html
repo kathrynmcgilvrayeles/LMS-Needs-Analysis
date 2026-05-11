@@ -709,16 +709,52 @@ footer nav a:hover{color:var(--navy)}
 
           <div class="col-4">
             <div class="card-navy" style="margin-bottom:20px">
-              <div class="icon-label"><span class="ms" style="color:var(--teal)">architecture</span><h3 style="color:var(--white)">System Overview</h3></div>
-              <p style="font-size:.85rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:16px">Selecting the right functionality ensures long-term scalability. Consider if you need a developer for custom changes (Open Source) or a fully managed solution (SaaS).</p>
-              <div class="divider" style="border-color:rgba(255,255,255,.1)"></div>
-              <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-top:12px">
-                <span style="color:rgba(255,255,255,.7)">Hosting Preference</span>
-                <strong style="color:var(--teal)" id="hostingDisplay">Cloud</strong>
+              <div class="icon-label"><span class="ms" style="color:var(--teal)">tune</span><h3 style="color:var(--white)">Quick Settings</h3></div>
+              <p style="font-size:.75rem;color:rgba(255,255,255,.6);margin-bottom:16px">Toggle your key requirements — these feed directly into your LMS recommendation.</p>
+
+              <!-- Toggle: Hosting -->
+              <div style="margin-bottom:14px">
+                <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px">Hosting</div>
+                <div style="display:flex;background:rgba(255,255,255,.1);border-radius:99px;padding:3px;gap:3px">
+                  <button id="tog-cloud" onclick="selectHosting('cloud')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:var(--teal);color:#fff;transition:all .2s">Cloud</button>
+                  <button id="tog-onprem" onclick="selectHosting('onprem')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s">On-premise</button>
+                </div>
               </div>
-              <div style="display:flex;justify-content:space-between;font-size:.85rem;margin-top:12px">
-                <span style="color:rgba(255,255,255,.7)">Risk Profile</span>
-                <strong style="color:var(--teal)">Low</strong>
+
+              <!-- Toggle: Open Source -->
+              <div style="margin-bottom:14px">
+                <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px">Open Source</div>
+                <div style="display:flex;background:rgba(255,255,255,.1);border-radius:99px;padding:3px;gap:3px">
+                  <button id="tog-os-yes" onclick="selectToggle('openSourcePref','yes','tog-os-yes','tog-os-no')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s">Required</button>
+                  <button id="tog-os-no" onclick="selectToggle('openSourcePref','no','tog-os-no','tog-os-yes')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:var(--teal);color:#fff;transition:all .2s">Not needed</button>
+                </div>
+              </div>
+
+              <!-- Toggle: SSO -->
+              <div style="margin-bottom:14px">
+                <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px">Single Sign-On (SSO)</div>
+                <div style="display:flex;background:rgba(255,255,255,.1);border-radius:99px;padding:3px;gap:3px">
+                  <button id="tog-sso-yes" onclick="selectToggle('ssoPref','yes','tog-sso-yes','tog-sso-no')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s">Required</button>
+                  <button id="tog-sso-no" onclick="selectToggle('ssoPref','no','tog-sso-no','tog-sso-yes')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:var(--teal);color:#fff;transition:all .2s">Not needed</button>
+                </div>
+              </div>
+
+              <!-- Toggle: Virtual Classroom -->
+              <div style="margin-bottom:14px">
+                <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px">Virtual Classroom</div>
+                <div style="display:flex;background:rgba(255,255,255,.1);border-radius:99px;padding:3px;gap:3px">
+                  <button id="tog-vc-yes" onclick="selectToggle('vcPref','yes','tog-vc-yes','tog-vc-no')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s">Required</button>
+                  <button id="tog-vc-no" onclick="selectToggle('vcPref','no','tog-vc-no','tog-vc-yes')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:var(--teal);color:#fff;transition:all .2s">Not needed</button>
+                </div>
+              </div>
+
+              <!-- Toggle: AI Integration -->
+              <div>
+                <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px">AI Integration</div>
+                <div style="display:flex;background:rgba(255,255,255,.1);border-radius:99px;padding:3px;gap:3px">
+                  <button id="tog-ai-yes" onclick="selectToggle('aiPref','yes','tog-ai-yes','tog-ai-no')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s">Required</button>
+                  <button id="tog-ai-no" onclick="selectToggle('aiPref','no','tog-ai-no','tog-ai-yes')" style="flex:1;padding:6px 0;border-radius:99px;border:none;font-size:.75rem;font-weight:700;cursor:pointer;background:var(--teal);color:#fff;transition:all .2s">Not needed</button>
+                </div>
               </div>
             </div>
             <div style="background:var(--navy);border-radius:12px;height:200px;display:flex;flex-direction:column;justify-content:space-between;padding:20px;margin-bottom:20px;position:relative;overflow:hidden">
@@ -1876,6 +1912,14 @@ function computeLMSScores() {
 // ─── Init ─────────────────────────────────────────────
 loadState();
 calcTotal();
+
+function selectToggle(key, val, activeId, inactiveId) {
+  saveState(key, val);
+  const active = document.getElementById(activeId);
+  const inactive = document.getElementById(inactiveId);
+  if (active) { active.style.background = 'var(--teal)'; active.style.color = '#fff'; }
+  if (inactive) { inactive.style.background = 'transparent'; inactive.style.color = 'rgba(255,255,255,.6)'; }
+}
 
 function selectHosting(val) {
   saveState('hosting', val);
