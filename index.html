@@ -1964,8 +1964,8 @@ function computeLMSScores() {
   function lmsResidencyHTML(name, isPrimary) {
     var m = lmsMeta[name]; if (!m) return '';
     var col = isPrimary ? 'rgba(255,255,255,.75)' : 'var(--grey)';
-    var iconCol = isPrimary ? '#00bec7' : 'var(--teal)';
-    return '<div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:' + col + ';margin-bottom:10px"><span class=\"ms\" style=\"font-size:15px;color:' + iconCol + \'\">storage</span> Data stored: ' + m.region + '</div>';
+    var iconCol = isPrimary ? '#00bec7' : '#00bec7';
+    return '<div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:' + col + ';margin-bottom:10px"><span class="ms" style="font-size:14px">storage</span> Data stored: ' + m.region + '</div>';
   }
   var scores = [{name:'Canvas LMS', score:canvas}, {name:'Moodle / Wisenet', score:moodle}, {name:'TalentLMS', score:talent}];
   scores.sort(function(a,b){ return b.score - a.score; });
