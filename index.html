@@ -291,6 +291,19 @@ footer nav a:hover{color:var(--navy)}
 .btn-save{background:#d2f0f0;color:#1f2a52;border:none;padding:8px 18px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s}
 .btn-save:hover{background:#00bec7;color:#fff}
 .btn-save .ms{font-size:16px}
+
+.lms-flag{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.lms-flag img{width:28px;height:20px;border-radius:3px;object-fit:cover;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.lms-flag-label{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.06em}
+.lms-flag-label span{color:#fff}
+.lms-flag.secondary-flag img{box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.lms-flag.secondary-flag .lms-flag-label{color:var(--grey)}
+.lms-flag.secondary-flag .lms-flag-label span{color:var(--navy)}
+.data-residency{font-size:.7rem;padding:4px 8px;border-radius:4px;margin-bottom:10px;display:inline-flex;align-items:center;gap:5px}
+.data-residency.au{background:rgba(0,190,199,.15);color:#00bec7}
+.data-residency.us{background:rgba(31,42,82,.15);color:#1f2a52}
+.data-residency.eu{background:rgba(171,181,191,.2);color:#45464e}
+.section-top-actions{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #e8edf2}
 </style>
 </head>
 <body>
@@ -489,6 +502,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="section-header">
           <div class="section-tag"><span class="ms">analytics</span> Phase 2: Financial Viability</div>
           <h1 class="section-title">Cost Assessment</h1>
+<div class="section-top-actions"><button class="btn-save" onclick="saveSection(1)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(1);goTo(2)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: LMS Functionality <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
+
           <p class="section-desc">Analysing the total cost of ownership (TCO) across the entire LMS lifecycle. Project implementation, operational, and scaling expenditures.</p>
         </div>
 
@@ -650,6 +665,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="section-header">
           <div class="section-tag"><span class="ms">settings_input_component</span> Phase 3: Technical Infrastructure</div>
           <h1 class="section-title">LMS Functionality</h1>
+<div class="section-top-actions"><button class="btn-save" onclick="saveSection(2)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(2);goTo(3)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: Content <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
+
           <p class="section-desc">Define the technical infrastructure and core capabilities. Ensure technical alignment with your IT systems.</p>
         </div>
 
@@ -821,6 +838,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="section-header">
           <div class="section-tag"><span class="ms">auto_awesome</span> Phase 4: Content &amp; Assessment</div>
           <h1 class="section-title">How will your content be managed?</h1>
+<div class="section-top-actions"><button class="btn-save" onclick="saveSection(3)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(3);goTo(4)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: Administration <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
+
           <p class="section-desc">Let's look at how you store, create and assess training. This helps us ensure the system handles your specific teaching styles and technical requirements.</p>
         </div>
 
@@ -949,6 +968,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="section-header">
           <div class="section-tag"><span class="ms">manage_accounts</span> Phase 5</div>
           <h1 class="section-title">Administration Assessment</h1>
+<div class="section-top-actions"><button class="btn-save" onclick="saveSection(4)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(4);goTo(5)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: Learner Needs <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
+
           <p class="section-desc">Define the administrative architecture, integration ecosystem, and fiscal oversight requirements for your future learning environment.</p>
         </div>
 
@@ -1098,6 +1119,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="section-header">
           <div class="section-tag"><span class="ms">group</span> Phase 6</div>
           <h1 class="section-title">Learner Needs</h1>
+<div class="section-top-actions"><button class="btn-save" onclick="saveSection(5)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(5);goTo(6)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: Trainer Needs <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
+
           <p class="section-desc">Define portal access requirements, learning tools, and support structures for your learners.</p>
         </div>
 
@@ -1201,6 +1224,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="section-header">
           <div class="section-tag"><span class="ms">psychology</span> Section 7 — Educator Insights</div>
           <h1 class="section-title">Trainer Needs Assessment</h1>
+<div class="section-top-actions"><button class="btn-save" onclick="saveSection(6)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(6);goTo(7)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: Compliance <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
+
           <p class="section-desc">Define the digital workspace for your faculty. Evaluate how the LMS will support content creators, streamline marking workflows and meet technical requirements for trainers.</p>
         </div>
 
@@ -1303,6 +1328,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="section-header">
           <div class="section-tag"><span class="ms">gavel</span> Step 8 — Regulatory Alignment</div>
           <h1 class="section-title">Compliance Assessment</h1>
+<div class="section-top-actions"><button class="btn-save" onclick="saveSection(7)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(7);goTo(8)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: LMS Relationship <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
+
           <p class="section-desc">Ensure your future LMS adheres to Australian regulatory standards and organisational data security mandates.</p>
         </div>
 
@@ -1417,6 +1444,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="section-header">
           <div class="section-tag"><span class="ms">handshake</span> Phase 9</div>
           <h1 class="section-title">LMS Relationship &amp; Support Framework</h1>
+<div class="section-top-actions"><button class="btn-save" onclick="saveSection(8)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(8);goTo(9)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: Insights <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
+
           <p class="section-desc">Define the relationship between your organisation and the prospective vendor to ensure long-term operational success and governance.</p>
         </div>
 
@@ -1610,7 +1639,9 @@ footer nav a:hover{color:var(--navy)}
         <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:32px">
           <div class="lms-card primary" id="lmsPrimary">
             <div class="tag">Primary Recommendation</div>
+            <div id="lmsPrimaryFlag"></div>
             <h3 id="lmsPrimaryName">—</h3>
+            <div id="lmsPrimaryResidency"></div>
             <p id="lmsPrimaryDesc" style="margin-bottom:20px">Complete more sections to generate your recommendation.</p>
             <div id="lmsPrimaryFeatures"></div>
             <button class="btn" style="background:var(--white);color:var(--navy);margin-top:20px" onclick="window.print()">
@@ -1620,12 +1651,16 @@ footer nav a:hover{color:var(--navy)}
           <div style="display:flex;flex-direction:column;gap:16px">
             <div class="lms-card secondary">
               <div class="badge badge-teal" id="lms2Badge">COMPLIANCE HEAVY</div>
+              <div id="lms2Flag"></div>
               <h4 id="lms2Name">Moodle Workplace</h4>
+              <div id="lms2Residency" style="margin-bottom:8px"></div>
               <p style="font-size:.82rem;color:var(--grey);line-height:1.6" id="lms2Desc">Ideal if data sovereignty and granular multi-tenancy are your non-negotiables. Requires more internal IT support but offers 100% customisability.</p>
             </div>
             <div class="lms-card secondary">
               <div class="badge badge-grey" id="lms3Badge">COST EFFICIENT</div>
+              <div id="lms3Flag"></div>
               <h4 id="lms3Name">TalentLMS</h4>
+              <div id="lms3Residency" style="margin-bottom:8px"></div>
               <p style="font-size:.82rem;color:var(--grey);line-height:1.6" id="lms3Desc">Best for rapid onboarding and commercial short courses. Lower overheads and intuitive UI for non-technical administrators.</p>
             </div>
           </div>
@@ -1911,6 +1946,26 @@ function computeLMSScores() {
   document.getElementById('talentScore').textContent = tp + '%';
 
   // Primary recommendation
+
+  var lmsMeta = {
+    'Canvas LMS':        { cc:'us', country:'United States', company:'Instructure, Inc.', region:'USA (AWS us-east-1)', regionClass:'us' },
+    'Moodle / Wisenet':  { cc:'au', country:'Australia',     company:'Moodle HQ / Wisenet', region:'Australia (AWS ap-southeast-2)', regionClass:'au' },
+    'TalentLMS':         { cc:'gr', country:'Greece / EU',   company:'Epignosis LLC',     region:'European Union (AWS eu-west-1)', regionClass:'eu' }
+  };
+
+  function lmsFlagHTML(name, isPrimary) {
+    var m = lmsMeta[name]; if (!m) return '';
+    var flagClass = isPrimary ? 'lms-flag' : 'lms-flag secondary-flag';
+    var labelClass = isPrimary ? 'lms-flag-label' : 'lms-flag-label';
+    return '<div class="' + flagClass + '"><img src="https://flagcdn.com/28x21/' + m.cc + '.png" alt="' + m.country + ' flag" width="28" height="21"><div class="' + labelClass + '"><span>' + m.company + '</span> &mdash; ' + m.country + '</div></div>';
+  }
+
+  function lmsResidencyHTML(name, isPrimary) {
+    var m = lmsMeta[name]; if (!m) return '';
+    var bg = isPrimary ? 'rgba(255,255,255,.12)' : (m.regionClass==='au' ? 'rgba(0,190,199,.1)' : m.regionClass==='us' ? 'rgba(31,42,82,.08)' : 'rgba(171,181,191,.15)');
+    var col = isPrimary ? 'rgba(255,255,255,.85)' : 'var(--grey)';
+    return '<div style="display:inline-flex;align-items:center;gap:5px;background:' + bg + ';padding:3px 8px;border-radius:4px;font-size:.68rem;font-weight:700;color:' + col + ';margin-bottom:10px"><span class=\"ms\" style=\"font-size:13px\">storage</span> Data stored: ' + m.region + '</div>';
+  }
   var scores = [{name:'Canvas LMS', score:canvas}, {name:'Moodle / Wisenet', score:moodle}, {name:'TalentLMS', score:talent}];
   scores.sort(function(a,b){ return b.score - a.score; });
   var top = scores[0];
@@ -1934,6 +1989,8 @@ function computeLMSScores() {
   };
 
   document.getElementById('lmsPrimaryName').textContent = top.name;
+  var pf = document.getElementById('lmsPrimaryFlag'); if(pf) pf.innerHTML = lmsFlagHTML(top.name, true);
+  var pr = document.getElementById('lmsPrimaryResidency'); if(pr) pr.innerHTML = lmsResidencyHTML(top.name, true);
   document.getElementById('lmsPrimaryDesc').textContent = descs[top.name];
   var featHtml = '';
   features[top.name].forEach(function(f){
@@ -1944,8 +2001,12 @@ function computeLMSScores() {
   var second = scores[1];
   var third = scores[2];
   document.getElementById('lms2Name').textContent = second.name;
+  var s2f = document.getElementById('lms2Flag'); if(s2f) s2f.innerHTML = lmsFlagHTML(second.name, false);
+  var s2r = document.getElementById('lms2Residency'); if(s2r) s2r.innerHTML = lmsResidencyHTML(second.name, false);
   document.getElementById('lms2Desc').textContent = descs[second.name];
   document.getElementById('lms3Name').textContent = third.name;
+  var s3f = document.getElementById('lms3Flag'); if(s3f) s3f.innerHTML = lmsFlagHTML(third.name, false);
+  var s3r = document.getElementById('lms3Residency'); if(s3r) s3r.innerHTML = lmsResidencyHTML(third.name, false);
   document.getElementById('lms3Desc').textContent = descs[third.name];
 }
 
