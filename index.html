@@ -274,9 +274,27 @@ footer nav a:hover{color:var(--navy)}
 .score-ring-wrap{text-align:center;padding:24px}
 .score-number{font-size:5rem;font-weight:900;color:var(--navy);line-height:1}
 .score-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--grey);margin-top:4px}
+
+/* Save toast */
+#saveToast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:#1f2a52;color:#fff;padding:10px 24px;border-radius:99px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;z-index:9999;transition:transform .3s ease,opacity .3s ease;opacity:0;pointer-events:none}
+#saveToast.show{transform:translateX(-50%) translateY(0);opacity:1}
+#saveToast .ms{color:#00bec7;font-size:18px}
+/* Top progress tracker */
+#topProgress{background:#fff;border-bottom:1px solid #e8edf2;padding:8px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:57px;z-index:40}
+.prog-step{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#abb5bf;cursor:pointer;padding:4px 8px;border-radius:99px;transition:all .2s}
+.prog-step:hover{color:#1f2a52}
+.prog-step.done{color:#00bec7}
+.prog-step.active{color:#1f2a52;background:#d2f0f0}
+.prog-step .dot{width:8px;height:8px;border-radius:50%;background:#e2e8f0;flex-shrink:0;transition:background .2s}
+.prog-step.done .dot{background:#00bec7}
+.prog-step.active .dot{background:#1f2a52}
+.btn-save{background:#d2f0f0;color:#1f2a52;border:none;padding:8px 18px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .2s}
+.btn-save:hover{background:#00bec7;color:#fff}
+.btn-save .ms{font-size:16px}
 </style>
 </head>
 <body>
+<div id="saveToast"><span class="ms">check_circle</span> Progress saved!</div>
 <div id="app">
   <!-- ─── Top bar ─── -->
   <header class="top-bar">
@@ -564,6 +582,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="nav-btns">
           <button class="btn btn-outline" onclick="goTo(0)"><span class="ms" style="font-size:18px">arrow_back</span> Home</button>
+          <button class="btn-save" onclick="saveSection(1)"><span class="ms">save</span> Save Progress</button>
           <button class="btn btn-primary" onclick="goTo(2)">LMS Functionality <span class="ms" style="font-size:18px">arrow_forward</span></button>
         </div>
       </section>
@@ -702,6 +721,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="nav-btns">
           <button class="btn btn-outline" onclick="goTo(1)"><span class="ms" style="font-size:18px">arrow_back</span> Cost</button>
+          <button class="btn-save" onclick="saveSection(2)"><span class="ms">save</span> Save Progress</button>
           <button class="btn btn-primary" onclick="goTo(3)">Content &amp; Assessment <span class="ms" style="font-size:18px">arrow_forward</span></button>
         </div>
       </section>
@@ -829,6 +849,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="nav-btns">
           <button class="btn btn-outline" onclick="goTo(2)"><span class="ms" style="font-size:18px">arrow_back</span> LMS Functionality</button>
+          <button class="btn-save" onclick="saveSection(3)"><span class="ms">save</span> Save Progress</button>
           <button class="btn btn-primary" onclick="goTo(4)">Administration <span class="ms" style="font-size:18px">arrow_forward</span></button>
         </div>
       </section>
@@ -977,6 +998,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="nav-btns">
           <button class="btn btn-outline" onclick="goTo(3)"><span class="ms" style="font-size:18px">arrow_back</span> Content</button>
+          <button class="btn-save" onclick="saveSection(4)"><span class="ms">save</span> Save Progress</button>
           <button class="btn btn-primary" onclick="goTo(5)">Learner Needs <span class="ms" style="font-size:18px">arrow_forward</span></button>
         </div>
       </section>
@@ -1079,6 +1101,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="nav-btns">
           <button class="btn btn-outline" onclick="goTo(4)"><span class="ms" style="font-size:18px">arrow_back</span> Administration</button>
+          <button class="btn-save" onclick="saveSection(5)"><span class="ms">save</span> Save Progress</button>
           <button class="btn btn-primary" onclick="goTo(6)">Trainer Needs <span class="ms" style="font-size:18px">arrow_forward</span></button>
         </div>
       </section>
@@ -1180,6 +1203,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="nav-btns">
           <button class="btn btn-outline" onclick="goTo(5)"><span class="ms" style="font-size:18px">arrow_back</span> Learner Needs</button>
+          <button class="btn-save" onclick="saveSection(6)"><span class="ms">save</span> Save Progress</button>
           <button class="btn btn-primary" onclick="goTo(7)">Compliance <span class="ms" style="font-size:18px">arrow_forward</span></button>
         </div>
       </section>
@@ -1293,6 +1317,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="nav-btns">
           <button class="btn btn-outline" onclick="goTo(6)"><span class="ms" style="font-size:18px">arrow_back</span> Trainer Needs</button>
+          <button class="btn-save" onclick="saveSection(7)"><span class="ms">save</span> Save Progress</button>
           <button class="btn btn-primary" onclick="goTo(8)">LMS Relationship <span class="ms" style="font-size:18px">arrow_forward</span></button>
         </div>
       </section>
@@ -1446,6 +1471,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="nav-btns">
           <button class="btn btn-outline" onclick="goTo(7)"><span class="ms" style="font-size:18px">arrow_back</span> Compliance</button>
+          <button class="btn-save" onclick="saveSection(8)"><span class="ms">save</span> Save Progress</button>
           <button class="btn btn-primary" onclick="goTo(9)">View Insights <span class="ms" style="font-size:18px">arrow_forward</span></button>
         </div>
       </section>
@@ -1656,6 +1682,7 @@ function restoreUI() {
 var currentSection = 0;
 
 function goTo(idx) {
+  updateTopProgress();
   document.getElementById('s' + currentSection).classList.remove('active');
   document.getElementById('s' + idx).classList.add('active');
   currentSection = idx;
@@ -1835,6 +1862,32 @@ function computeLMSScores() {
 // ─── Init ─────────────────────────────────────────────
 loadState();
 calcTotal();
+
+function saveSection(idx) {
+  // State already saved to localStorage on every input
+  // Mark this section as visited/saved
+  if (!appState.savedSections) appState.savedSections = [];
+  if (!appState.savedSections.includes(idx)) appState.savedSections.push(idx);
+  localStorage.setItem('lmsState', JSON.stringify(appState));
+  updateTopProgress();
+  // Show toast
+  const toast = document.getElementById('saveToast');
+  if (toast) {
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+}
+
+function updateTopProgress() {
+  const steps = document.querySelectorAll('#topProgress .prog-step');
+  steps.forEach(s => {
+    const idx = parseInt(s.dataset.s);
+    s.classList.remove('active','done');
+    if (idx === currentSection) s.classList.add('active');
+    else if (appState.savedSections && appState.savedSections.includes(idx)) s.classList.add('done');
+  });
+}
+
 </script>
 </body>
 </html>
