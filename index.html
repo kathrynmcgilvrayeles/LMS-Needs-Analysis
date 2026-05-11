@@ -14,11 +14,12 @@ tailwind.config = {
     extend: {
       colors: {
         brand: {
-          teal:  '#0D9490',
-          light: '#D0F4F3',
-          mist:  '#F0FDFB',
-          navy:  '#1A2744',
-          dark:  '#0F1E3D',
+          teal:  '#00bec7',
+          light: '#d2f0f0',
+          mist:  '#d2f0f0',
+          navy:  '#1f2a52',
+          dark:  '#1f2a52',
+          pink:  '#e72582',
         }
       },
       fontFamily: {
@@ -42,8 +43,8 @@ h1,h2,h3,h4,h5,.font-heading { font-family: 'Space Grotesk', sans-serif; }
 
 /* ─── Scrollbar ────────────────────────────────────── */
 ::-webkit-scrollbar        { width:6px; height:6px; }
-::-webkit-scrollbar-track  { background:#F0FDFB; }
-::-webkit-scrollbar-thumb  { background:#0D9490; }
+::-webkit-scrollbar-track  { background:#d2f0f0; }
+::-webkit-scrollbar-thumb  { background:#00bec7; }
 
 /* ─── Section panels ───────────────────────────────── */
 .section-panel            { display:none; }
@@ -54,13 +55,13 @@ h1,h2,h3,h4,h5,.font-heading { font-family: 'Space Grotesk', sans-serif; }
 .section-tab { cursor:pointer; white-space:nowrap; transition:all .15s;
                border-bottom:3px solid transparent; padding:12px 16px;
                font-size:13px; font-weight:500; color:#64748B; user-select:none; }
-.section-tab:hover          { color:#0D9490; }
-.section-tab.active         { color:#0D9490; border-bottom-color:#0D9490; }
+.section-tab:hover          { color:#00bec7; }
+.section-tab.active         { color:#00bec7; border-bottom-color:#00bec7; }
 .section-tab .tab-num       { display:inline-flex; align-items:center; justify-content:center;
                                width:20px; height:20px; background:#E2E8F0; color:#64748B;
                                font-size:10px; font-weight:700; margin-right:6px; transition:all .15s; }
 .section-tab.active .tab-num,
-.section-tab.done .tab-num  { background:#0D9490; color:#fff; }
+.section-tab.done .tab-num  { background:#00bec7; color:#fff; }
 
 /* ─── Progress bar ────────────────────────────────── */
 #progress-bar { transition: width .4s ease; }
@@ -73,7 +74,7 @@ h1,h2,h3,h4,h5,.font-heading { font-family: 'Space Grotesk', sans-serif; }
   line-height: 1.6;
 }
 .pill-btn:hover { border-color: #94A3B8; }
-.pill-must.active { background:#0D9490; color:#fff; border-color:#0D9490; }
+.pill-must.active { background:#e72582; color:#fff; border-color:#e72582; }
 .pill-nice.active { background:#0EA5E9; color:#fff; border-color:#0EA5E9; }
 .pill-no.active   { background:#64748B; color:#fff; border-color:#64748B; }
 
@@ -81,17 +82,17 @@ h1,h2,h3,h4,h5,.font-heading { font-family: 'Space Grotesk', sans-serif; }
 .radio-card { cursor:pointer; border:2px solid #E2E8F0; padding:16px;
               transition:all .15s; background:#fff; }
 .radio-card:hover  { border-color:#94A3B8; }
-.radio-card.selected { border-color:#0D9490; background:#F0FDFB; }
-.radio-card .check-icon { display:none; color:#0D9490; }
+.radio-card.selected { border-color:#00bec7; background:#d2f0f0; }
+.radio-card .check-icon { display:none; color:#00bec7; }
 .radio-card.selected .check-icon { display:inline; }
 
 /* ─── Underline inputs ────────────────────────────── */
 .underline-input {
-  border:none; border-bottom:2px solid #0D9490; background:transparent;
+  border:none; border-bottom:2px solid #00bec7; background:transparent;
   outline:none; padding:4px 6px; text-align:center; font-size:1.25rem;
-  font-weight:700; color:#0D9490; font-family:'Inter',sans-serif; width:100%;
+  font-weight:700; color:#00bec7; font-family:'Inter',sans-serif; width:100%;
 }
-.underline-input::placeholder { color:#A5D8D7; font-weight:400; font-size:1rem; }
+.underline-input::placeholder { color:#abb5bf; font-weight:400; font-size:1rem; }
 
 /* ─── Dollar input ────────────────────────────────── */
 .dollar-group { display:flex; align-items:stretch; border:1.5px solid #E2E8F0; background:#fff; }
@@ -102,40 +103,40 @@ h1,h2,h3,h4,h5,.font-heading { font-family: 'Space Grotesk', sans-serif; }
   border:none; outline:none; padding:7px 10px; flex:1; background:#fff;
   font-family:'Inter',sans-serif; font-size:13px; min-width:0;
 }
-.dollar-group input:focus { background:#F0FDFB; }
+.dollar-group input:focus { background:#d2f0f0; }
 
 /* ─── Mini progress (cost section) ───────────────── */
 .mini-prog { height:3px; background:#E2E8F0; }
-.mini-prog-fill { height:100%; background:#0D9490; transition:width .4s; max-width:100%; }
+.mini-prog-fill { height:100%; background:#00bec7; transition:width .4s; max-width:100%; }
 
 /* ─── Select custom arrow ─────────────────────────── */
 select {
   -webkit-appearance:none; appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%230D9490' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%2300bec7' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
   background-repeat:no-repeat; background-position:right 12px center;
   padding-right:32px !important;
 }
 
 /* ─── Checkbox accent ─────────────────────────────── */
-input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:pointer; }
+input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:pointer; }
 
 /* ─── Form inputs ─────────────────────────────────── */
 .field { border:1.5px solid #E2E8F0; padding:8px 12px; outline:none;
          font-family:'Inter',sans-serif; font-size:13px; width:100%; background:#fff; }
-.field:focus { border-color:#0D9490; background:#F0FDFB; }
+.field:focus { border-color:#00bec7; background:#d2f0f0; }
 
 /* ─── Integration grid gap ────────────────────────── */
-.int-grid { background:#0D9490; gap:2px; display:grid; grid-template-columns:1fr 1fr; }
+.int-grid { background:#00bec7; gap:2px; display:grid; grid-template-columns:1fr 1fr; }
 .int-cell  { background:#fff; padding:14px 12px; }
 
 /* ─── Security panel ──────────────────────────────── */
-.security-panel { background:#F0FDFB; border:1.5px solid #D0F4F3; }
+.security-panel { background:#d2f0f0; border:1.5px solid #d2f0f0; }
 .security-row   { display:flex; align-items:center; justify-content:space-between;
-                  padding:9px 12px; border-bottom:1px solid #D0F4F3; }
+                  padding:9px 12px; border-bottom:1px solid #d2f0f0; }
 .security-row:last-child { border-bottom:none; }
 
 /* ─── Navy card ───────────────────────────────────── */
-.navy-card { background:#1A2744; color:#fff; }
+.navy-card { background:#1f2a52; color:#fff; }
 .navy-row  { background:rgba(255,255,255,.07); border-bottom:1px solid rgba(255,255,255,.07);
              display:flex; align-items:center; justify-content:space-between;
              padding:9px 14px; }
@@ -148,10 +149,10 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
 .feature-row:hover { background:#FAFBFC; }
 
 /* ─── Bento cards ─────────────────────────────────── */
-.bento-accent { border-left:4px solid #0D9490; }
+.bento-accent { border-left:4px solid #00bec7; }
 
 /* ─── CTA banner ──────────────────────────────────── */
-.cta-banner { background:#0F1E3D; color:#fff; padding:18px 24px;
+.cta-banner { background:#1f2a52; color:#fff; padding:18px 24px;
               display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
 
 /* ─── Print ────────────────────────────────────────── */
@@ -169,7 +170,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
 ══════════════════════════════════════════════ -->
 <div id="app-header" class="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between sticky top-0 z-50" style="box-shadow:0 1px 4px rgba(0,0,0,.06)">
   <div class="flex items-center gap-3">
-    <div class="w-9 h-9 flex items-center justify-center" style="background:#0D9490">
+    <div class="w-9 h-9 flex items-center justify-center" style="background:#00bec7">
       <span class="material-icons-round text-white" style="font-size:18px">school</span>
     </div>
     <div>
@@ -180,10 +181,10 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
   <div class="flex items-center gap-4">
     <div class="text-right hidden sm:block">
       <div style="font-size:11px;color:#94A3B8;" id="progress-label">Section 1 of 9</div>
-      <div style="font-size:11px;font-weight:600;color:#0D9490;" id="progress-pct">0% Complete</div>
+      <div style="font-size:11px;font-weight:600;color:#00bec7;" id="progress-pct">0% Complete</div>
     </div>
     <div style="width:120px;height:6px;background:#E2E8F0;overflow:hidden;">
-      <div id="progress-bar" style="width:0%;height:100%;background:#0D9490"></div>
+      <div id="progress-bar" style="width:0%;height:100%;background:#00bec7"></div>
     </div>
     <button onclick="printReport()" style="font-size:12px;color:#64748B;border:1.5px solid #E2E8F0;padding:6px 14px;background:#fff;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:Inter,sans-serif">
       <span class="material-icons-round" style="font-size:15px">file_download</span> Export
@@ -224,7 +225,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Org Info -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-4" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">business</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">business</span>
           Organisation Information
         </h3>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
@@ -280,7 +281,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Team & Scale -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-5" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">group</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">group</span>
           Team &amp; Scale
         </h3>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center">
@@ -308,10 +309,10 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Training Types -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-4" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">menu_book</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">menu_book</span>
           Training Types Delivered <span style="font-size:11px;color:#94A3B8;font-weight:400">(select all that apply)</span>
         </h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div id="training-types-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
           ${['Accredited VET / Qualifications','Short Courses & Micro-credentials','Workplace Health & Safety (WHS)',
              'Onboarding & Induction','Compliance Training','Technical / Skills Training',
              'Leadership & Management','Customer Service','Trade Qualifications','Higher Education / CPD'].map(t=>
@@ -324,7 +325,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Current LMS -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-4" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">laptop_mac</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">laptop_mac</span>
           Current LMS / Technology
         </h3>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
@@ -357,7 +358,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     <div style="display:flex;flex-direction:column;gap:16px">
       <div class="navy-card p-5">
         <h4 class="font-heading font-semibold mb-3" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">tips_and_updates</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">tips_and_updates</span>
           Getting Started
         </h4>
         <p style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.6;margin-bottom:12px">
@@ -366,16 +367,16 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
         <p style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.6;margin-bottom:12px">
           Your answers generate a structured brief you can share with LMS vendors to get accurate, comparable proposals.
         </p>
-        <div style="background:rgba(255,255,255,.08);padding:12px;margin-top:4px">
-          <div style="font-size:11px;font-weight:700;color:#0D9490;margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase">Sections Overview</div>
+        <div id="sections-overview-panel" style="background:rgba(255,255,255,.08);padding:12px;margin-top:4px">
+          <div style="font-size:11px;font-weight:700;color:#00bec7;margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase">Sections Overview</div>
           ${['Org Details','LMS Functionality','Content & Assessment','Administration','Learner Needs','Trainer Needs','Compliance','LMS Relationship','Cost Model'].map((s,i)=>
             `<div style="font-size:11px;color:rgba(255,255,255,.65);padding:3px 0;display:flex;align-items:center;gap:7px">
-               <span style="width:16px;height:16px;background:#0D9490;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">${i+1}</span>${s}
+               <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">${i+1}</span>${s}
              </div>`).join('')}
         </div>
       </div>
       <div class="bg-white border border-gray-200 p-4">
-        <div style="font-size:11px;font-weight:700;color:#0D9490;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px">Tips</div>
+        <div style="font-size:11px;font-weight:700;color:#00bec7;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px">Tips</div>
         <ul style="font-size:12px;color:#64748B;line-height:1.7;padding-left:16px">
           <li>Include all user types — learners, trainers, admins</li>
           <li>Budget range helps vendors size their proposals</li>
@@ -406,7 +407,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Hosting -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-4" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">dns</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">dns</span>
           Hosting Preference
         </h3>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
@@ -414,8 +415,8 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
           <div class="radio-card" id="host-cloud" onclick="selectHosting('cloud')">
             <div style="display:flex;align-items:flex-start;justify-content:space-between">
               <div>
-                <div style="font-size:14px;font-weight:700;color:#1A2744;display:flex;align-items:center;gap:6px">
-                  <span class="material-icons-round" style="font-size:18px;color:#0D9490">cloud</span> Cloud-Hosted
+                <div style="font-size:14px;font-weight:700;color:#1f2a52;display:flex;align-items:center;gap:6px">
+                  <span class="material-icons-round" style="font-size:18px;color:#00bec7">cloud</span> Cloud-Hosted
                 </div>
                 <div style="font-size:12px;color:#64748B;margin-top:6px;line-height:1.5">Vendor manages infrastructure, updates, and uptime. Fastest to deploy.</div>
                 <ul style="font-size:11px;color:#94A3B8;margin-top:8px;padding-left:14px;line-height:1.7">
@@ -431,7 +432,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
           <div class="radio-card" id="host-onprem" onclick="selectHosting('onprem')">
             <div style="display:flex;align-items:flex-start;justify-content:space-between">
               <div>
-                <div style="font-size:14px;font-weight:700;color:#1A2744;display:flex;align-items:center;gap:6px">
+                <div style="font-size:14px;font-weight:700;color:#1f2a52;display:flex;align-items:center;gap:6px">
                   <span class="material-icons-round" style="font-size:18px;color:#64748B">storage</span> On-Premise
                 </div>
                 <div style="font-size:12px;color:#64748B;margin-top:6px;line-height:1.5">Self-hosted on your own servers or private cloud. Full data control.</div>
@@ -450,7 +451,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Core Features -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-1" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">tune</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">tune</span>
           Core Platform Features
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Rate each feature for your organisation's needs.</p>
@@ -472,7 +473,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Security panel -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-3" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">security</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">security</span>
           Security Requirements
         </h3>
         <div class="security-panel">
@@ -490,7 +491,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Integrations 2×2 grid -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-3" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">hub</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">hub</span>
           Core Integrations
         </h3>
         <div class="int-grid">
@@ -498,8 +499,8 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
              ['crm','CRM System','contacts'],['payment','Payment Gateway','payments']].map(([id,label,icon])=>
             `<div class="int-cell">
                <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-                 <span class="material-icons-round" style="font-size:16px;color:#0D9490">${icon}</span>
-                 <span style="font-size:12px;font-weight:600;color:#1A2744">${label}</span>
+                 <span class="material-icons-round" style="font-size:16px;color:#00bec7">${icon}</span>
+                 <span style="font-size:12px;font-weight:600;color:#1f2a52">${label}</span>
                </div>
                <div style="display:flex;gap:4px">
                  <button class="pill-btn pill-must" onclick="setPill('int','${id}','must',this)">Must</button>
@@ -532,7 +533,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Training Delivery Split -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-2" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">pie_chart</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">pie_chart</span>
           Training Delivery Split
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:16px">Approximate percentage breakdown of your training delivery (should total 100%).</p>
@@ -542,7 +543,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
             <div style="display:flex;align-items:baseline;justify-content:center;gap:3px">
               <input class="underline-input" type="number" id="pct-theory" value="33" min="0" max="100"
                 style="width:60px" oninput="setState('content','theoretical',parseInt(this.value)||0);updateSplitBar()">
-              <span style="font-size:18px;font-weight:700;color:#0D9490">%</span>
+              <span style="font-size:18px;font-weight:700;color:#00bec7">%</span>
             </div>
             <div style="font-size:11px;color:#94A3B8;margin-top:4px">knowledge-based</div>
           </div>
@@ -551,7 +552,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
             <div style="display:flex;align-items:baseline;justify-content:center;gap:3px">
               <input class="underline-input" type="number" id="pct-technical" value="33" min="0" max="100"
                 style="width:60px" oninput="setState('content','technical',parseInt(this.value)||0);updateSplitBar()">
-              <span style="font-size:18px;font-weight:700;color:#0D9490">%</span>
+              <span style="font-size:18px;font-weight:700;color:#00bec7">%</span>
             </div>
             <div style="font-size:11px;color:#94A3B8;margin-top:4px">applied skills</div>
           </div>
@@ -560,21 +561,21 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
             <div style="display:flex;align-items:baseline;justify-content:center;gap:3px">
               <input class="underline-input" type="number" id="pct-practical" value="34" min="0" max="100"
                 style="width:60px" oninput="setState('content','practical',parseInt(this.value)||0);updateSplitBar()">
-              <span style="font-size:18px;font-weight:700;color:#0D9490">%</span>
+              <span style="font-size:18px;font-weight:700;color:#00bec7">%</span>
             </div>
             <div style="font-size:11px;color:#94A3B8;margin-top:4px">hands-on / WBT</div>
           </div>
         </div>
         <!-- Split bar visualiser -->
         <div style="margin-top:14px;height:8px;display:flex;overflow:hidden">
-          <div id="split-theory"  style="background:#0D9490;height:100%;transition:flex .3s;flex:33"></div>
+          <div id="split-theory"  style="background:#00bec7;height:100%;transition:flex .3s;flex:33"></div>
           <div id="split-technical" style="background:#0EA5E9;height:100%;transition:flex .3s;flex:33"></div>
-          <div id="split-practical" style="background:#1A2744;height:100%;transition:flex .3s;flex:34"></div>
+          <div id="split-practical" style="background:#1f2a52;height:100%;transition:flex .3s;flex:34"></div>
         </div>
         <div style="display:flex;gap:16px;margin-top:6px">
-          <div style="font-size:10px;color:#0D9490;display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#0D9490;display:inline-block"></span>Theoretical</div>
+          <div style="font-size:10px;color:#00bec7;display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#00bec7;display:inline-block"></span>Theoretical</div>
           <div style="font-size:10px;color:#0EA5E9;display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#0EA5E9;display:inline-block"></span>Technical</div>
-          <div style="font-size:10px;color:#1A2744;display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#1A2744;display:inline-block"></span>Practical</div>
+          <div style="font-size:10px;color:#1f2a52;display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#1f2a52;display:inline-block"></span>Practical</div>
           <div id="split-total-warn" style="font-size:11px;color:#EF4444;margin-left:auto;display:none">⚠ Does not total 100%</div>
         </div>
       </div>
@@ -582,7 +583,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Content Types -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-1" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">perm_media</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">perm_media</span>
           Content Types
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">What types of content will you need to deliver?</p>
@@ -596,7 +597,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Assessment Features -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-1" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">fact_check</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">fact_check</span>
           Assessment Features
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">What assessment capabilities do you require?</p>
@@ -613,11 +614,11 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     <div>
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-1" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">auto_awesome</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">auto_awesome</span>
           AI &amp; Social Features
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Emerging capabilities — rate each for your roadmap.</p>
-        <div style="display:flex;flex-direction:column;gap:10px">
+        <div id="ai-social-list" style="display:flex;flex-direction:column;gap:10px">
           ${[['aiRec','AI Content Recommendations'],['aiBot','AI Chatbot / Learning Assistant'],['aiQuiz','AI-Generated Quiz Questions'],
              ['forums','Discussion Forums'],['p2p','Peer-to-Peer Learning'],['gamify','Gamification &amp; Leaderboards'],
              ['socialprofile','Social Profiles &amp; Community'],['collab','Live Collaborative Tools']].map(([id,label])=>
@@ -653,7 +654,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Enrolment -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-4" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">how_to_reg</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">how_to_reg</span>
           Enrolment Method
         </h3>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
@@ -685,7 +686,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Admin Features -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-1" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">admin_panel_settings</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">admin_panel_settings</span>
           Admin Features
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Rate each administrative capability for your organisation.</p>
@@ -700,10 +701,10 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       <!-- Ecosystem Integrations -->
       <div class="bg-white border border-gray-200 p-5">
         <h3 class="font-heading font-semibold text-gray-800 mb-3" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">electrical_services</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">electrical_services</span>
           Ecosystem Integrations Required
         </h3>
-        <div style="display:flex;flex-direction:column;gap:2px" class="integration-row">
+        <div id="admin-int-list" style="display:flex;flex-direction:column;gap:2px" class="integration-row">
           ${[['xero','Xero','account_balance'],['myob','MYOB','account_balance'],
              ['salesforce','Salesforce CRM','crm'],['hubspot','HubSpot','contacts'],
              ['teams','Microsoft Teams','groups'],['zoom','Zoom','videocam'],
@@ -726,11 +727,11 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     <div>
       <div class="navy-card p-5">
         <h3 class="font-heading font-semibold mb-3" style="font-size:13px;display:flex;align-items:center;gap:6px">
-          <span class="material-icons-round" style="font-size:16px;color:#0D9490">attach_money</span>
+          <span class="material-icons-round" style="font-size:16px;color:#00bec7">attach_money</span>
           Financial Management
         </h3>
         <p style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:14px;line-height:1.6">Rate the financial features your LMS must support.</p>
-        <div style="display:flex;flex-direction:column;gap:10px">
+        <div id="finance-features-list" style="display:flex;flex-direction:column;gap:10px">
           ${[['invoice','Invoice Generation'],['paygate','Online Payment Gateway'],['subs','Subscription / Membership Plans'],
              ['coupon','Coupon &amp; Discount Codes'],['revrpt','Revenue / Sales Reporting'],
              ['gst','Tax Invoicing (GST)'],['refund','Refund Processing']].map(([id,label])=>
@@ -765,13 +766,13 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     <!-- Left col: 2-col checkbox grid -->
     <div class="bg-white border border-gray-200 p-5">
       <h3 class="font-heading font-semibold text-gray-800 mb-4" style="font-size:13px;display:flex;align-items:center;gap:6px">
-        <span class="material-icons-round" style="font-size:16px;color:#0D9490">person</span>
+        <span class="material-icons-round" style="font-size:16px;color:#00bec7">person</span>
         Learner Experience Requirements
       </h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
         <!-- Portal Experience -->
-        <div style="border-right:1.5px solid #F1F5F9;padding-right:16px">
-          <div style="font-size:11px;font-weight:700;color:#0D9490;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid #F0FDFB">Portal Experience</div>
+        <div id="portal-exp-col" style="border-right:1.5px solid #F1F5F9;padding-right:16px">
+          <div style="font-size:11px;font-weight:700;color:#00bec7;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid #d2f0f0">Portal Experience</div>
           ${['Custom Organisation Branding','Mobile-Responsive Design','Dedicated Mobile App','Self-Service Enrolment',
              'Browse Course Catalogue','My Progress Dashboard','Certificate Download','Notification Preferences','Profile Customisation'].map(item=>
             `<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:#374151;padding:5px 0;border-bottom:1px solid #F8FAFC">
@@ -779,8 +780,8 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
              </label>`).join('')}
         </div>
         <!-- Learning Features -->
-        <div style="padding-left:16px">
-          <div style="font-size:11px;font-weight:700;color:#0D9490;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid #F0FDFB">Learning Features</div>
+        <div id="learning-feat-col" style="padding-left:16px">
+          <div style="font-size:11px;font-weight:700;color:#00bec7;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid #d2f0f0">Learning Features</div>
           ${['Blended Learning Paths','Prerequisite Gating','Learning Reminders &amp; Nudges','Offline / Download Access',
              'Multi-Language Support','Accessibility (WCAG 2.1)','Video Captions / Transcripts','Discussion &amp; Comments','Bookmarking &amp; Resume'].map(item=>
             `<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:#374151;padding:5px 0;border-bottom:1px solid #F8FAFC">
@@ -793,18 +794,18 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     <!-- Support & Comms dark navy card -->
     <div class="navy-card p-5">
       <h3 class="font-heading font-semibold mb-3" style="font-size:13px;display:flex;align-items:center;gap:6px">
-        <span class="material-icons-round" style="font-size:16px;color:#0D9490">support_agent</span>
+        <span class="material-icons-round" style="font-size:16px;color:#00bec7">support_agent</span>
         Support &amp; Communications
       </h3>
       <p style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:14px;line-height:1.6">Which support and comms capabilities must your learners have access to?</p>
-      <div>
+      <div id="support-comms-list">
         ${[['livechat','In-App Live Chat Support'],['emailnotif','Email Notifications'],
            ['sms','SMS / Push Notifications'],['helpdesk','Help Desk / Ticketing'],
            ['onboarding','Onboarding Walkthrough'],['kb','Knowledge Base / FAQ'],
            ['community','Community Support Forum'],['dedicatedrep','Dedicated Support Rep']].map(([id,label])=>
           `<div class="navy-row" style="display:flex;align-items:center;justify-content:space-between;">
              <span style="font-size:12px;color:rgba(255,255,255,.85)">${label}</span>
-             <input type="checkbox" onchange="setCheck('support','${id}',this.checked)" style="accent-color:#0D9490">
+             <input type="checkbox" onchange="setCheck('support','${id}',this.checked)" style="accent-color:#00bec7">
            </div>`).join('')}
       </div>
     </div>
@@ -824,7 +825,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
   <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px">
     <div class="bg-white border border-gray-200 p-5">
       <h3 class="font-heading font-semibold text-gray-800 mb-1" style="font-size:13px;display:flex;align-items:center;gap:6px">
-        <span class="material-icons-round" style="font-size:16px;color:#0D9490">co_present</span>
+        <span class="material-icons-round" style="font-size:16px;color:#00bec7">co_present</span>
         Trainer &amp; Assessor Capabilities
       </h3>
       <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Rate each feature from your trainers' perspective.</p>
@@ -844,7 +845,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
           Trainers interact with the LMS every day. Poor trainer UX directly reduces assessment quality, evidence integrity, and compliance outcomes.
         </p>
         <div style="background:rgba(255,255,255,.07);padding:12px">
-          <div style="font-size:11px;font-weight:700;color:#0D9490;margin-bottom:8px">Key Questions to Ask Vendors</div>
+          <div style="font-size:11px;font-weight:700;color:#00bec7;margin-bottom:8px">Key Questions to Ask Vendors</div>
           <ul style="font-size:11px;color:rgba(255,255,255,.65);padding-left:16px;line-height:1.7">
             <li>How do trainers mark competency off?</li>
             <li>Can assessors annotate evidence?</li>
@@ -870,7 +871,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
   <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px">
     <div class="bg-white border border-gray-200 p-5">
       <h3 class="font-heading font-semibold text-gray-800 mb-1" style="font-size:13px;display:flex;align-items:center;gap:6px">
-        <span class="material-icons-round" style="font-size:16px;color:#0D9490">verified_user</span>
+        <span class="material-icons-round" style="font-size:16px;color:#00bec7">verified_user</span>
         Compliance Features
       </h3>
       <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Rate each compliance capability against your regulatory context.</p>
@@ -889,12 +890,12 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
         <p style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:12px">
           Australian RTOs operate under the Standards for Registered Training Organisations (SRTOs 2015) and applicable state funding frameworks.
         </p>
-        <div style="display:flex;flex-direction:column;gap:6px">
+        <div id="comp-framework-list" style="display:flex;flex-direction:column;gap:6px">
           ${[['ASQA','National regulatory body'],['VRQA / TAC','State regulators (VIC/ACT)'],
              ['AVETMISS','National VET statistical standard'],['USI Registry','Unique Student Identifier'],
              ['Skills First','Victorian funded training'],['AQF','Qualifications Framework']].map(([t,d])=>
             `<div style="background:rgba(255,255,255,.07);padding:8px 10px">
-               <div style="font-size:12px;font-weight:600;color:#0D9490">${t}</div>
+               <div style="font-size:12px;font-weight:600;color:#00bec7">${t}</div>
                <div style="font-size:11px;color:rgba(255,255,255,.6)">${d}</div>
              </div>`).join('')}
         </div>
@@ -915,7 +916,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
   <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px">
     <div class="bg-white border border-gray-200 p-5">
       <h3 class="font-heading font-semibold text-gray-800 mb-1" style="font-size:13px;display:flex;align-items:center;gap:6px">
-        <span class="material-icons-round" style="font-size:16px;color:#0D9490">handshake</span>
+        <span class="material-icons-round" style="font-size:16px;color:#00bec7">handshake</span>
         Vendor Requirements
       </h3>
       <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">What does the ongoing vendor relationship need to look like for your organisation?</p>
@@ -934,11 +935,11 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
         <p style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:12px">
           Questions to ask every vendor in your evaluation process:
         </p>
-        <div style="display:flex;flex-direction:column;gap:6px">
+        <div id="vendor-questions-list" style="display:flex;flex-direction:column;gap:6px">
           ${['Do you have Australian-based staff?','What is your typical onboarding timeline?','How are bugs and outages communicated?',
              'What is your data retention &amp; exit policy?','Is there a product roadmap you can share?',
              'What SLA guarantees are contractual?','Can we speak to a current RTO client?'].map(q=>
-            `<div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #0D9490;background:rgba(255,255,255,.05);line-height:1.4">${q}</div>`).join('')}
+            `<div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #00bec7;background:rgba(255,255,255,.05);line-height:1.4">${q}</div>`).join('')}
         </div>
       </div>
     </div>
@@ -966,7 +967,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
       </h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div>
-          <label style="font-size:11px;font-weight:600;color:#0D9490;display:block;margin-bottom:4px">Cost per Learner (Annual)</label>
+          <label style="font-size:11px;font-weight:600;color:#00bec7;display:block;margin-bottom:4px">Cost per Learner (Annual)</label>
           <div class="dollar-group">
             <span class="pfx">$</span>
             <input type="number" id="cost-per-learner" placeholder="0.00" min="0" step="0.01"
@@ -975,7 +976,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
           <div style="font-size:10px;color:#64748B;margin-top:3px">× <span id="learner-count-display">0</span> learners</div>
         </div>
         <div>
-          <label style="font-size:11px;font-weight:600;color:#0D9490;display:block;margin-bottom:4px">One-off Establishment Fee</label>
+          <label style="font-size:11px;font-weight:600;color:#00bec7;display:block;margin-bottom:4px">One-off Establishment Fee</label>
           <div class="dollar-group">
             <span class="pfx">$</span>
             <input type="number" id="cost-setup" placeholder="0.00" min="0" step="0.01"
@@ -983,7 +984,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
           </div>
         </div>
         <div>
-          <label style="font-size:11px;font-weight:600;color:#0D9490;display:block;margin-bottom:4px">Cloud Storage Allowance (GB)</label>
+          <label style="font-size:11px;font-weight:600;color:#00bec7;display:block;margin-bottom:4px">Cloud Storage Allowance (GB)</label>
           <div class="dollar-group">
             <span class="pfx" style="font-size:11px">GB</span>
             <input type="number" id="cost-storage" placeholder="0" min="0"
@@ -991,7 +992,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
           </div>
         </div>
         <div>
-          <label style="font-size:11px;font-weight:600;color:#0D9490;display:block;margin-bottom:4px">Acquisition &amp; Marketing</label>
+          <label style="font-size:11px;font-weight:600;color:#00bec7;display:block;margin-bottom:4px">Acquisition &amp; Marketing</label>
           <div class="dollar-group">
             <span class="pfx">$</span>
             <input type="number" id="cost-marketing" placeholder="0.00" min="0" step="0.01"
@@ -1004,10 +1005,10 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     <!-- Integration Ecosystem costs -->
     <div class="navy-card p-5">
       <h3 class="font-heading font-semibold mb-3" style="font-size:13px;display:flex;align-items:center;gap:6px">
-        <span class="material-icons-round" style="font-size:16px;color:#0D9490">electrical_services</span>
+        <span class="material-icons-round" style="font-size:16px;color:#00bec7">electrical_services</span>
         Integration Ecosystem
       </h3>
-      <div style="display:flex;flex-direction:column;gap:8px">
+      <div id="cost-int-list" style="display:flex;flex-direction:column;gap:8px">
         ${[['smsCRM','SMS / CRM Bridge'],['lln','LLN Diagnostic Tool'],['marketingPlatform','Marketing Platform'],
            ['ecommerce','eCommerce / Stripe'],['digitalCreds','Digital Credentials'],
            ['dataMigration','Data Migration'],['certsBadges','Certificates / Badges']].map(([key,label])=>
@@ -1032,7 +1033,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     <div class="bg-white border border-gray-200" style="overflow:hidden">
       <div style="display:grid;grid-template-columns:1fr 2fr">
         <!-- Left sub: dark overlay -->
-        <div style="background:linear-gradient(145deg,#0F1E3D 0%,#1A2744 60%,#0D9490 100%);padding:24px;display:flex;flex-direction:column;justify-content:space-between">
+        <div style="background:linear-gradient(145deg,#1f2a52 0%,#1f2a52 60%,#00bec7 100%);padding:24px;display:flex;flex-direction:column;justify-content:space-between">
           <div>
             <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Overhead</div>
             <h3 class="font-heading font-bold" style="font-size:16px;color:#fff;line-height:1.3">Implementation<br>Team</h3>
@@ -1042,13 +1043,13 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
           </div>
         </div>
         <!-- Right sub: 3 items -->
-        <div style="padding:20px;display:flex;flex-direction:column;gap:14px">
+        <div id="dev-cost-list" style="padding:20px;display:flex;flex-direction:column;gap:14px">
           ${[['pmHours','Internal PM Hours (est. cost)','schedule'],
              ['externalDev','External Dev / SMEs','engineering'],
              ['staffTraining','Staff Training','school']].map(([key,label,icon],i)=>`
             <div>
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-                <span class="material-icons-round" style="font-size:15px;color:#0D9490">${icon}</span>
+                <span class="material-icons-round" style="font-size:15px;color:#00bec7">${icon}</span>
                 <span style="font-size:12px;font-weight:600;color:#374151">${label}</span>
               </div>
               <div class="dollar-group">
@@ -1068,7 +1069,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     <!-- Operational Run-Rate -->
     <div class="bg-white border border-gray-200 p-5">
       <h3 class="font-heading font-semibold text-gray-800 mb-4" style="font-size:13px;display:flex;align-items:center;gap:6px">
-        <span class="material-icons-round" style="font-size:16px;color:#0D9490">autorenew</span>
+        <span class="material-icons-round" style="font-size:16px;color:#00bec7">autorenew</span>
         Operational<br>Run-Rate
       </h3>
       <div style="display:flex;flex-direction:column;gap:12px">
@@ -1101,7 +1102,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
   </div><!-- /row 2 -->
 
   <!-- ── ROW 3: Future-proofing (4 bento cards) ── -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px">
+  <div id="future-proof-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px">
     <div style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;grid-column:1/-1;padding-bottom:4px;border-bottom:1.5px solid #E2E8F0">
       Future-Proofing &amp; Risk Mitigation
     </div>
@@ -1111,7 +1112,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
        ['riskMitigation','Long-term Risk Estimate','shield']].map(([key,label,icon],i)=>
       `<div class="bg-white border border-gray-200 p-4 bento-accent">
          <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">
-           <span class="material-icons-round" style="font-size:17px;color:#0D9490">${icon}</span>
+           <span class="material-icons-round" style="font-size:17px;color:#00bec7">${icon}</span>
            <span class="font-heading" style="font-size:12px;font-weight:600;color:#374151">${label}</span>
          </div>
          ${key==='scalability'
@@ -1125,11 +1126,11 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
   <div class="cta-banner">
     <div>
       <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px">Analysing Total Projected Cost</div>
-      <div id="cost-total-display" class="font-heading font-bold" style="font-size:28px;color:#0D9490">$0.00 <span style="font-size:14px;color:rgba(255,255,255,.5);font-weight:400">AUD</span></div>
+      <div id="cost-total-display" class="font-heading font-bold" style="font-size:28px;color:#00bec7">$0.00 <span style="font-size:14px;color:rgba(255,255,255,.5);font-weight:400">AUD</span></div>
       <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px">Estimated Year-1 total cost of ownership</div>
     </div>
     <div style="display:flex;gap:10px;align-items:center">
-      <button onclick="printReport()" style="padding:10px 22px;background:#0D9490;color:#fff;font-family:Inter,sans-serif;font-size:13px;font-weight:600;border:none;cursor:pointer;display:flex;align-items:center;gap:6px">
+      <button onclick="printReport()" style="padding:10px 22px;background:#00bec7;color:#fff;font-family:Inter,sans-serif;font-size:13px;font-weight:600;border:none;cursor:pointer;display:flex;align-items:center;gap:6px">
         <span class="material-icons-round" style="font-size:16px">file_download</span> Download Report
       </button>
       <button onclick="navigate(1)" style="padding:10px 22px;background:transparent;color:#fff;font-family:Inter,sans-serif;font-size:13px;font-weight:600;border:1.5px solid rgba(255,255,255,.25);cursor:pointer">
@@ -1161,7 +1162,7 @@ input[type=checkbox] { accent-color:#0D9490; width:16px; height:16px; cursor:poi
     </div>
   </div>
   <button id="btn-next" onclick="navigate(1)"
-    style="display:flex;align-items:center;gap:6px;font-size:13px;color:#fff;border:none;padding:8px 22px;background:#0D9490;cursor:pointer;font-family:Inter,sans-serif;font-weight:600">
+    style="display:flex;align-items:center;gap:6px;font-size:13px;color:#fff;border:none;padding:8px 22px;background:#00bec7;cursor:pointer;font-family:Inter,sans-serif;font-weight:600">
     Next <span class="material-icons-round" style="font-size:16px">arrow_forward</span>
   </button>
 </div>
@@ -1235,7 +1236,7 @@ function buildTabs() {
 function buildDots() {
   const c = document.getElementById('section-dots');
   c.innerHTML = SECTIONS.map((_,i) =>
-    `<div id="dot-${i}" style="width:7px;height:7px;background:${i===0?'#0D9490':'#E2E8F0'};transition:background .2s"></div>`
+    `<div id="dot-${i}" style="width:7px;height:7px;background:${i===0?'#00bec7':'#E2E8F0'};transition:background .2s"></div>`
   ).join('');
 }
 
@@ -1255,7 +1256,7 @@ function goToSection(idx) {
 
   document.getElementById(`section-${currentSection}`)?.classList.add('active');
   document.getElementById(`tab-${currentSection}`)?.classList.add('active');
-  document.getElementById(`dot-${currentSection}`)?.style.setProperty('background','#0D9490');
+  document.getElementById(`dot-${currentSection}`)?.style.setProperty('background','#00bec7');
 
   document.getElementById('main-scroll').scrollTop = 0;
   updateUI();
@@ -1417,10 +1418,49 @@ function featureRow(section, id, label) {
   </div>`;
 }
 
-// Re-render all sections that used featureRow template literals
-// (The static HTML above embeds them as literal strings; this ensures dynamic rendering works)
+function pill3(section, id, label) {
+  return `<div style="padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+      <span style="font-size:12px;color:rgba(255,255,255,.85)">${label}</span>
+    </div>
+    <div style="display:flex;gap:5px">
+      <button class="pill-btn pill-must" onclick="setPill('${section}','${id}','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('${section}','${id}','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('${section}','${id}','no',this)">No</button>
+    </div>
+  </div>`;
+}
+
+// Re-render ALL sections that contain raw template literal text
 (function reinitSections() {
-  // Section 2: LMS Functionality core features
+  // ── Section 1: Training Types checkboxes ──────────────────────────
+  const trainingTypes = [
+    'Accredited VET / Qualifications','Short Courses & Micro-credentials',
+    'Workplace Health & Safety (WHS)','Onboarding & Induction',
+    'Compliance Training','Technical / Skills Training',
+    'Leadership & Management','Customer Service',
+    'Trade Qualifications','Higher Education / CPD'
+  ];
+  const ttGrid = document.getElementById('training-types-grid');
+  if (ttGrid) ttGrid.innerHTML = trainingTypes.map(t =>
+    `<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:#374151">
+       <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','${t}',this.checked);updateProgress()"> ${t}
+     </label>`).join('');
+
+  // ── Section 1: Sections Overview sidebar ─────────────────────────
+  const sectionNames = ['Org Details','LMS Functionality','Content & Assessment',
+    'Administration','Learner Needs','Trainer Needs','Compliance','LMS Relationship','Cost Model'];
+  const overviewPanel = document.getElementById('sections-overview-panel');
+  if (overviewPanel) {
+    const header = overviewPanel.querySelector('div');
+    const items = sectionNames.map((s,i) =>
+      `<div style="font-size:11px;color:rgba(255,255,255,.65);padding:3px 0;display:flex;align-items:center;gap:7px">
+         <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">${i+1}</span>${s}
+       </div>`).join('');
+    overviewPanel.innerHTML = (header ? header.outerHTML : '') + items;
+  }
+
+  // ── Section 2: LMS Functionality — Core Platform Features ─────────
   const funcFeatures = [
     ['scorm12','SCORM 1.2 / 2004 Support'],['xapi','xAPI / Tin Can'],
     ['branding','Custom Branding & White-Label'],['mobile','Mobile App (iOS & Android)'],
@@ -1432,7 +1472,40 @@ function featureRow(section, id, label) {
   const funcEl = document.querySelector('#section-1 .border.border-gray-100');
   if (funcEl) funcEl.innerHTML = funcFeatures.map(([id,label]) => featureRow('func',id,label)).join('');
 
-  // Section 3: Content types
+  // ── Section 2: Security Requirements ──────────────────────────────
+  const securityItems = [
+    ['sso','Single Sign-On (SSO)'],['mfa','Multi-Factor Auth (MFA)'],
+    ['rbac','Role-Based Access Control'],['encrypt','Data Encryption at Rest'],
+    ['ip','IP Restriction / Allowlisting'],['audit','Audit Logging'],
+    ['privacy','Privacy Act / GDPR Compliance'],['pentest','Penetration Test Certified']
+  ];
+  const secPanel = document.querySelector('.security-panel');
+  if (secPanel) secPanel.innerHTML = securityItems.map(([id,label]) =>
+    `<div class="security-row">
+       <span style="font-size:12px;color:#374151">${label}</span>
+       <input type="checkbox" onchange="setCheck('security','${id}',this.checked)">
+     </div>`).join('');
+
+  // ── Section 2: Core Integrations 2×2 grid ────────────────────────
+  const coreIntItems = [
+    ['hris','HRIS / HR Platform','people'],['video','Video Conf. (Zoom/Teams)','videocam'],
+    ['crm','CRM System','contacts'],['payment','Payment Gateway','payments']
+  ];
+  const intGrid = document.querySelector('.int-grid');
+  if (intGrid) intGrid.innerHTML = coreIntItems.map(([id,label,icon]) =>
+    `<div class="int-cell">
+       <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+         <span class="material-icons-round" style="font-size:16px;color:#00bec7">${icon}</span>
+         <span style="font-size:12px;font-weight:600;color:#1f2a52">${label}</span>
+       </div>
+       <div style="display:flex;gap:4px">
+         <button class="pill-btn pill-must" onclick="setPill('int','${id}','must',this)">Must</button>
+         <button class="pill-btn pill-nice" onclick="setPill('int','${id}','nice',this)">Nice</button>
+         <button class="pill-btn pill-no"   onclick="setPill('int','${id}','no',this)">No</button>
+       </div>
+     </div>`).join('');
+
+  // ── Section 3: Content Types ──────────────────────────────────────
   const ctypeFeatures = [
     ['scorm','SCORM Packages'],['video','Video (MP4 / Vimeo / YouTube)'],
     ['pdf','PDF & Documents'],['h5p','Interactive H5P'],
@@ -1442,7 +1515,7 @@ function featureRow(section, id, label) {
   const ctypeEls = document.querySelectorAll('#section-2 .border.border-gray-100');
   if (ctypeEls[0]) ctypeEls[0].innerHTML = ctypeFeatures.map(([id,label]) => featureRow('ctype',id,label)).join('');
 
-  // Section 3: Assessment features
+  // ── Section 3: Assessment Features ───────────────────────────────
   const assessFeatures = [
     ['mcq','Multiple Choice / Quiz'],['competency','Competency-Based Assessment'],
     ['obs','Practical Observation Checklist'],['portfolio','Portfolio Evidence Upload'],
@@ -1451,30 +1524,25 @@ function featureRow(section, id, label) {
   ];
   if (ctypeEls[1]) ctypeEls[1].innerHTML = assessFeatures.map(([id,label]) => featureRow('assess',id,label)).join('');
 
-  // Section 3: AI & Social (right sidebar)
+  // ── Section 3: AI & Social Features ──────────────────────────────
   const aiItems = [
     ['aiRec','AI Content Recommendations'],['aiBot','AI Chatbot / Learning Assistant'],
     ['aiQuiz','AI-Generated Quiz Questions'],['forums','Discussion Forums'],
     ['p2p','Peer-to-Peer Learning'],['gamify','Gamification & Leaderboards'],
     ['socialprofile','Social Profiles & Community'],['collab','Live Collaborative Tools']
   ];
-  const aiContainer = document.querySelector('#section-2 > div > div:last-child > div > div:last-child');
-  // Rebuild AI section
-  const aiSection = document.querySelector('#section-2 > div > div:nth-child(2)');
-  if (aiSection) {
-    const inner = aiSection.querySelector('div:last-child');
-    if (inner) inner.innerHTML = aiItems.map(([id,label])=>
-      `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F1F5F9">
-         <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">${label}</span>
-         <div style="display:flex;gap:4px;flex-shrink:0">
-           <button class="pill-btn pill-must" onclick="setPill('aiSocial','${id}','must',this)">Must</button>
-           <button class="pill-btn pill-nice" onclick="setPill('aiSocial','${id}','nice',this)">Nice</button>
-           <button class="pill-btn pill-no"   onclick="setPill('aiSocial','${id}','no',this)">No</button>
-         </div>
-       </div>`).join('');
-  }
+  const aiList = document.getElementById('ai-social-list');
+  if (aiList) aiList.innerHTML = aiItems.map(([id,label]) =>
+    `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F1F5F9">
+       <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">${label}</span>
+       <div style="display:flex;gap:4px;flex-shrink:0">
+         <button class="pill-btn pill-must" onclick="setPill('aiSocial','${id}','must',this)">Must</button>
+         <button class="pill-btn pill-nice" onclick="setPill('aiSocial','${id}','nice',this)">Nice</button>
+         <button class="pill-btn pill-no"   onclick="setPill('aiSocial','${id}','no',this)">No</button>
+       </div>
+     </div>`).join('');
 
-  // Section 4: Admin features
+  // ── Section 4: Admin Features ─────────────────────────────────────
   const adminFeatures = [
     ['cohort','Cohort / Group Management'],['waitlist','Waitlist Management'],
     ['autoremind','Automated Reminders'],['emailtpl','Custom Email Templates'],
@@ -1485,7 +1553,82 @@ function featureRow(section, id, label) {
   const adminFeatEl = document.querySelector('#section-3 .border.border-gray-100');
   if (adminFeatEl) adminFeatEl.innerHTML = adminFeatures.map(([id,label]) => featureRow('admin',id,label)).join('');
 
-  // Section 6: Trainer features
+  // ── Section 4: Ecosystem Integrations (checkboxes) ────────────────
+  const ecosysItems = [
+    ['xero','Xero','account_balance'],['myob','MYOB','account_balance'],
+    ['salesforce','Salesforce CRM','crm'],['hubspot','HubSpot','contacts'],
+    ['teams','Microsoft Teams','groups'],['zoom','Zoom','videocam'],
+    ['slack','Slack','chat'],['google','Google Workspace','apps'],
+    ['mailchimp','Mailchimp / Campaign Monitor','email'],['zapier','Zapier / Make','bolt'],
+    ['stripe','Stripe / Payment Processing','payments'],['linkedin','LinkedIn Learning','school']
+  ];
+  const adminIntList = document.getElementById('admin-int-list');
+  if (adminIntList) adminIntList.innerHTML = ecosysItems.map(([id,label,icon]) =>
+    `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #F1F5F9;background:#fff">
+       <div style="display:flex;align-items:center;gap:8px">
+         <span class="material-icons-round" style="font-size:17px;color:#64748B">${icon}</span>
+         <span style="font-size:13px;color:#374151">${label}</span>
+       </div>
+       <input type="checkbox" onchange="setCheck('adminInt','${id}',this.checked)">
+     </div>`).join('');
+
+  // ── Section 4: Financial Management pills ────────────────────────
+  const financeItems = [
+    ['invoice','Invoice Generation'],['paygate','Online Payment Gateway'],
+    ['subs','Subscription / Membership Plans'],['coupon','Coupon & Discount Codes'],
+    ['revrpt','Revenue / Sales Reporting'],['gst','Tax Invoicing (GST)'],
+    ['refund','Refund Processing']
+  ];
+  const finList = document.getElementById('finance-features-list');
+  if (finList) finList.innerHTML = financeItems.map(([id,label]) => pill3('finance',id,label)).join('');
+
+  // ── Section 5: Portal Experience checkboxes ───────────────────────
+  const portalItems = [
+    'Custom Organisation Branding','Mobile-Responsive Design','Dedicated Mobile App',
+    'Self-Service Enrolment','Browse Course Catalogue','My Progress Dashboard',
+    'Certificate Download','Notification Preferences','Profile Customisation'
+  ];
+  const portalCol = document.getElementById('portal-exp-col');
+  if (portalCol) {
+    const header = portalCol.querySelector('div:first-child');
+    const rows = portalItems.map(item =>
+      `<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:#374151;padding:5px 0;border-bottom:1px solid #F8FAFC">
+         <input type="checkbox" onchange="setCheck('portal','${item.replace(/\s+/g,'')}',this.checked)"> ${item}
+       </label>`).join('');
+    portalCol.innerHTML = (header ? header.outerHTML : '') + rows;
+  }
+
+  // ── Section 5: Learning Features checkboxes ───────────────────────
+  const learningItems = [
+    'Blended Learning Paths','Prerequisite Gating','Learning Reminders & Nudges',
+    'Offline / Download Access','Multi-Language Support','Accessibility (WCAG 2.1)',
+    'Video Captions / Transcripts','Discussion & Comments','Bookmarking & Resume'
+  ];
+  const learningCol = document.getElementById('learning-feat-col');
+  if (learningCol) {
+    const header = learningCol.querySelector('div:first-child');
+    const rows = learningItems.map(item =>
+      `<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:#374151;padding:5px 0;border-bottom:1px solid #F8FAFC">
+         <input type="checkbox" onchange="setCheck('learning','${item.replace(/[\s&\/\(\)]/g,'')}',this.checked)"> ${item}
+       </label>`).join('');
+    learningCol.innerHTML = (header ? header.outerHTML : '') + rows;
+  }
+
+  // ── Section 5: Support & Communications navy rows ─────────────────
+  const supportItems = [
+    ['livechat','In-App Live Chat Support'],['emailnotif','Email Notifications'],
+    ['sms','SMS / Push Notifications'],['helpdesk','Help Desk / Ticketing'],
+    ['onboarding','Onboarding Walkthrough'],['kb','Knowledge Base / FAQ'],
+    ['community','Community Support Forum'],['dedicatedrep','Dedicated Support Rep']
+  ];
+  const supportList = document.getElementById('support-comms-list');
+  if (supportList) supportList.innerHTML = supportItems.map(([id,label]) =>
+    `<div class="navy-row" style="display:flex;align-items:center;justify-content:space-between;">
+       <span style="font-size:12px;color:rgba(255,255,255,.85)">${label}</span>
+       <input type="checkbox" onchange="setCheck('support','${id}',this.checked)" style="accent-color:#00bec7">
+     </div>`).join('');
+
+  // ── Section 6: Trainer Features ───────────────────────────────────
   const trainerFeatures = [
     ['dashboard','Trainer Dashboard & Overview'],['learnervis','Learner Progress Visibility'],
     ['bulkmark','Bulk Marking / Assessment Tools'],['evidence','Evidence & Portfolio Review'],
@@ -1497,7 +1640,7 @@ function featureRow(section, id, label) {
   const trainerEl = document.querySelector('#section-5 .border.border-gray-100');
   if (trainerEl) trainerEl.innerHTML = trainerFeatures.map(([id,label]) => featureRow('trainer',id,label)).join('');
 
-  // Section 7: Compliance features
+  // ── Section 7: Compliance Features ───────────────────────────────
   const compFeatures = [
     ['usi','USI Collection & Verification'],['avetmiss','AVETMISS Data Reporting'],
     ['trainingplan','Training Plan Generation'],['funding','Funding Compliance (Skills First, VETiS, etc.)'],
@@ -1509,7 +1652,20 @@ function featureRow(section, id, label) {
   const compEl = document.querySelector('#section-6 .border.border-gray-100');
   if (compEl) compEl.innerHTML = compFeatures.map(([id,label]) => featureRow('comp',id,label)).join('');
 
-  // Section 8: Relationship features
+  // ── Section 7: Compliance Framework info boxes ────────────────────
+  const compFramework = [
+    ['ASQA','National regulatory body'],['VRQA / TAC','State regulators (VIC/ACT)'],
+    ['AVETMISS','National VET statistical standard'],['USI Registry','Unique Student Identifier'],
+    ['Skills First','Victorian funded training'],['AQF','Qualifications Framework']
+  ];
+  const compFwList = document.getElementById('comp-framework-list');
+  if (compFwList) compFwList.innerHTML = compFramework.map(([t,d]) =>
+    `<div style="background:rgba(255,255,255,.07);padding:8px 10px">
+       <div style="font-size:12px;font-weight:600;color:#00bec7">${t}</div>
+       <div style="font-size:11px;color:rgba(255,255,255,.6)">${d}</div>
+     </div>`).join('');
+
+  // ── Section 8: Vendor Requirements featureRows ────────────────────
   const relFeatures = [
     ['accountmgr','Dedicated Account Manager'],['aus','Australian-Based Support Team'],
     ['247support','24/7 Technical Support SLA'],['phone','Business Hours Phone Support'],
@@ -1520,6 +1676,87 @@ function featureRow(section, id, label) {
   ];
   const relEl = document.querySelector('#section-7 .border.border-gray-100');
   if (relEl) relEl.innerHTML = relFeatures.map(([id,label]) => featureRow('rel',id,label)).join('');
+
+  // ── Section 8: Vendor Questions checklist ────────────────────────
+  const vendorQs = [
+    'Do you have Australian-based staff?',
+    'What is your typical onboarding timeline?',
+    'How are bugs and outages communicated?',
+    'What is your data retention & exit policy?',
+    'Is there a product roadmap you can share?',
+    'What SLA guarantees are contractual?',
+    'Can we speak to a current RTO client?'
+  ];
+  const vqList = document.getElementById('vendor-questions-list');
+  if (vqList) vqList.innerHTML = vendorQs.map(q =>
+    `<div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #00bec7;background:rgba(255,255,255,.05);line-height:1.4">${q}</div>`).join('');
+
+  // ── Section 9: Integration Ecosystem costs ───────────────────────
+  const costIntItems = [
+    ['smsCRM','SMS / CRM Bridge'],['lln','LLN Diagnostic Tool'],
+    ['marketingPlatform','Marketing Platform'],['ecommerce','eCommerce / Stripe'],
+    ['digitalCreds','Digital Credentials'],['dataMigration','Data Migration'],
+    ['certsBadges','Certificates / Badges']
+  ];
+  const costIntList = document.getElementById('cost-int-list');
+  if (costIntList) costIntList.innerHTML = costIntItems.map(([key,label]) =>
+    `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+       <span style="font-size:11px;color:rgba(255,255,255,.8);flex:1">${label}</span>
+       <div class="dollar-group" style="width:110px;flex-shrink:0">
+         <span class="pfx">$</span>
+         <input type="number" placeholder="0" min="0" step="0.01"
+           oninput="setCost('${key}',parseFloat(this.value)||0);calcTotal()"
+           style="background:rgba(255,255,255,.08);color:#fff">
+       </div>
+     </div>`).join('');
+
+  // ── Section 9: Dev & Implementation costs ────────────────────────
+  const devCostItems = [
+    ['pmHours','Internal PM Hours (est. cost)','schedule'],
+    ['externalDev','External Dev / SMEs','engineering'],
+    ['staffTraining','Staff Training','school']
+  ];
+  const devCostList = document.getElementById('dev-cost-list');
+  if (devCostList) devCostList.innerHTML = devCostItems.map(([key,label,icon],i) =>
+    `<div>
+       <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+         <span class="material-icons-round" style="font-size:15px;color:#00bec7">${icon}</span>
+         <span style="font-size:12px;font-weight:600;color:#374151">${label}</span>
+       </div>
+       <div class="dollar-group">
+         <span class="pfx">$</span>
+         <input type="number" placeholder="0.00" min="0" step="0.01"
+           id="cost-dev-${i}"
+           oninput="setCost('${key}',parseFloat(this.value)||0);calcTotal();updateDevBar(${i},this.value)">
+       </div>
+       <div class="mini-prog" style="margin-top:5px">
+         <div class="mini-prog-fill" id="dev-bar-${i}" style="width:0%"></div>
+       </div>
+     </div>`).join('');
+
+  // ── Section 9: Future-proofing bento cards ───────────────────────
+  const futureItems = [
+    ['trialDemos','Trial & Demos Budget','science'],
+    ['scalability','Scalability Reserve','trending_up'],
+    ['platformUpdates','Platform Updates (Annual)','system_update'],
+    ['riskMitigation','Long-term Risk Estimate','shield']
+  ];
+  const fpGrid = document.getElementById('future-proof-grid');
+  if (fpGrid) {
+    const heading = fpGrid.querySelector('div:first-child');
+    const cards = futureItems.map(([key,label,icon]) =>
+      `<div class="bg-white border border-gray-200 p-4 bento-accent">
+         <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">
+           <span class="material-icons-round" style="font-size:17px;color:#00bec7">${icon}</span>
+           <span class="font-heading" style="font-size:12px;font-weight:600;color:#374151">${label}</span>
+         </div>
+         ${key==='scalability'
+           ? '<input type="text" class="field" placeholder="e.g. 2\u00d7 growth in 3 years\u2026" style="font-size:12px" oninput="setCost(\'scalability\',this.value)">'
+           : '<div class="dollar-group"><span class="pfx">$</span><input type="number" placeholder="0.00" min="0" step="0.01" oninput="setCost(\''+key+'\',parseFloat(this.value)||0);calcTotal()"></div>'
+         }
+       </div>`).join('');
+    fpGrid.innerHTML = (heading ? heading.outerHTML : '') + cards;
+  }
 
 })();
 </script>
