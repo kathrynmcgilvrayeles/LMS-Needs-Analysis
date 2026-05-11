@@ -1962,9 +1962,9 @@ function computeLMSScores() {
 
   function lmsResidencyHTML(name, isPrimary) {
     var m = lmsMeta[name]; if (!m) return '';
-    var bg = isPrimary ? 'rgba(255,255,255,.12)' : (m.regionClass==='au' ? 'rgba(0,190,199,.1)' : m.regionClass==='us' ? 'rgba(31,42,82,.08)' : 'rgba(171,181,191,.15)');
-    var col = isPrimary ? 'rgba(255,255,255,.85)' : 'var(--grey)';
-    return '<div style="display:inline-flex;align-items:center;gap:5px;background:' + bg + ';padding:3px 8px;border-radius:4px;font-size:.68rem;font-weight:700;color:' + col + ';margin-bottom:10px"><span class=\"ms\" style=\"font-size:13px\">storage</span> Data stored: ' + m.region + '</div>';
+    var col = isPrimary ? 'rgba(255,255,255,.75)' : 'var(--grey)';
+    var iconCol = isPrimary ? '#00bec7' : 'var(--teal)';
+    return '<div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:' + col + ';margin-bottom:10px"><span class=\"ms\" style=\"font-size:15px;color:' + iconCol + \'\">storage</span> Data stored: ' + m.region + '</div>';
   }
   var scores = [{name:'Canvas LMS', score:canvas}, {name:'Moodle / Wisenet', score:moodle}, {name:'TalentLMS', score:talent}];
   scores.sort(function(a,b){ return b.score - a.score; });
