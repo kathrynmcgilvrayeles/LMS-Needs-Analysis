@@ -621,22 +621,16 @@ footer nav a:hover{color:var(--navy)}
             <div class="card">
               <div class="icon-label"><span class="ms">cloud_done</span><h3>Hosting &amp; Infrastructure</h3></div>
               <div class="radio-cards cols-2" style="margin-bottom:16px">
-                <label class="radio-card">
-                  <input type="radio" name="hosting" value="cloud" checked onchange="saveState('hosting',this.value)"/>
-                  <div class="radio-card-body">
-                    <span class="ms radio-card-check fill">check_circle</span>
-                    <h4>Cloud Hosting</h4>
-                    <p>Managed by the provider. Requires info on server locations and data access terms.</p>
-                  </div>
-                </label>
-                <label class="radio-card">
-                  <input type="radio" name="hosting" value="onprem" onchange="saveState('hosting',this.value)"/>
-                  <div class="radio-card-body">
-                    <span class="ms radio-card-check fill">check_circle</span>
-                    <h4>On-premise</h4>
-                    <p>Internal servers or local Amazon accounts. Good for students working offline.</p>
-                  </div>
-                </label>
+                <div class="radio-card-body" id="hostCard-cloud" onclick="selectHosting('cloud')" style="border:2px solid var(--teal);background:rgba(0,190,199,.04);cursor:pointer;border-radius:10px;padding:16px">
+                  <span class="ms" style="float:right;color:var(--teal);font-size:20px" id="hostCheck-cloud">check_circle</span>
+                  <h4 style="font-weight:800;font-size:.9rem;margin-bottom:4px;color:var(--navy)">Cloud Hosting</h4>
+                  <p style="font-size:.75rem;color:var(--grey);line-height:1.5">Managed by the provider. Requires info on server locations and data access terms.</p>
+                </div>
+                <div class="radio-card-body" id="hostCard-onprem" onclick="selectHosting('onprem')" style="border:2px solid #e0e6ed;background:#fff;cursor:pointer;border-radius:10px;padding:16px">
+                  <span class="ms" style="float:right;color:var(--teal);font-size:20px;opacity:0" id="hostCheck-onprem">check_circle</span>
+                  <h4 style="font-weight:800;font-size:.9rem;margin-bottom:4px;color:var(--navy)">On-premise</h4>
+                  <p style="font-size:.75rem;color:var(--grey);line-height:1.5">Internal servers or local Amazon accounts. Good for students working offline.</p>
+                </div>
               </div>
               <label class="check-row">
                 <input type="checkbox" id="openSource" onchange="saveState('openSource',this.checked)"/>
@@ -727,8 +721,10 @@ footer nav a:hover{color:var(--navy)}
                 <strong style="color:var(--teal)">Low</strong>
               </div>
             </div>
-            <div style="background:var(--navy);border-radius:12px;height:200px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;margin-bottom:20px;position:relative;overflow:hidden">
-              <div style="position:absolute;inset:0;background:linear-gradient(to top,var(--navy),transparent)"></div>
+            <div style="background:var(--navy);border-radius:12px;height:200px;display:flex;flex-direction:column;justify-content:space-between;padding:20px;margin-bottom:20px;position:relative;overflow:hidden">
+              <div style="display:flex;justify-content:center;align-items:center;flex:1">
+                <span class="ms" style="font-size:80px;color:rgba(0,190,199,.3)">architecture</span>
+              </div>
               <div style="position:relative">
                 <span style="font-size:.55rem;text-transform:uppercase;letter-spacing:.25em;color:var(--teal);font-weight:800">Functional Validation</span>
                 <h5 style="color:var(--white);font-size:1.1rem;margin-top:4px">Architecture Layer</h5>
@@ -1880,6 +1876,21 @@ function computeLMSScores() {
 // ─── Init ─────────────────────────────────────────────
 loadState();
 calcTotal();
+
+function selectHosting(val) {
+  saveState('hosting', val);
+  ['cloud','onprem'].forEach(v => {
+    const card = document.getElementById('hostCard-'+v);
+    const check = document.getElementById('hostCheck-'+v);
+    if (card) {
+      card.style.border = v===val ? '2px solid var(--teal)' : '2px solid #e0e6ed';
+      card.style.background = v===val ? 'rgba(0,190,199,.04)' : '#fff';
+    }
+    if (check) check.style.opacity = v===val ? '1' : '0';
+  });
+  const disp = document.getElementById('hostingDisplay');
+  if (disp) disp.textContent = val==='cloud' ? 'Cloud' : 'On-premise';
+}
 
 function saveSection(idx) {
   // State already saved to localStorage on every input
