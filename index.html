@@ -1461,16 +1461,18 @@ footer nav a:hover{color:var(--navy)}
 
             <!-- SLA Sliders -->
             <div class="card">
-              <p class="section-sub">Support Escalation Framework (SLA Targets)</p>
+              <p class="section-sub">Support Standards</p>
               <div class="range-wrap" style="margin-bottom:16px">
-                <label>Critical (P1) Response Time <span id="p1Val">2 Hours</span></label>
+                <label>How quickly should urgent issues be resolved? <span id="p1Val">2 Hours</span></label>
+                <small style="color:var(--grey);font-size:.72rem;display:block;margin-bottom:6px">e.g. If the LMS goes down mid-assessment, how fast do you need a fix?</small>
                 <input type="range" min="1" max="24" value="2" oninput="document.getElementById('p1Val').textContent=this.value+' Hours';saveState('slaP1',this.value)"/>
-                <div class="range-hints"><span>1hr (Immediate)</span><span>24hr (Next Day)</span></div>
+                <div class="range-hints"><span>Within 1 hour</span><span>Next business day</span></div>
               </div>
               <div class="range-wrap">
-                <label>Monthly System Uptime SLA <span id="slaVal">99.95%</span></label>
+                <label>How reliable does the system need to be? <span id="slaVal">99.95%</span></label>
+                <small style="color:var(--grey);font-size:.72rem;display:block;margin-bottom:6px">This is how often the LMS must be available — 99.9% means less than 9 hours downtime per year.</small>
                 <input type="range" min="9500" max="9999" value="9995" oninput="document.getElementById('slaVal').textContent=(this.value/100).toFixed(2)+'%';saveState('slaUptime',this.value)"/>
-                <div class="range-hints"><span>95.00%</span><span>99.99%</span></div>
+                <div class="range-hints"><span>95% (some downtime ok)</span><span>99.99% (near zero downtime)</span></div>
               </div>
             </div>
 
