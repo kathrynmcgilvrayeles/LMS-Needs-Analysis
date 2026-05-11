@@ -553,13 +553,51 @@ footer nav a:hover{color:var(--navy)}
 
           <div class="col-4 card-navy">
             <div class="icon-label"><span class="ms" style="color:var(--teal)">hub</span><h3 style="color:var(--white)">Integration Ecosystem</h3></div>
-            <p style="font-size:.65rem;color:rgba(210,240,240,.6);text-transform:uppercase;letter-spacing:.15em;margin-bottom:16px">Third-party Connectivity</p>
-            <div class="fin-row"><span>SMS/CRM Bridge</span><strong>$1,200</strong></div>
-            <div class="fin-row"><span>LLN Diagnostic Tool</span><strong>$850</strong></div>
-            <div class="fin-row"><span>Marketing Platform</span><strong>$400</strong></div>
-            <div class="fin-row"><span>eCommerce/Stripe</span><strong>$0*</strong></div>
-            <div class="fin-row"><span>Digital Credentials</span><strong>$600</strong></div>
-            <p style="font-size:.65rem;color:rgba(255,255,255,.4);margin-top:12px;font-style:italic">*Excludes transaction percentage fees.</p>
+            <p style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5;margin-bottom:6px">Many RTOs use additional software alongside their LMS. Enter the approximate annual cost of any tools you plan to integrate — this will be added to your total budget estimate.</p>
+            <p style="font-size:.65rem;color:rgba(210,240,240,.5);margin-bottom:14px;font-style:italic">Leave blank if not applicable.</p>
+            <div class="fin-row">
+              <span>SMS / CRM Bridge</span>
+              <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
+                <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
+                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intSMS',parseFloat(this.value)||0);calcTotal()" />
+              </div>
+            </div>
+            <div class="fin-row">
+              <span>LLN Diagnostic Tool</span>
+              <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
+                <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
+                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intLLN',parseFloat(this.value)||0);calcTotal()" />
+              </div>
+            </div>
+            <div class="fin-row">
+              <span>Marketing Platform</span>
+              <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
+                <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
+                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intMarketing',parseFloat(this.value)||0);calcTotal()" />
+              </div>
+            </div>
+            <div class="fin-row">
+              <span>eCommerce / Payment</span>
+              <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
+                <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
+                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intEcomm',parseFloat(this.value)||0);calcTotal()" />
+              </div>
+            </div>
+            <div class="fin-row">
+              <span>Digital Credentials</span>
+              <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
+                <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
+                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intCreds',parseFloat(this.value)||0);calcTotal()" />
+              </div>
+            </div>
+            <div class="fin-row">
+              <span>Other (specify below)</span>
+              <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
+                <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
+                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intOther',parseFloat(this.value)||0);calcTotal()" />
+              </div>
+            </div>
+            <input type="text" placeholder="Name the other tool..." style="width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 10px;color:#fff;font-size:.75rem;margin-top:8px;outline:none" oninput="saveState('intOtherName',this.value)" />
           </div>
         </div>
 
