@@ -1346,6 +1346,18 @@ footer nav a:hover{color:var(--navy)}
           </div>
         </div>
 
+        <!-- Student Welfare -->
+        <div class="card" style="border-left:4px solid var(--pink)">
+          <div class="icon-label"><span class="ms" style="color:var(--pink)">favorite</span><h3>Student Wellbeing &amp; Welfare</h3></div>
+          <p style="font-size:.85rem;color:var(--grey);margin-bottom:16px">Trainers are often the first to notice when a student is struggling — not just academically but personally. These features help ensure no student falls through the cracks.</p>
+          <label class="check-row"><input type="checkbox" onchange="saveState('welfareFlag',this.checked)"/> <span style="font-size:.85rem">Trainer can flag a student as requiring a welfare check</span></label>
+          <label class="check-row"><input type="checkbox" onchange="saveState('welfareNotify',this.checked)"/> <span style="font-size:.85rem">Automatic notification sent to admin/student services when a welfare flag is raised</span></label>
+          <label class="check-row"><input type="checkbox" onchange="saveState('welfareLog',this.checked)"/> <span style="font-size:.85rem">Welfare concerns are logged and tracked with follow-up actions</span></label>
+          <label class="check-row"><input type="checkbox" onchange="saveState('welfareEngagement',this.checked)"/> <span style="font-size:.85rem">LMS can detect and alert on drops in student engagement or login activity</span></label>
+          <label class="check-row"><input type="checkbox" onchange="saveState('welfareConfidential',this.checked)"/> <span style="font-size:.85rem">Welfare notes are confidential and only visible to authorised staff</span></label>
+          <label class="check-row"><input type="checkbox" onchange="saveState('welfareResources',this.checked)"/> <span style="font-size:.85rem">LMS can display support resources or referral links to students</span></label>
+        </div>
+
         <!-- Technical Usability -->
         <div class="card">
           <div class="icon-label"><span class="ms">visibility</span><h3>Technical Usability</h3></div>
