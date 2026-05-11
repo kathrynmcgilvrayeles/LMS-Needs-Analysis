@@ -471,9 +471,30 @@ footer nav a:hover{color:var(--navy)}
               <label class="field-label">Sector</label>
               <select class="field-input" onchange="saveState('orgSector',this.value)">
                 <option>Select Industry Sector</option>
-                <option>VET / RTO / College</option>
-                <option>Corporate</option>
-                <option>Higher Education</option>
+                <optgroup label="Organisation Size">
+                  <option>Small Organisation (under 50 staff)</option>
+                  <option>Medium Organisation (50–500 staff)</option>
+                  <option>Large Organisation (500+ staff)</option>
+                </optgroup>
+                <optgroup label="Sector">
+                  <option>VET / RTO / College</option>
+                  <option>Higher Education</option>
+                  <option>Corporate</option>
+                  <option>Government</option>
+                  <option>Not-for-Profit</option>
+                  <option>School</option>
+                  <option>Healthcare</option>
+                  <option>Mining &amp; Resources</option>
+                  <option>Construction &amp; Trades</option>
+                  <option>Retail &amp; Hospitality</option>
+                </optgroup>
+                <optgroup label="Role">
+                  <option>Consultant</option>
+                  <option>LMS Administrator</option>
+                  <option>Learning &amp; Development Manager</option>
+                  <option>IT Manager</option>
+                </optgroup>
+                <option>Other</option>
               </select>
             </div>
             <div>
