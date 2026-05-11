@@ -541,14 +541,14 @@ footer nav a:hover{color:var(--navy)}
                 <label class="field-label">Cost per Learner (Annual)</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costPerLearner" placeholder="45.00" oninput="saveState('costPerLearner',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costPerLearner" placeholder="45.00" oninput="saveState('costPerLearner',this.value);calcTotal()" onchange="saveState('costPerLearner',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">One-off Establishment Fee</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costEstab" placeholder="12500" oninput="saveState('costEstab',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costEstab" placeholder="12500" oninput="saveState('costEstab',this.value);calcTotal()" onchange="saveState('costEstab',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
@@ -559,32 +559,32 @@ footer nav a:hover{color:var(--navy)}
                 <label class="field-label">Acquisition &amp; Marketing</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costMarketing" placeholder="3200" oninput="saveState('costMarketing',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costMarketing" placeholder="3200" oninput="saveState('costMarketing',this.value);calcTotal()" onchange="saveState('costMarketing',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">Active Learner Count</label>
-                <input class="field-input" type="number" id="learnerCount" placeholder="2500" oninput="saveState('learnerCount',this.value);calcTotal()"/>
+                <input class="field-input" type="number" id="learnerCount" placeholder="2500" oninput="saveState('learnerCount',this.value);calcTotal()" onchange="saveState('learnerCount',this.value);calcTotal()"/>
               </div>
               <div>
                 <label class="field-label">External Dev / SMEs</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costDev" placeholder="8400" oninput="saveState('costDev',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costDev" placeholder="8400" oninput="saveState('costDev',this.value);calcTotal()" onchange="saveState('costDev',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">Staff Training Phase</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costTraining" placeholder="3500" oninput="saveState('costTraining',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costTraining" placeholder="3500" oninput="saveState('costTraining',this.value);calcTotal()" onchange="saveState('costTraining',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">Hosting &amp; Maintenance /Mo</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costHosting" placeholder="250" oninput="saveState('costHosting',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costHosting" placeholder="250" oninput="saveState('costHosting',this.value);calcTotal()" onchange="saveState('costHosting',this.value);calcTotal()"/>
                 </div>
               </div>
             </div>
@@ -1922,15 +1922,26 @@ function toggleAccordion(btn) {
 
 // ─── Cost Calculator ─────────────────────────────────
 function calcTotal() {
-  var perLearner = parseFloat(document.getElementById('costPerLearner').value) || 0;
-  var learners = parseFloat(document.getElementById('learnerCount').value) || 0;
-  var estab = parseFloat(document.getElementById('costEstab').value) || 0;
-  var mktg = parseFloat(document.getElementById('costMarketing').value) || 0;
-  var dev = parseFloat(document.getElementById('costDev').value) || 0;
-  var train = parseFloat(document.getElementById('costTraining').value) || 0;
-  var hosting = parseFloat(document.getElementById('costHosting').value) || 0;
-  var total = (perLearner * learners) + estab + mktg + dev + train + (hosting * 12);
-  document.getElementById('totalCost').textContent = '$' + total.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2});
+  // Read from DOM inputs first, fall back to appState
+  function val(id, key) {
+    var el = document.getElementById(id);
+    var v = el && el.value !== '' ? parseFloat(el.value) : NaN;
+    if (isNaN(v)) v = parseFloat(appState[key]) || 0;
+    return v;
+  }
+  var perLearner = val('costPerLearner','costPerLearner');
+  var learners   = val('learnerCount','learnerCount');
+  var estab      = val('costEstab','costEstab');
+  var mktg       = val('costMarketing','costMarketing');
+  var dev        = val('costDev','costDev');
+  var train      = val('costTraining','costTraining');
+  var hosting    = val('costHosting','costHosting');
+  // Integration costs stored via setCost()
+  var intCosts = ['intSMS','intLLN','intMarketing','intEcomm','intCreds','intOther']
+    .reduce(function(sum,k){ return sum + (parseFloat(appState[k])||0); }, 0);
+  var total = (perLearner * learners) + estab + mktg + dev + train + (hosting * 12) + intCosts;
+  var el = document.getElementById('totalCost');
+  if (el) el.textContent = '$' + total.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2});
 }
 
 // ─── Pill selector ───────────────────────────────────
