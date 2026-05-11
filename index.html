@@ -451,14 +451,14 @@ footer nav a:hover{color:var(--navy)}
               <input class="field-input" type="url" placeholder="www.example.com.au" oninput="saveState('orgWeb',this.value)"/>
             </div>
             <div>
-              <label class="field-label">RTO Number</label>
+              <label class="field-label">Organisation/RTO Number</label>
               <input class="field-input" type="text" placeholder="91234" oninput="saveState('rtoNum',this.value)"/>
             </div>
             <div>
               <label class="field-label">Sector</label>
               <select class="field-input" onchange="saveState('orgSector',this.value)">
                 <option>Select Industry Sector</option>
-                <option>VET / RTO</option>
+                <option>VET / RTO / College</option>
                 <option>Corporate</option>
                 <option>Higher Education</option>
               </select>
@@ -552,7 +552,7 @@ footer nav a:hover{color:var(--navy)}
 
           <div class="col-4 card-navy">
             <div class="icon-label"><span class="ms" style="color:var(--teal)">hub</span><h3 style="color:var(--white)">Integration Ecosystem</h3></div>
-            <p style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5;margin-bottom:6px">Many RTOs use additional software alongside their LMS. Enter the approximate annual cost of any tools you plan to integrate — this will be added to your total budget estimate.</p>
+            <p style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5;margin-bottom:6px">Many organisations use additional software alongside their LMS. Enter the approximate annual cost of any tools you plan to integrate — this will be added to your total budget estimate.</p>
             <p style="font-size:.65rem;color:rgba(210,240,240,.5);margin-bottom:14px;font-style:italic">Leave blank if not applicable.</p>
             <div class="fin-row">
               <span>SMS / CRM Bridge</span>
@@ -1309,8 +1309,8 @@ footer nav a:hover{color:var(--navy)}
         <div class="grid-12">
           <!-- RTO Reporting -->
           <div class="col-8 card-teal-light">
-            <div class="icon-label"><span class="ms">description</span><h3>RTO Reporting Requirements</h3></div>
-            <p style="font-size:.82rem;color:var(--grey);margin-bottom:16px">Select the standard RTO reports required for your automated delivery cycle:</p>
+            <div class="icon-label"><span class="ms">description</span><h3>Compliance Reporting Requirements</h3></div>
+            <p style="font-size:.82rem;color:var(--grey);margin-bottom:16px">Select the standard reports required for your automated delivery cycle:</p>
             <div class="grid-2">
               <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('rtoAvetmiss',this.checked)"/> <span style="font-size:.85rem">AVETMISS</span></label>
               <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('rtoCompletion',this.checked)"/> <span style="font-size:.85rem">Completion Reports</span></label>
