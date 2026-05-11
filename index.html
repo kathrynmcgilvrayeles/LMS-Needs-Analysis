@@ -870,24 +870,49 @@ footer nav a:hover{color:var(--navy)}
 
         <!-- Training Delivery -->
         <div class="card" style="margin-bottom:24px">
-          <div class="icon-label"><span class="ms">inventory_2</span><h3>Training Delivery &amp; Storage</h3></div>
-          <p style="font-size:.85rem;color:var(--grey);margin-bottom:20px">Tell us about the split of your training types and how you currently store materials.</p>
-          <div class="grid-3" style="margin-bottom:20px">
-            <div>
-              <label class="field-label">Theoretical (%)</label>
-              <input class="field-input" type="number" min="0" max="100" placeholder="0" oninput="saveState('pctTheory',this.value)"/>
+          <div class="icon-label"><span class="ms">cast_for_education</span><h3>How Do You Deliver Training?</h3></div>
+          <p style="font-size:.85rem;color:var(--grey);margin-bottom:20px">This helps us understand your delivery model so we can match you with an LMS that fits how you actually work.</p>
+
+          <!-- Sync vs Async slider -->
+          <div style="margin-bottom:20px">
+            <label class="field-label">Approximately what proportion of your training is delivered online (self-paced) vs face-to-face?</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:8px">
+              <span style="font-size:.75rem;color:var(--navy);font-weight:600;white-space:nowrap">All Face-to-Face</span>
+              <input type="range" min="0" max="100" value="50" style="flex:1;accent-color:var(--teal)" oninput="this.nextElementSibling.textContent=this.value+'% Online';saveState('pctOnline',this.value)"/>
+              <span style="font-size:.75rem;color:var(--teal);font-weight:700;white-space:nowrap;min-width:80px" id="onlineSliderVal">50% Online</span>
             </div>
-            <div>
-              <label class="field-label">Technical (%)</label>
-              <input class="field-input" type="number" min="0" max="100" placeholder="0" oninput="saveState('pctTech',this.value)"/>
-            </div>
-            <div>
-              <label class="field-label">Practical (%)</label>
-              <input class="field-input" type="number" min="0" max="100" placeholder="0" oninput="saveState('pctPract',this.value)"/>
+            <span style="font-size:.72rem;color:var(--grey)">All Online</span>
+          </div>
+
+          <!-- Delivery mode checkboxes -->
+          <div style="margin-bottom:20px">
+            <label class="field-label">Which delivery methods do you currently use? (select all that apply)</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+              <label class="check-row"><input type="checkbox" onchange="saveState('delFaceToFace',this.checked)"/> <span>Face-to-face classroom</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('delOnlineSelf',this.checked)"/> <span>Online self-paced</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('delLiveOnline',this.checked)"/> <span>Live online (webinar / Zoom)</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('delWorkplace',this.checked)"/> <span>Workplace / on-the-job</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('delBlended',this.checked)"/> <span>Blended (mix of above)</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('delVirtual',this.checked)"/> <span>Virtual reality / simulation</span></label>
             </div>
           </div>
-          <label class="field-label">Describe your current storage processes</label>
-          <textarea class="field-input" rows="3" placeholder="Where do your documents live now? (e.g. SharePoint, Google Drive, local server)" oninput="saveState('storageDesc',this.value)"></textarea>
+
+          <!-- Evidence collection -->
+          <div style="margin-bottom:20px">
+            <label class="field-label">How is assessment evidence collected?</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+              <label class="check-row"><input type="checkbox" onchange="saveState('evOnlineUpload',this.checked)"/> <span>Online uploads (documents, photos)</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('evVideo',this.checked)"/> <span>Video submissions</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('evObservation',this.checked)"/> <span>Workplace observation (in person)</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('evThirdParty',this.checked)"/> <span>Third-party / supervisor reports</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('evQuiz',this.checked)"/> <span>Online quizzes &amp; tests</span></label>
+              <label class="check-row"><input type="checkbox" onchange="saveState('evPortfolio',this.checked)"/> <span>Portfolio of evidence</span></label>
+            </div>
+          </div>
+
+          <!-- Additional context -->
+          <label class="field-label">Anything else about how you deliver or assess training?</label>
+          <textarea class="field-input" rows="2" placeholder="e.g. We run mostly apprenticeships with workplace supervisors involved in sign-off..." oninput="saveState('deliveryContext',this.value)"></textarea>
         </div>
 
         <div class="grid-2" style="margin-bottom:24px">
