@@ -313,12 +313,36 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
           Training Types Delivered <span style="font-size:11px;color:#94A3B8;font-weight:400">(select all that apply)</span>
         </h3>
         <div id="training-types-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          ${['Accredited VET / Qualifications','Short Courses & Micro-credentials','Workplace Health & Safety (WHS)',
-             'Onboarding & Induction','Compliance Training','Technical / Skills Training',
-             'Leadership & Management','Customer Service','Trade Qualifications','Higher Education / CPD'].map(t=>
-            `<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:#374151">
-               <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','${t}',this.checked);updateProgress()"> ${t}
-             </label>`).join('')}
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Accredited VET / Qualifications',this.checked);updateProgress()"> Accredited VET / Qualifications
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Short Courses & Micro-credentials',this.checked);updateProgress()"> Short Courses & Micro-credentials
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Workplace Health & Safety (WHS)',this.checked);updateProgress()"> Workplace Health & Safety (WHS)
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Onboarding & Induction',this.checked);updateProgress()"> Onboarding & Induction
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Compliance Training',this.checked);updateProgress()"> Compliance Training
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Technical / Skills Training',this.checked);updateProgress()"> Technical / Skills Training
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Leadership & Management',this.checked);updateProgress()"> Leadership & Management
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Customer Service',this.checked);updateProgress()"> Customer Service
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Trade Qualifications',this.checked);updateProgress()"> Trade Qualifications
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="toggleArrayItem('org','trainingTypes','Higher Education / CPD',this.checked);updateProgress()"> Higher Education / CPD
+  </label>
         </div>
       </div>
 
@@ -369,10 +393,33 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         </p>
         <div id="sections-overview-panel" style="background:rgba(255,255,255,.08);padding:12px;margin-top:4px">
           <div style="font-size:11px;font-weight:700;color:#00bec7;margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase">Sections Overview</div>
-          ${['Org Details','LMS Functionality','Content & Assessment','Administration','Learner Needs','Trainer Needs','Compliance','LMS Relationship','Cost Model'].map((s,i)=>
-            `<div style="font-size:11px;color:rgba(255,255,255,.65);padding:3px 0;display:flex;align-items:center;gap:7px">
-               <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">${i+1}</span>${s}
-             </div>`).join('')}
+          <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">1</span>Org Details
+  </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">2</span>LMS Functionality
+  </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">3</span>Content & Assessment
+  </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">4</span>Administration
+  </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">5</span>Learner Needs
+  </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">6</span>Trainer Needs
+  </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">7</span>Compliance
+  </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">8</span>LMS Relationship
+  </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px">
+    <span style="width:16px;height:16px;background:#00bec7;color:#fff;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center">9</span>Cost Model
+  </div>
         </div>
       </div>
       <div class="bg-white border border-gray-200 p-4">
@@ -456,12 +503,102 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Rate each feature for your organisation's needs.</p>
         <div class="border border-gray-100">
-          ${[['scorm12','SCORM 1.2 / 2004 Support'],['xapi','xAPI / Tin Can'],['branding','Custom Branding & White-Label'],
-             ['mobile','Mobile App (iOS & Android)'],['offline','Offline Learning Mode'],
-             ['multitenant','Multi-Tenant Architecture'],['reporting','Advanced Reporting & Analytics'],
-             ['api','API / Webhooks Access'],['bulkimport','Bulk User Import / Export'],
-             ['certificates','Certificate Generation'],['notifications','Automated Notifications'],
-             ['calendar','Calendar & Session Scheduling']].map(([id,label])=>featureRow('func',id,label)).join('')}
+          <div class="feature-row">
+    <span style="font-size:12px;color:#374151">SCORM 1.2 / 2004 Support</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','scorm12','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','scorm12','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','scorm12','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">xAPI / Tin Can</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','xapi','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','xapi','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','xapi','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Custom Branding & White-Label</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','branding','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','branding','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','branding','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Mobile App (iOS & Android)</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','mobile','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','mobile','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','mobile','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Offline / Download Mode</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','offline','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','offline','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','offline','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Built-in Authoring Tools</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','authoring','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','authoring','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','authoring','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Virtual Classroom / Webinar</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','virtual','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','virtual','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','virtual','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Gamification Elements</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','gamify','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','gamify','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','gamify','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Social Learning / Forums</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','social','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','social','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','social','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">AI / Adaptive Learning</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','ai','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','ai','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','ai','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Advanced Reporting & Analytics</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','reports','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','reports','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','reports','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Certificate Generation</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('platform','certs','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('platform','certs','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('platform','certs','no',this)">No</button>
+    </div>
+  </div>
         </div>
       </div>
 
@@ -477,14 +614,38 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
           Security Requirements
         </h3>
         <div class="security-panel">
-          ${[['sso','Single Sign-On (SSO)'],['mfa','Multi-Factor Auth (MFA)'],
-             ['rbac','Role-Based Access Control'],['encrypt','Data Encryption at Rest'],
-             ['ip','IP Restriction / Allowlisting'],['audit','Audit Logging'],
-             ['privacy','Privacy Act / GDPR Compliance'],['pentest','Penetration Test Certified']].map(([id,label])=>
-            `<div class="security-row">
-               <span style="font-size:12px;color:#374151">${label}</span>
-               <input type="checkbox" onchange="setCheck('security','${id}',this.checked)">
-             </div>`).join('')}
+          <div class="security-row">
+    <span style="font-size:12px;color:#374151">Single Sign-On (SSO)</span>
+    <input type="checkbox" onchange="setCheck('security','sso',this.checked)">
+  </div>
+<div class="security-row">
+    <span style="font-size:12px;color:#374151">Multi-Factor Auth (MFA)</span>
+    <input type="checkbox" onchange="setCheck('security','mfa',this.checked)">
+  </div>
+<div class="security-row">
+    <span style="font-size:12px;color:#374151">Role-Based Access Control</span>
+    <input type="checkbox" onchange="setCheck('security','rbac',this.checked)">
+  </div>
+<div class="security-row">
+    <span style="font-size:12px;color:#374151">Data Encryption at Rest</span>
+    <input type="checkbox" onchange="setCheck('security','encrypt',this.checked)">
+  </div>
+<div class="security-row">
+    <span style="font-size:12px;color:#374151">IP Restriction / Allowlisting</span>
+    <input type="checkbox" onchange="setCheck('security','ip',this.checked)">
+  </div>
+<div class="security-row">
+    <span style="font-size:12px;color:#374151">Audit Logging</span>
+    <input type="checkbox" onchange="setCheck('security','audit',this.checked)">
+  </div>
+<div class="security-row">
+    <span style="font-size:12px;color:#374151">Privacy Act / GDPR Compliance</span>
+    <input type="checkbox" onchange="setCheck('security','privacy',this.checked)">
+  </div>
+<div class="security-row">
+    <span style="font-size:12px;color:#374151">Penetration Test Certified</span>
+    <input type="checkbox" onchange="setCheck('security','pentest',this.checked)">
+  </div>
         </div>
       </div>
 
@@ -495,19 +656,83 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
           Core Integrations
         </h3>
         <div class="int-grid">
-          ${[['hris','HRIS / HR Platform','people'],['video','Video Conf. (Zoom/Teams)','videocam'],
-             ['crm','CRM System','contacts'],['payment','Payment Gateway','payments']].map(([id,label,icon])=>
-            `<div class="int-cell">
-               <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-                 <span class="material-icons-round" style="font-size:16px;color:#00bec7">${icon}</span>
-                 <span style="font-size:12px;font-weight:600;color:#1f2a52">${label}</span>
-               </div>
-               <div style="display:flex;gap:4px">
-                 <button class="pill-btn pill-must" onclick="setPill('int','${id}','must',this)">Must</button>
-                 <button class="pill-btn pill-nice" onclick="setPill('int','${id}','nice',this)">Nice</button>
-                 <button class="pill-btn pill-no"   onclick="setPill('int','${id}','no',this)">No</button>
-               </div>
-             </div>`).join('')}
+          <div class="int-cell">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span class="material-icons-round" style="font-size:16px;color:#00bec7">people</span>
+      <span style="font-size:12px;font-weight:600;color:#1f2a52">HRIS / HR Platform</span>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('int','hris','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('int','hris','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('int','hris','no',this)">No</button>
+    </div>
+  </div>
+<div class="int-cell">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span class="material-icons-round" style="font-size:16px;color:#00bec7">videocam</span>
+      <span style="font-size:12px;font-weight:600;color:#1f2a52">Video Conf. (Zoom/Teams)</span>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('int','video','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('int','video','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('int','video','no',this)">No</button>
+    </div>
+  </div>
+<div class="int-cell">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span class="material-icons-round" style="font-size:16px;color:#00bec7">contacts</span>
+      <span style="font-size:12px;font-weight:600;color:#1f2a52">CRM System</span>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('int','crm','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('int','crm','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('int','crm','no',this)">No</button>
+    </div>
+  </div>
+<div class="int-cell">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span class="material-icons-round" style="font-size:16px;color:#00bec7">payment</span>
+      <span style="font-size:12px;font-weight:600;color:#1f2a52">Payment / eCommerce</span>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('int','payment','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('int','payment','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('int','payment','no',this)">No</button>
+    </div>
+  </div>
+<div class="int-cell">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span class="material-icons-round" style="font-size:16px;color:#00bec7">psychology</span>
+      <span style="font-size:12px;font-weight:600;color:#1f2a52">LLN Tool</span>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('int','lln','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('int','lln','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('int','lln','no',this)">No</button>
+    </div>
+  </div>
+<div class="int-cell">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span class="material-icons-round" style="font-size:16px;color:#00bec7">campaign</span>
+      <span style="font-size:12px;font-weight:600;color:#1f2a52">Marketing Platform</span>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('int','marketing','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('int','marketing','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('int','marketing','no',this)">No</button>
+    </div>
+  </div>
+<div class="int-cell">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+      <span class="material-icons-round" style="font-size:16px;color:#00bec7">sms</span>
+      <span style="font-size:12px;font-weight:600;color:#1f2a52">SMS Gateway</span>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('int','sms','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('int','sms','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('int','sms','no',this)">No</button>
+    </div>
+  </div>
         </div>
       </div>
 
@@ -588,9 +813,62 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">What types of content will you need to deliver?</p>
         <div class="border border-gray-100">
-          ${[['scorm','SCORM Packages'],['video','Video (MP4 / Vimeo / YouTube)'],['pdf','PDF &amp; Documents'],
-             ['h5p','Interactive H5P'],['webinar','Webinar / Live Sessions'],['micro','Microlearning Modules'],
-             ['audio','Podcast / Audio Content'],['vilt','VILT (Virtual Instructor-Led)']].map(([id,label])=>featureRow('ctype',id,label)).join('')}
+          <div class="feature-row">
+    <span style="font-size:12px;color:#374151">SCORM Packages</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('contentType','scorm','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('contentType','scorm','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('contentType','scorm','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Video (MP4 / Vimeo / YouTube)</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('contentType','video','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('contentType','video','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('contentType','video','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">PDF & Documents</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('contentType','pdf','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('contentType','pdf','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('contentType','pdf','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">H5P Interactive</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('contentType','h5p','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('contentType','h5p','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('contentType','h5p','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Podcast / Audio</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('contentType','podcast','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('contentType','podcast','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('contentType','podcast','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Live Sessions</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('contentType','live','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('contentType','live','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('contentType','live','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">VR / 360° Content</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('contentType','vr','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('contentType','vr','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('contentType','vr','no',this)">No</button>
+    </div>
+  </div>
         </div>
       </div>
 
@@ -602,9 +880,62 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">What assessment capabilities do you require?</p>
         <div class="border border-gray-100">
-          ${[['mcq','Multiple Choice / Quiz'],['competency','Competency-Based Assessment'],['obs','Practical Observation Checklist'],
-             ['portfolio','Portfolio Evidence Upload'],['third','Third-Party Assessment'],['peer','Peer Review'],
-             ['autograde','Automated Grading'],['reattempt','Re-attempt Rules &amp; Limits']].map(([id,label])=>featureRow('assess',id,label)).join('')}
+          <div class="feature-row">
+    <span style="font-size:12px;color:#374151">Multiple Choice / Quiz</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('assess','mcq','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('assess','mcq','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('assess','mcq','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Competency-Based Assessment</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('assess','competency','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('assess','competency','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('assess','competency','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Practical Observation Checklist</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('assess','obs','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('assess','obs','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('assess','obs','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Portfolio / Evidence Upload</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('assess','portfolio','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('assess','portfolio','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('assess','portfolio','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Peer Assessment</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('assess','peer','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('assess','peer','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('assess','peer','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Video Submission</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('assess','video','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('assess','video','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('assess','video','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">RPL Evidence</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('assess','rpl','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('assess','rpl','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('assess','rpl','no',this)">No</button>
+    </div>
+  </div>
         </div>
       </div>
 
@@ -619,17 +950,54 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Emerging capabilities — rate each for your roadmap.</p>
         <div id="ai-social-list" style="display:flex;flex-direction:column;gap:10px">
-          ${[['aiRec','AI Content Recommendations'],['aiBot','AI Chatbot / Learning Assistant'],['aiQuiz','AI-Generated Quiz Questions'],
-             ['forums','Discussion Forums'],['p2p','Peer-to-Peer Learning'],['gamify','Gamification &amp; Leaderboards'],
-             ['socialprofile','Social Profiles &amp; Community'],['collab','Live Collaborative Tools']].map(([id,label])=>
-            `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F1F5F9">
-               <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">${label}</span>
-               <div style="display:flex;gap:4px;flex-shrink:0">
-                 <button class="pill-btn pill-must" onclick="setPill('aiSocial','${id}','must',this)">Must</button>
-                 <button class="pill-btn pill-nice" onclick="setPill('aiSocial','${id}','nice',this)">Nice</button>
-                 <button class="pill-btn pill-no"   onclick="setPill('aiSocial','${id}','no',this)">No</button>
-               </div>
-             </div>`).join('')}
+          <div class="feature-row">
+    <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">AI Content Recommendations</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('aiSocial','aiRec','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('aiSocial','aiRec','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('aiSocial','aiRec','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">AI Chatbot / Learning Assistant</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('aiSocial','aiBot','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('aiSocial','aiBot','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('aiSocial','aiBot','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">AI-Generated Quiz Questions</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('aiSocial','aiQuiz','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('aiSocial','aiQuiz','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('aiSocial','aiQuiz','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">Discussion Forums</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('aiSocial','forums','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('aiSocial','forums','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('aiSocial','forums','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">Peer Review & Feedback</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('aiSocial','peerReview','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('aiSocial','peerReview','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('aiSocial','peerReview','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151;flex:1;padding-right:8px">Social Leaderboards</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('aiSocial','social','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('aiSocial','social','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('aiSocial','social','no',this)">No</button>
+    </div>
+  </div>
         </div>
       </div>
     </div>
@@ -691,10 +1059,62 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         </h3>
         <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Rate each administrative capability for your organisation.</p>
         <div class="border border-gray-100">
-          ${[['cohort','Cohort / Group Management'],['waitlist','Waitlist Management'],['autoremind','Automated Reminders'],
-             ['emailtpl','Custom Email Templates'],['bulkenrol','Bulk Enrolment Tools'],['progress','Progress Monitoring Dashboard'],
-             ['completionrpt','Completion Reports'],['customfields','Custom User Fields'],
-             ['approval','Manager Approval Workflows'],['branching','Multi-Department Branching']].map(([id,label])=>featureRow('admin',id,label)).join('')}
+          <div class="feature-row">
+    <span style="font-size:12px;color:#374151">Cohort / Group Management</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('adminFeat','cohort','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('adminFeat','cohort','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('adminFeat','cohort','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Waitlist Management</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('adminFeat','waitlist','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('adminFeat','waitlist','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('adminFeat','waitlist','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Automated Reminders</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('adminFeat','autoremind','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('adminFeat','autoremind','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('adminFeat','autoremind','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Bulk Enrolment</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('adminFeat','bulkEnrol','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('adminFeat','bulkEnrol','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('adminFeat','bulkEnrol','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Self-Enrolment</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('adminFeat','selfEnrol','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('adminFeat','selfEnrol','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('adminFeat','selfEnrol','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Approval Workflows</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('adminFeat','approval','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('adminFeat','approval','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('adminFeat','approval','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Custom Learner Fields</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('adminFeat','customFields','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('adminFeat','customFields','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('adminFeat','customFields','no',this)">No</button>
+    </div>
+  </div>
         </div>
       </div>
 
@@ -705,19 +1125,41 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
           Ecosystem Integrations Required
         </h3>
         <div id="admin-int-list" style="display:flex;flex-direction:column;gap:2px" class="integration-row">
-          ${[['xero','Xero','account_balance'],['myob','MYOB','account_balance'],
-             ['salesforce','Salesforce CRM','crm'],['hubspot','HubSpot','contacts'],
-             ['teams','Microsoft Teams','groups'],['zoom','Zoom','videocam'],
-             ['slack','Slack','chat'],['google','Google Workspace','apps'],
-             ['mailchimp','Mailchimp / Campaign Monitor','email'],['zapier','Zapier / Make','bolt'],
-             ['stripe','Stripe / Payment Processing','payments'],['linkedin','LinkedIn Learning','school']].map(([id,label,icon])=>
-            `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #F1F5F9;background:#fff">
-               <div style="display:flex;align-items:center;gap:8px">
-                 <span class="material-icons-round" style="font-size:17px;color:#64748B">${icon}</span>
-                 <span style="font-size:13px;color:#374151">${label}</span>
-               </div>
-               <input type="checkbox" onchange="setCheck('adminInt','${id}',this.checked)">
-             </div>`).join('')}
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e2e8f0">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="material-icons-round" style="font-size:17px;color:#64748B">account_balance</span>
+      <span style="font-size:13px;color:#374151">Xero</span>
+    </div>
+    <input type="checkbox" onchange="setCheck('adminInt','xero',this.checked)">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e2e8f0">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="material-icons-round" style="font-size:17px;color:#64748B">account_balance</span>
+      <span style="font-size:13px;color:#374151">MYOB</span>
+    </div>
+    <input type="checkbox" onchange="setCheck('adminInt','myob',this.checked)">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e2e8f0">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="material-icons-round" style="font-size:17px;color:#64748B">payment</span>
+      <span style="font-size:13px;color:#374151">Stripe</span>
+    </div>
+    <input type="checkbox" onchange="setCheck('adminInt','stripe',this.checked)">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e2e8f0">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="material-icons-round" style="font-size:17px;color:#64748B">account_balance_wallet</span>
+      <span style="font-size:13px;color:#374151">PayPal</span>
+    </div>
+    <input type="checkbox" onchange="setCheck('adminInt','paypal',this.checked)">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e2e8f0">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="material-icons-round" style="font-size:17px;color:#64748B">calculate</span>
+      <span style="font-size:13px;color:#374151">QuickBooks</span>
+    </div>
+    <input type="checkbox" onchange="setCheck('adminInt','quickbooks',this.checked)">
+  </div>
         </div>
       </div>
 
@@ -732,19 +1174,62 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         </h3>
         <p style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:14px;line-height:1.6">Rate the financial features your LMS must support.</p>
         <div id="finance-features-list" style="display:flex;flex-direction:column;gap:10px">
-          ${[['invoice','Invoice Generation'],['paygate','Online Payment Gateway'],['subs','Subscription / Membership Plans'],
-             ['coupon','Coupon &amp; Discount Codes'],['revrpt','Revenue / Sales Reporting'],
-             ['gst','Tax Invoicing (GST)'],['refund','Refund Processing']].map(([id,label])=>
-            `<div style="padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)">
-               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-                 <span style="font-size:12px;color:rgba(255,255,255,.85)">${label}</span>
-               </div>
-               <div style="display:flex;gap:5px">
-                 <button class="pill-btn pill-must" onclick="setPill('finance','${id}','must',this)">Must</button>
-                 <button class="pill-btn pill-nice" onclick="setPill('finance','${id}','nice',this)">Nice</button>
-                 <button class="pill-btn pill-no"   onclick="setPill('finance','${id}','no',this)">No</button>
-               </div>
-             </div>`).join('')}
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Invoice Generation</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('finance','invoice','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('finance','invoice','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('finance','invoice','no',this)">No</button>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Online Payment Gateway</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('finance','paygate','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('finance','paygate','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('finance','paygate','no',this)">No</button>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Subscription / Membership Plans</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('finance','subs','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('finance','subs','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('finance','subs','no',this)">No</button>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Coupon & Discount Codes</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('finance','coupon','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('finance','coupon','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('finance','coupon','no',this)">No</button>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Revenue / Sales Reporting</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('finance','revrpt','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('finance','revrpt','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('finance','revrpt','no',this)">No</button>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Tax Invoicing (GST)</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('finance','gst','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('finance','gst','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('finance','gst','no',this)">No</button>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Refund Processing</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('finance','refund','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('finance','refund','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('finance','refund','no',this)">No</button>
+    </div>
+  </div>
         </div>
       </div>
     </div>
@@ -773,20 +1258,58 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         <!-- Portal Experience -->
         <div id="portal-exp-col" style="border-right:1.5px solid #F1F5F9;padding-right:16px">
           <div style="font-size:11px;font-weight:700;color:#00bec7;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid #d2f0f0">Portal Experience</div>
-          ${['Custom Organisation Branding','Mobile-Responsive Design','Dedicated Mobile App','Self-Service Enrolment',
-             'Browse Course Catalogue','My Progress Dashboard','Certificate Download','Notification Preferences','Profile Customisation'].map(item=>
-            `<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:#374151;padding:5px 0;border-bottom:1px solid #F8FAFC">
-               <input type="checkbox" onchange="setCheck('portal','${item.replace(/\s+/g,'')}',this.checked)"> ${item}
-             </label>`).join('')}
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('portal','CustomOrganisationBranding',this.checked)"> Custom Organisation Branding
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('portal','Mobile-ResponsiveDesign',this.checked)"> Mobile-Responsive Design
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('portal','DedicatedMobileApp',this.checked)"> Dedicated Mobile App
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('portal','Self-ServiceEnrolment',this.checked)"> Self-Service Enrolment
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('portal','LearnerDashboard&ProgressView',this.checked)"> Learner Dashboard & Progress View
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('portal','Gamification&Badges',this.checked)"> Gamification & Badges
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('portal','Social/CommunityFeatures',this.checked)"> Social / Community Features
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('portal','OfflineAccess',this.checked)"> Offline Access
+  </label>
         </div>
         <!-- Learning Features -->
         <div id="learning-feat-col" style="padding-left:16px">
           <div style="font-size:11px;font-weight:700;color:#00bec7;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1.5px solid #d2f0f0">Learning Features</div>
-          ${['Blended Learning Paths','Prerequisite Gating','Learning Reminders &amp; Nudges','Offline / Download Access',
-             'Multi-Language Support','Accessibility (WCAG 2.1)','Video Captions / Transcripts','Discussion &amp; Comments','Bookmarking &amp; Resume'].map(item=>
-            `<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;color:#374151;padding:5px 0;border-bottom:1px solid #F8FAFC">
-               <input type="checkbox" onchange="setCheck('learning','${item.replace(/\s+|&amp;|\/|\(|\)/g,'')}',this.checked)"> ${item}
-             </label>`).join('')}
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('learning','BlendedLearningPaths',this.checked)"> Blended Learning Paths
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('learning','PrerequisiteGating',this.checked)"> Prerequisite Gating
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('learning','LearningRemindersNudges',this.checked)"> Learning Reminders & Nudges
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('learning','OfflineDownloadAccess',this.checked)"> Offline / Download Access
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('learning','VideoTranscripts',this.checked)"> Video Transcripts
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('learning','WebinarRecordingsAccess',this.checked)"> Webinar Recordings Access
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('learning','SynchronousLearningSupport',this.checked)"> Synchronous Learning Support
+  </label>
+<label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;padding:3px 0">
+    <input type="checkbox" onchange="setCheck('learning','AsynchronousLearningSupport',this.checked)"> Asynchronous Learning Support
+  </label>
         </div>
       </div>
     </div>
@@ -799,14 +1322,30 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
       </h3>
       <p style="font-size:11px;color:rgba(255,255,255,.6);margin-bottom:14px;line-height:1.6">Which support and comms capabilities must your learners have access to?</p>
       <div id="support-comms-list">
-        ${[['livechat','In-App Live Chat Support'],['emailnotif','Email Notifications'],
-           ['sms','SMS / Push Notifications'],['helpdesk','Help Desk / Ticketing'],
-           ['onboarding','Onboarding Walkthrough'],['kb','Knowledge Base / FAQ'],
-           ['community','Community Support Forum'],['dedicatedrep','Dedicated Support Rep']].map(([id,label])=>
-          `<div class="navy-row" style="display:flex;align-items:center;justify-content:space-between;">
-             <span style="font-size:12px;color:rgba(255,255,255,.85)">${label}</span>
-             <input type="checkbox" onchange="setCheck('support','${id}',this.checked)" style="accent-color:#00bec7">
-           </div>`).join('')}
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">In-App Live Chat Support</span>
+    <input type="checkbox" onchange="setCheck('support','livechat',this.checked)" style="accent-color:#00bec7">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Email Notifications</span>
+    <input type="checkbox" onchange="setCheck('support','emailnotif',this.checked)" style="accent-color:#00bec7">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">SMS Notifications</span>
+    <input type="checkbox" onchange="setCheck('support','smsnotif',this.checked)" style="accent-color:#00bec7">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Direct Trainer Messaging</span>
+    <input type="checkbox" onchange="setCheck('support','trainerMsg',this.checked)" style="accent-color:#00bec7">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Help Desk / Ticketing</span>
+    <input type="checkbox" onchange="setCheck('support','helpdesk',this.checked)" style="accent-color:#00bec7">
+  </div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <span style="font-size:12px;color:rgba(255,255,255,.85)">Supervisor / Manager Access</span>
+    <input type="checkbox" onchange="setCheck('support','supervisor',this.checked)" style="accent-color:#00bec7">
+  </div>
       </div>
     </div>
 
@@ -830,12 +1369,86 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
       </h3>
       <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Rate each feature from your trainers' perspective.</p>
       <div class="border border-gray-100">
-        ${[['dashboard','Trainer Dashboard &amp; Overview'],['learnervis','Learner Progress Visibility'],
-           ['bulkmark','Bulk Marking / Assessment Tools'],['evidence','Evidence &amp; Portfolio Review'],
-           ['signoff','Competency Sign-Off Workflows'],['cohortmgmt','Class / Cohort Management'],
-           ['directmsg','Direct Messaging to Learners'],['scheduling','Session &amp; Event Scheduling'],
-           ['attendance','Attendance Tracking'],['feedback','Feedback &amp; Notes on Learners'],
-           ['cotrainer','Co-Trainer / Guest Trainer Access'],['resourcelib','Resource Library Management']].map(([id,label])=>featureRow('trainer',id,label)).join('')}
+        <div class="feature-row">
+    <span style="font-size:12px;color:#374151">Trainer Dashboard & Overview</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','dashboard','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','dashboard','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','dashboard','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Learner Progress Visibility</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','learnervis','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','learnervis','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','learnervis','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Rubric-Based Marking</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','rubric','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','rubric','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','rubric','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Bulk Grading Tools</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','bulkgrade','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','bulkgrade','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','bulkgrade','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Rich Feedback Tools (audio/video)</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','feedback','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','feedback','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','feedback','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Document Annotation</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','annotate','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','annotate','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','annotate','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Resit / Second Attempt Management</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','resit','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','resit','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','resit','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">RPL Evidence Review</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','rpl','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','rpl','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','rpl','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Workplace Observation Tools</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','obs','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','obs','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','obs','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">PD & Microcredential Tracking</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('trainer','pd','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('trainer','pd','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('trainer','pd','no',this)">No</button>
+    </div>
+  </div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px">
@@ -876,12 +1489,86 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
       </h3>
       <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">Rate each compliance capability against your regulatory context.</p>
       <div class="border border-gray-100">
-        ${[['usi','USI Collection &amp; Verification'],['avetmiss','AVETMISS Data Reporting'],
-           ['trainingplan','Training Plan Generation'],['funding','Funding Compliance (Skills First, VETiS, etc.)'],
-           ['auditaccess','Third-Party Auditor Access'],['docversion','Document Version Control'],
-           ['regchange','Regulatory Change Notifications'],['certtracking','Industry Certification Tracking'],
-           ['expiry','Expiry &amp; Re-Certification Reminders'],['signagreement','Signed Agreement Storage'],
-           ['workplacerecords','Workplace Assessment Records'],['rpl','RPL (Recognition of Prior Learning) Workflow']].map(([id,label])=>featureRow('comp',id,label)).join('')}
+        <div class="feature-row">
+    <span style="font-size:12px;color:#374151">USI Collection & Verification</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','usi','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','usi','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','usi','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">AVETMISS Data Reporting</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','avetmiss','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','avetmiss','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','avetmiss','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">NAT File Generation</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','nat','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','nat','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','nat','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Completion & Certification</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','completion','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','completion','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','completion','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Auditor Read-Only Access</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','auditor','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','auditor','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','auditor','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Content Version Control</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','version','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','version','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','version','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Validation Workflows</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','validation','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','validation','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','validation','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Third-Party Monitoring</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','tprty','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','tprty','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','tprty','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">RPL Evidence Storage</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','rpl2','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','rpl2','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','rpl2','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Superseded Qualification Management</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('compliance','supersede','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('compliance','supersede','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('compliance','supersede','no',this)">No</button>
+    </div>
+  </div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px">
@@ -891,13 +1578,30 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
           Australian RTOs operate under the Standards for Registered Training Organisations (SRTOs 2015) and applicable state funding frameworks.
         </p>
         <div id="comp-framework-list" style="display:flex;flex-direction:column;gap:6px">
-          ${[['ASQA','National regulatory body'],['VRQA / TAC','State regulators (VIC/ACT)'],
-             ['AVETMISS','National VET statistical standard'],['USI Registry','Unique Student Identifier'],
-             ['Skills First','Victorian funded training'],['AQF','Qualifications Framework']].map(([t,d])=>
-            `<div style="background:rgba(255,255,255,.07);padding:8px 10px">
-               <div style="font-size:12px;font-weight:600;color:#00bec7">${t}</div>
-               <div style="font-size:11px;color:rgba(255,255,255,.6)">${d}</div>
-             </div>`).join('')}
+          <div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <div style="font-size:12px;font-weight:600;color:#00bec7">ASQA</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.6)">National regulatory body</div>
+  </div>
+<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <div style="font-size:12px;font-weight:600;color:#00bec7">VRQA / TAC</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.6)">State regulators (VIC/ACT)</div>
+  </div>
+<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <div style="font-size:12px;font-weight:600;color:#00bec7">AVETMISS</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.6)">National VET statistical standard</div>
+  </div>
+<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <div style="font-size:12px;font-weight:600;color:#00bec7">USI Registry</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.6)">Unique Student Identifier</div>
+  </div>
+<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <div style="font-size:12px;font-weight:600;color:#00bec7">Skills First</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.6)">Victorian funded training</div>
+  </div>
+<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)">
+    <div style="font-size:12px;font-weight:600;color:#00bec7">AQF</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.6)">Qualifications Framework</div>
+  </div>
         </div>
       </div>
     </div>
@@ -921,12 +1625,62 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
       </h3>
       <p style="font-size:11px;color:#94A3B8;margin-bottom:12px">What does the ongoing vendor relationship need to look like for your organisation?</p>
       <div class="border border-gray-100">
-        ${[['accountmgr','Dedicated Account Manager'],['aus','Australian-Based Support Team'],
-           ['247support','24/7 Technical Support SLA'],['phone','Business Hours Phone Support'],
-           ['onboarding','Implementation &amp; Onboarding Service'],['customdev','Custom Development Capability'],
-           ['migration','Data Migration Assistance'],['updates','Regular Platform Updates'],
-           ['usercommunity','Client Community / User Group'],['stafftraining','Staff Training &amp; PD'],
-           ['flexcontract','Flexible Contract Terms'],['dataportability','Data Exit &amp; Portability Rights']].map(([id,label])=>featureRow('rel',id,label)).join('')}
+        <div class="feature-row">
+    <span style="font-size:12px;color:#374151">Dedicated Account Manager</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('rel','accountmgr','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('rel','accountmgr','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('rel','accountmgr','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Australian-Based Support Team</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('rel','aus','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('rel','aus','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('rel','aus','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Chat Support</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('rel','chat','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('rel','chat','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('rel','chat','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Phone Support</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('rel','phone','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('rel','phone','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('rel','phone','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">API & Developer Support</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('rel','api','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('rel','api','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('rel','api','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Onboarding & Training Provided</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('rel','training','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('rel','training','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('rel','training','no',this)">No</button>
+    </div>
+  </div>
+<div class="feature-row">
+    <span style="font-size:12px;color:#374151">Input into Product Roadmap</span>
+    <div style="display:flex;gap:4px">
+      <button class="pill-btn pill-must" onclick="setPill('rel','roadmap','must',this)">Must</button>
+      <button class="pill-btn pill-nice" onclick="setPill('rel','roadmap','nice',this)">Nice</button>
+      <button class="pill-btn pill-no"   onclick="setPill('rel','roadmap','no',this)">No</button>
+    </div>
+  </div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px">
@@ -936,10 +1690,11 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
           Questions to ask every vendor in your evaluation process:
         </p>
         <div id="vendor-questions-list" style="display:flex;flex-direction:column;gap:6px">
-          ${['Do you have Australian-based staff?','What is your typical onboarding timeline?','How are bugs and outages communicated?',
-             'What is your data retention &amp; exit policy?','Is there a product roadmap you can share?',
-             'What SLA guarantees are contractual?','Can we speak to a current RTO client?'].map(q=>
-            `<div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #00bec7;background:rgba(255,255,255,.05);line-height:1.4">${q}</div>`).join('')}
+          <div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #00bec7;background:rgba(255,255,255,.05);line-height:1.4">Do you have Australian-based staff?</div>
+<div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #00bec7;background:rgba(255,255,255,.05);line-height:1.4">What is your typical onboarding timeline?</div>
+<div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #00bec7;background:rgba(255,255,255,.05);line-height:1.4">How are bugs and outages communicated?</div>
+<div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #00bec7;background:rgba(255,255,255,.05);line-height:1.4">What is your data residency policy?</div>
+<div style="font-size:11px;color:rgba(255,255,255,.75);padding:6px 8px;border-left:2px solid #00bec7;background:rgba(255,255,255,.05);line-height:1.4">Can we speak to reference clients?</div>
         </div>
       </div>
     </div>
@@ -1009,18 +1764,60 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         Integration Ecosystem
       </h3>
       <div id="cost-int-list" style="display:flex;flex-direction:column;gap:8px">
-        ${[['smsCRM','SMS / CRM Bridge'],['lln','LLN Diagnostic Tool'],['marketingPlatform','Marketing Platform'],
-           ['ecommerce','eCommerce / Stripe'],['digitalCreds','Digital Credentials'],
-           ['dataMigration','Data Migration'],['certsBadges','Certificates / Badges']].map(([key,label])=>
-          `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-             <span style="font-size:11px;color:rgba(255,255,255,.8);flex:1">${label}</span>
-             <div class="dollar-group" style="width:110px;flex-shrink:0">
-               <span class="pfx">$</span>
-               <input type="number" placeholder="0" min="0" step="0.01"
-                 oninput="setCost('${key}',parseFloat(this.value)||0);calcTotal()"
-                 style="background:rgba(255,255,255,.08);color:#fff">
-             </div>
-           </div>`).join('')}
+        <div class="navy-row">
+    <span style="font-size:11px;color:rgba(255,255,255,.8);flex:1">SMS / CRM Bridge</span>
+    <div class="dollar-group" style="width:90px">
+      <span class="pfx">$</span>
+      <input type="number" min="0" placeholder="0"
+        oninput="setCost('smsCRM',parseFloat(this.value)||0);calcTotal()"
+        style="font-size:12px;width:60px">
+    </div>
+  </div>
+<div class="navy-row">
+    <span style="font-size:11px;color:rgba(255,255,255,.8);flex:1">LLN Diagnostic Tool</span>
+    <div class="dollar-group" style="width:90px">
+      <span class="pfx">$</span>
+      <input type="number" min="0" placeholder="0"
+        oninput="setCost('lln',parseFloat(this.value)||0);calcTotal()"
+        style="font-size:12px;width:60px">
+    </div>
+  </div>
+<div class="navy-row">
+    <span style="font-size:11px;color:rgba(255,255,255,.8);flex:1">Marketing Platform</span>
+    <div class="dollar-group" style="width:90px">
+      <span class="pfx">$</span>
+      <input type="number" min="0" placeholder="0"
+        oninput="setCost('marketingPlatform',parseFloat(this.value)||0);calcTotal()"
+        style="font-size:12px;width:60px">
+    </div>
+  </div>
+<div class="navy-row">
+    <span style="font-size:11px;color:rgba(255,255,255,.8);flex:1">eCommerce / Payment</span>
+    <div class="dollar-group" style="width:90px">
+      <span class="pfx">$</span>
+      <input type="number" min="0" placeholder="0"
+        oninput="setCost('ecommerce',parseFloat(this.value)||0);calcTotal()"
+        style="font-size:12px;width:60px">
+    </div>
+  </div>
+<div class="navy-row">
+    <span style="font-size:11px;color:rgba(255,255,255,.8);flex:1">Digital Credentials (Credly)</span>
+    <div class="dollar-group" style="width:90px">
+      <span class="pfx">$</span>
+      <input type="number" min="0" placeholder="0"
+        oninput="setCost('credentials',parseFloat(this.value)||0);calcTotal()"
+        style="font-size:12px;width:60px">
+    </div>
+  </div>
+<div class="navy-row">
+    <span style="font-size:11px;color:rgba(255,255,255,.8);flex:1">Data Migration Tool</span>
+    <div class="dollar-group" style="width:90px">
+      <span class="pfx">$</span>
+      <input type="number" min="0" placeholder="0"
+        oninput="setCost('dataMigration',parseFloat(this.value)||0);calcTotal()"
+        style="font-size:12px;width:60px">
+    </div>
+  </div>
       </div>
     </div>
 
@@ -1044,24 +1841,78 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
         </div>
         <!-- Right sub: 3 items -->
         <div id="dev-cost-list" style="padding:20px;display:flex;flex-direction:column;gap:14px">
-          ${[['pmHours','Internal PM Hours (est. cost)','schedule'],
-             ['externalDev','External Dev / SMEs','engineering'],
-             ['staffTraining','Staff Training','school']].map(([key,label,icon],i)=>`
-            <div>
-              <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-                <span class="material-icons-round" style="font-size:15px;color:#00bec7">${icon}</span>
-                <span style="font-size:12px;font-weight:600;color:#374151">${label}</span>
-              </div>
-              <div class="dollar-group">
-                <span class="pfx">$</span>
-                <input type="number" placeholder="0.00" min="0" step="0.01"
-                  id="cost-dev-${i}"
-                  oninput="setCost('${key}',parseFloat(this.value)||0);calcTotal();updateDevBar(${i},this.value)">
-              </div>
-              <div class="mini-prog" style="margin-top:5px">
-                <div class="mini-prog-fill" id="dev-bar-${i}" style="width:0%"></div>
-              </div>
-            </div>`).join('')}
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9">
+    <div style="width:32px;height:32px;background:#d2f0f0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <span class="material-icons-round" style="font-size:15px;color:#00bec7">schedule</span>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:600;color:#374151">Internal PM Hours (est. cost)</span>
+        <div class="dollar-group" style="width:90px">
+          <span class="pfx">$</span>
+          <input type="number" min="0" placeholder="0"
+            id="cost-dev-0"
+            oninput="setCost('pmHours',parseFloat(this.value)||0);calcTotal();updateDevBar(0,this.value)"
+            style="font-size:12px;width:60px">
+        </div>
+      </div>
+      <div class="mini-prog"><div class="mini-prog-fill" id="dev-bar-0" style="width:0%"></div></div>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9">
+    <div style="width:32px;height:32px;background:#d2f0f0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <span class="material-icons-round" style="font-size:15px;color:#00bec7">code</span>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:600;color:#374151">External Dev / SME Costs</span>
+        <div class="dollar-group" style="width:90px">
+          <span class="pfx">$</span>
+          <input type="number" min="0" placeholder="0"
+            id="cost-dev-1"
+            oninput="setCost('devCost',parseFloat(this.value)||0);calcTotal();updateDevBar(1,this.value)"
+            style="font-size:12px;width:60px">
+        </div>
+      </div>
+      <div class="mini-prog"><div class="mini-prog-fill" id="dev-bar-1" style="width:0%"></div></div>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9">
+    <div style="width:32px;height:32px;background:#d2f0f0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <span class="material-icons-round" style="font-size:15px;color:#00bec7">model_training</span>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:600;color:#374151">Staff Training Phase</span>
+        <div class="dollar-group" style="width:90px">
+          <span class="pfx">$</span>
+          <input type="number" min="0" placeholder="0"
+            id="cost-dev-2"
+            oninput="setCost('trainCost',parseFloat(this.value)||0);calcTotal();updateDevBar(2,this.value)"
+            style="font-size:12px;width:60px">
+        </div>
+      </div>
+      <div class="mini-prog"><div class="mini-prog-fill" id="dev-bar-2" style="width:0%"></div></div>
+    </div>
+  </div>
+<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9">
+    <div style="width:32px;height:32px;background:#d2f0f0;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <span class="material-icons-round" style="font-size:15px;color:#00bec7">bug_report</span>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:600;color:#374151">Testing & UAT Phase</span>
+        <div class="dollar-group" style="width:90px">
+          <span class="pfx">$</span>
+          <input type="number" min="0" placeholder="0"
+            id="cost-dev-3"
+            oninput="setCost('testCost',parseFloat(this.value)||0);calcTotal();updateDevBar(3,this.value)"
+            style="font-size:12px;width:60px">
+        </div>
+      </div>
+      <div class="mini-prog"><div class="mini-prog-fill" id="dev-bar-3" style="width:0%"></div></div>
+    </div>
+  </div>
         </div>
       </div>
     </div>
@@ -1106,20 +1957,34 @@ input[type=checkbox] { accent-color:#00bec7; width:16px; height:16px; cursor:poi
     <div style="font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;grid-column:1/-1;padding-bottom:4px;border-bottom:1.5px solid #E2E8F0">
       Future-Proofing &amp; Risk Mitigation
     </div>
-    ${[['trialDemos','Trial &amp; Demos Budget','science'],
-       ['scalability','Scalability Reserve','trending_up'],
-       ['platformUpdates','Platform Updates (Annual)','system_update'],
-       ['riskMitigation','Long-term Risk Estimate','shield']].map(([key,label,icon],i)=>
-      `<div class="bg-white border border-gray-200 p-4 bento-accent">
-         <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">
-           <span class="material-icons-round" style="font-size:17px;color:#00bec7">${icon}</span>
-           <span class="font-heading" style="font-size:12px;font-weight:600;color:#374151">${label}</span>
-         </div>
-         ${key==='scalability'
-           ? `<input type="text" class="field" placeholder="e.g. 2× growth in 3 years…" style="font-size:12px" oninput="setCost('${key}',this.value)">`
-           : `<div class="dollar-group"><span class="pfx">$</span><input type="number" placeholder="0.00" min="0" step="0.01" oninput="setCost('${key}',parseFloat(this.value)||0);calcTotal()"></div>`
-         }
-       </div>`).join('')}
+    <div style="border-left:4px solid #1f2a52;padding:14px;background:rgba(212,240,240,.2)">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+      <span class="material-icons-round" style="font-size:17px;color:#00bec7">science</span>
+      <span class="font-heading" style="font-size:12px;font-weight:600;color:#374151">Trial & Demos Budget</span>
+    </div>
+    <div class="dollar-group"><span class="pfx">$</span><input type="number" min="0" placeholder="0" oninput="setCost('trialDemos',parseFloat(this.value)||0);calcTotal()" style="font-size:12px"></div>
+  </div>
+<div style="border-left:4px solid #1f2a52;padding:14px;background:rgba(212,240,240,.2)">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+      <span class="material-icons-round" style="font-size:17px;color:#00bec7">trending_up</span>
+      <span class="font-heading" style="font-size:12px;font-weight:600;color:#374151">Scalability Notes</span>
+    </div>
+    <input type="text" class="field" placeholder="e.g. 2× growth in 3 years…" style="font-size:12px" oninput="setCost('scalability',this.value)">
+  </div>
+<div style="border-left:4px solid #1f2a52;padding:14px;background:rgba(212,240,240,.2)">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+      <span class="material-icons-round" style="font-size:17px;color:#00bec7">system_update</span>
+      <span class="font-heading" style="font-size:12px;font-weight:600;color:#374151">Platform Updates Reserve</span>
+    </div>
+    <div class="dollar-group"><span class="pfx">$</span><input type="number" min="0" placeholder="0" oninput="setCost('platformUpdates',parseFloat(this.value)||0);calcTotal()" style="font-size:12px"></div>
+  </div>
+<div style="border-left:4px solid #1f2a52;padding:14px;background:rgba(212,240,240,.2)">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+      <span class="material-icons-round" style="font-size:17px;color:#00bec7">warning</span>
+      <span class="font-heading" style="font-size:12px;font-weight:600;color:#374151">Long-term Risk Estimate</span>
+    </div>
+    <div class="dollar-group"><span class="pfx">$</span><input type="number" min="0" placeholder="0" oninput="setCost('longTermRisk',parseFloat(this.value)||0);calcTotal()" style="font-size:12px"></div>
+  </div>
   </div><!-- /row 3 -->
 
   <!-- ── CTA BANNER ── -->
