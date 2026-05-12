@@ -598,42 +598,42 @@ footer nav a:hover{color:var(--navy)}
               <span>SMS / CRM Bridge</span>
               <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
                 <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
-                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intSMS',parseFloat(this.value)||0);calcTotal()" />
+                <input type="number" min="0" placeholder="0" id="intSMS" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intSMS',parseFloat(this.value)||0);calcTotal()" />
               </div>
             </div>
             <div class="fin-row">
               <span>LLN Diagnostic Tool</span>
               <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
                 <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
-                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intLLN',parseFloat(this.value)||0);calcTotal()" />
+                <input type="number" min="0" placeholder="0" id="intLLN" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intLLN',parseFloat(this.value)||0);calcTotal()" />
               </div>
             </div>
             <div class="fin-row">
               <span>Marketing Platform</span>
               <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
                 <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
-                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intMarketing',parseFloat(this.value)||0);calcTotal()" />
+                <input type="number" min="0" placeholder="0" id="intMarketing" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intMarketing',parseFloat(this.value)||0);calcTotal()" />
               </div>
             </div>
             <div class="fin-row">
               <span>eCommerce / Payment</span>
               <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
                 <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
-                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intEcomm',parseFloat(this.value)||0);calcTotal()" />
+                <input type="number" min="0" placeholder="0" id="intEcomm" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intEcomm',parseFloat(this.value)||0);calcTotal()" />
               </div>
             </div>
             <div class="fin-row">
               <span>Digital Credentials</span>
               <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
                 <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
-                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intCreds',parseFloat(this.value)||0);calcTotal()" />
+                <input type="number" min="0" placeholder="0" id="intCreds" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intCreds',parseFloat(this.value)||0);calcTotal()" />
               </div>
             </div>
             <div class="fin-row">
               <span>Other (specify below)</span>
               <div style="display:flex;align-items:center;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden">
                 <span style="padding:4px 6px;color:var(--teal);font-weight:700;font-size:.8rem">$</span>
-                <input type="number" min="0" placeholder="0" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intOther',parseFloat(this.value)||0);calcTotal()" />
+                <input type="number" min="0" placeholder="0" id="intOther" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intOther',parseFloat(this.value)||0);calcTotal()" />
               </div>
             </div>
             <input type="text" placeholder="Name the other tool..." style="width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 10px;color:#fff;font-size:.75rem;margin-top:8px;outline:none" oninput="saveState('intOtherName',this.value)" />
@@ -1819,6 +1819,11 @@ function saveState(key, val) {
   updateProgress();
 }
 
+function setCost(key, val) {
+  appState[key] = val;
+  try { localStorage.setItem('lmsAppState', JSON.stringify(appState)); } catch(e) {}
+}
+
 function loadState() {
   try {
     var saved = localStorage.getItem('lmsAppState');
@@ -1860,6 +1865,11 @@ function restoreUI() {
   ['compCurrMap','compReporting','usiRealtime','usiBulk','usiReminders'].forEach(function(k){
     var toggles = document.querySelectorAll('input[type=checkbox]');
     // already handled above
+  });
+  // Restore integration cost inputs
+  ['intSMS','intLLN','intMarketing','intEcomm','intCreds','intOther'].forEach(function(k){
+    var el = document.getElementById(k);
+    if (el && appState[k] !== undefined && appState[k] !== 0) el.value = appState[k];
   });
   calcTotal();
   updateProgress();
