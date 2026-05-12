@@ -535,7 +535,10 @@ footer nav a:hover{color:var(--navy)}
         <div class="grid-12" style="margin-bottom:24px">
           <div class="col-8 card-teal-light" style="position:relative;overflow:hidden">
             <span class="ms" style="position:absolute;top:8px;right:8px;font-size:80px;color:var(--teal);opacity:.1">account_balance_wallet</span>
-            <div class="icon-label"><span class="ms">monetization_on</span><h3>Learner &amp; Establishment Costs</h3></div>
+            <div class="icon-label" style="justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px"><span class="ms">monetization_on</span><h3>Learner &amp; Establishment Costs</h3></div>
+              <div style="background:var(--navy);color:#fff;border-radius:20px;padding:4px 14px;font-size:.8rem;font-weight:700;white-space:nowrap">Subtotal: <span id="subtotalEstab">$0.00</span></div>
+            </div>
             <div class="grid-2" style="position:relative;z-index:1">
               <div>
                 <label class="field-label">Cost per Learner (Annual)</label>
@@ -591,7 +594,10 @@ footer nav a:hover{color:var(--navy)}
           </div>
 
           <div class="col-4 card-navy">
-            <div class="icon-label"><span class="ms" style="color:var(--teal)">hub</span><h3 style="color:var(--white)">Integration Ecosystem</h3></div>
+            <div class="icon-label" style="justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px"><span class="ms" style="color:var(--teal)">hub</span><h3 style="color:var(--white)">Integration Ecosystem</h3></div>
+              <div style="background:rgba(255,255,255,.15);color:#fff;border-radius:20px;padding:4px 14px;font-size:.8rem;font-weight:700;white-space:nowrap">Subtotal: <span id="subtotalInt">$0.00</span></div>
+            </div>
             <p style="font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.5;margin-bottom:6px">Many organisations use additional software alongside their LMS. Enter the approximate annual cost of any tools you plan to integrate — this will be added to your total budget estimate.</p>
             <p style="font-size:.65rem;color:rgba(210,240,240,.5);margin-bottom:14px;font-style:italic">Leave blank if not applicable.</p>
             <div class="fin-row">
@@ -666,13 +672,47 @@ footer nav a:hover{color:var(--navy)}
           </div>
         </div>
 
-        <div class="cost-total">
-          <div>
-            <h3>Analysing Total Projected Cost</h3>
-            <p>Implementation Year 1 Budget Estimate</p>
+        <div class="cost-total" style="flex-direction:column;gap:0;padding:28px 32px">
+          <div style="display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:20px">
+            <div>
+              <h3 style="margin:0">Implementation Year 1 Budget Estimate</h3>
+              <p style="margin:4px 0 0;opacity:.7;font-size:.8rem">Based on figures entered above</p>
+            </div>
+            <div class="cost-amount">
+              <span class="amount" id="totalCost">$0.00</span><span class="unit">AUD</span>
+            </div>
           </div>
-          <div class="cost-amount">
-            <span class="amount" id="totalCost">$0</span><span class="unit">AUD</span>
+          <div style="width:100%;border-top:1px solid rgba(255,255,255,.15);padding-top:18px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px">
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+                <span style="opacity:.75">💰 Learner fees (<span id="bkLearners">0</span> × <span id="bkPerLearner">$0</span>/yr)</span>
+                <span style="font-weight:700" id="bkLearnerTotal">$0.00</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+                <span style="opacity:.75">🏗 Establishment fee</span>
+                <span style="font-weight:700" id="bkEstab">$0.00</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+                <span style="opacity:.75">📣 Acquisition &amp; marketing</span>
+                <span style="font-weight:700" id="bkMktg">$0.00</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+                <span style="opacity:.75">👩‍💻 External dev / SMEs</span>
+                <span style="font-weight:700" id="bkDev">$0.00</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+                <span style="opacity:.75">🎓 Staff training</span>
+                <span style="font-weight:700" id="bkTraining">$0.00</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+                <span style="opacity:.75">☁️ Hosting &amp; maintenance (12mo)</span>
+                <span style="font-weight:700" id="bkHosting">$0.00</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+                <span style="opacity:.75">🔗 Integrations</span>
+                <span style="font-weight:700" id="bkInt">$0.00</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1941,19 +1981,41 @@ function calcTotal() {
     }
     return isNaN(v) ? 0 : v;
   }
-  var perLearner = val('costPerLearner','costPerLearner');
-  var learners   = val('learnerCount','learnerCount');
-  var estab      = val('costEstab','costEstab');
-  var mktg       = val('costMarketing','costMarketing');
-  var dev        = val('costDev','costDev');
-  var train      = val('costTraining','costTraining');
-  var hosting    = val('costHosting','costHosting');
-  // Integration costs stored via setCost()
-  var intCosts = ['intSMS','intLLN','intMarketing','intEcomm','intCreds','intOther']
+  function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+  function set(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
+
+  var perLearner   = val('costPerLearner','costPerLearner');
+  var learners     = val('learnerCount','learnerCount');
+  var estab        = val('costEstab','costEstab');
+  var mktg         = val('costMarketing','costMarketing');
+  var dev          = val('costDev','costDev');
+  var train        = val('costTraining','costTraining');
+  var hosting      = val('costHosting','costHosting');
+  var intCosts     = ['intSMS','intLLN','intMarketing','intEcomm','intCreds','intOther']
     .reduce(function(sum,k){ return sum + (parseFloat(appState[k])||0); }, 0);
-  var total = (perLearner * learners) + estab + mktg + dev + train + (hosting * 12) + intCosts;
-  var el = document.getElementById('totalCost');
-  if (el) el.textContent = '$' + total.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2});
+
+  var learnerTotal = perLearner * learners;
+  var hostingAnn   = hosting * 12;
+  var estabSubtotal = learnerTotal + estab + mktg + dev + train + hostingAnn;
+  var total        = estabSubtotal + intCosts;
+
+  // Grand total
+  set('totalCost', fmt(total));
+
+  // Subtotal chips on each box
+  set('subtotalEstab', fmt(estabSubtotal));
+  set('subtotalInt',   fmt(intCosts));
+
+  // Breakdown line items
+  set('bkLearners',     learners);
+  set('bkPerLearner',   fmt(perLearner));
+  set('bkLearnerTotal', fmt(learnerTotal));
+  set('bkEstab',        fmt(estab));
+  set('bkMktg',         fmt(mktg));
+  set('bkDev',          fmt(dev));
+  set('bkTraining',     fmt(train));
+  set('bkHosting',      fmt(hostingAnn));
+  set('bkInt',          fmt(intCosts));
 }
 
 // ─── Pill selector ───────────────────────────────────
