@@ -1816,7 +1816,7 @@ var TOTAL_SECTIONS = 10; // 0-9
 function saveState(key, val) {
   appState[key] = val;
   try { localStorage.setItem('lmsAppState', JSON.stringify(appState)); } catch(e) {}
-  updateProgress();
+  try { updateProgress(); } catch(e) {}
 }
 
 function setCost(key, val) {
@@ -1932,12 +1932,14 @@ function toggleAccordion(btn) {
 
 // ─── Cost Calculator ─────────────────────────────────
 function calcTotal() {
-  // Read from DOM inputs first, fall back to appState
+  // Read from appState first (always up to date), fall back to DOM
   function val(id, key) {
-    var el = document.getElementById(id);
-    var v = el && el.value !== '' ? parseFloat(el.value) : NaN;
-    if (isNaN(v)) v = parseFloat(appState[key]) || 0;
-    return v;
+    var v = parseFloat(appState[key]);
+    if (isNaN(v)) {
+      var el = document.getElementById(id);
+      v = (el && el.value !== '') ? parseFloat(el.value) : 0;
+    }
+    return isNaN(v) ? 0 : v;
   }
   var perLearner = val('costPerLearner','costPerLearner');
   var learners   = val('learnerCount','learnerCount');
