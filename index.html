@@ -472,7 +472,7 @@ footer nav a:hover{color:var(--navy)}
             </div>
             <div>
               <label class="field-label">Sector</label>
-              <select class="field-input" onchange="saveState('orgSector',this.value);updateSectorVisibility()">
+              <select class="field-input" onchange="saveState('orgSector',this.value);updateSectorVisibility();syncSectorSelects()">
                 <option>Select Industry Sector</option>
                 <optgroup label="Organisation Size">
                   <option>Small Organisation (under 50 staff)</option>
@@ -1423,6 +1423,28 @@ footer nav a:hover{color:var(--navy)}
           <p class="section-desc" id="compDesc">Select the compliance and governance requirements that apply to your organisation.</p>
         </div>
 
+        <!-- Sector selector at top of compliance page -->
+        <div class="card" style="margin-bottom:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+            <span class="ms" style="color:var(--teal)">tune</span>
+            <strong style="font-size:.9rem">What type of organisation are you?</strong>
+          </div>
+          <select class="field-input" id="compSectorSelect" style="flex:1;min-width:220px;max-width:360px" onchange="saveState('orgSector',this.value);updateSectorVisibility();syncSectorSelects()">
+            <option>Select Industry Sector</option>
+            <optgroup label="Organisation Type">
+              <option>VET / RTO / College</option>
+              <option>Higher Education</option>
+              <option>Corporate</option>
+              <option>Government</option>
+              <option>Not-for-Profit</option>
+              <option>School</option>
+              <option>Healthcare</option>
+              <option>Consulting / L&amp;D Provider</option>
+            </optgroup>
+          </select>
+          <p style="font-size:.75rem;color:var(--grey);margin:0">This changes the compliance options below.</p>
+        </div>
+
         <div class="grid-12">
           <!-- L&D / Corporate Reporting (non-VET) -->
           <div class="col-8 card-teal-light ld-only" id="ldReportingCard">
@@ -1990,6 +2012,7 @@ function restoreUI() {
   updateProgress();
   computeLMSScores();
   updateSectorVisibility();
+  syncSectorSelects();
 }
 
 // ─── Navigation ──────────────────────────────────────
@@ -2120,6 +2143,30 @@ document.querySelectorAll('input[name=hosting]').forEach(function(r){
 });
 
 // ─── Sector Visibility ───────────────────────────────
+function syncSectorSelects() {
+  // Keep both sector dropdowns in sync
+  var val = appState.orgSector || '';
+  ['orgSector', 'compSectorSelect'].forEach(function(id) {
+    var el = document.querySelector('[onchange*="' + id + '"]') || document.getElementById(id);
+    if (el && el.tagName === 'SELECT') {
+      for (var i = 0; i < el.options.length; i++) {
+        if (el.options[i].value === val || el.options[i].text === val) {
+          el.selectedIndex = i; break;
+        }
+      }
+    }
+  });
+  // Also sync the compliance page select directly
+  var cs = document.getElementById('compSectorSelect');
+  if (cs) {
+    for (var i = 0; i < cs.options.length; i++) {
+      if (cs.options[i].text === val || cs.options[i].value === val) {
+        cs.selectedIndex = i; break;
+      }
+    }
+  }
+}
+
 function updateSectorVisibility() {
   var sector = appState.orgSector || '';
   var isVET = sector === 'VET / RTO / College';
