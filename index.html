@@ -20,6 +20,7 @@
   --border:#aed9d9;
 }
 html{font-size:16px}
+@keyframes spin{to{transform:rotate(360deg)}}
 body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--navy);min-height:100vh;display:flex;flex-direction:column}
 h1,h2,h3,h4,h5{font-family:'Manrope',sans-serif;font-weight:800}
 a{text-decoration:none;color:inherit}
@@ -1797,12 +1798,48 @@ footer nav a:hover{color:var(--navy)}
           </div>
         </div>
 
+        <!-- AI API Key Input -->
+        <div class="card" style="margin-bottom:24px;border:2px solid var(--teal)">
+          <div style="display:flex;align-items:flex-start;gap:16px">
+            <div style="width:40px;height:40px;background:rgba(0,190,199,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span class="ms" style="color:var(--teal)">psychology</span>
+            </div>
+            <div style="flex:1">
+              <h3 style="margin-bottom:4px;font-size:1rem">AI-Powered LMS Recommendations</h3>
+              <p style="font-size:.8rem;color:var(--grey);margin-bottom:16px;line-height:1.6">Enter your OpenAI API key to let AI analyse your requirements against the full LMS market — including Docebo, D2L Brightspace, A New Spring, LearnWorlds, Xen Education, OpenLearning, Absorb, TalentLMS, Coassemble, Moodle, Canvas, Go1, iSpring, Totara, Cornerstone, and many more.</p>
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                <input type="password" id="aiApiKey" class="field-input" placeholder="sk-..." style="flex:1;min-width:260px;font-family:monospace;font-size:.85rem" oninput="localStorage.setItem('aiApiKey',this.value)"/>
+                <button class="btn btn-teal" id="aiAnalyseBtn" onclick="generateAIRecommendations()" style="white-space:nowrap">
+                  <span class="ms" style="font-size:18px">auto_awesome</span> Analyse with AI
+                </button>
+              </div>
+              <p style="font-size:.7rem;color:var(--grey);margin-top:8px">Your key is stored only in your browser and never sent anywhere except OpenAI. <a href="https://platform.openai.com/api-keys" target="_blank" style="color:var(--teal)">Get an API key →</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Loading State -->
+        <div id="aiLoadingState" style="display:none;text-align:center;padding:40px 0;margin-bottom:24px">
+          <div style="width:48px;height:48px;border:4px solid var(--lteal);border-top-color:var(--teal);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px"></div>
+          <p style="font-weight:700;color:var(--navy);margin-bottom:4px">Analysing your requirements...</p>
+          <p style="font-size:.8rem;color:var(--grey)">AI is reviewing the full LMS market against your profile</p>
+        </div>
+
+        <!-- AI Error State -->
+        <div id="aiErrorState" style="display:none;background:#fff0f5;border:1px solid #e72582;border-radius:12px;padding:16px;margin-bottom:24px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <span class="ms" style="color:#e72582">error</span>
+            <strong style="color:var(--navy)">API Error</strong>
+          </div>
+          <p id="aiErrorMsg" style="font-size:.8rem;color:var(--grey)"></p>
+        </div>
+
         <!-- LMS Recommendations -->
         <div style="margin-bottom:8px;display:flex;align-items:center;gap:16px">
           <h2 style="font-size:1.3rem;font-weight:800">Tailored LMS Recommendations</h2>
           <div style="flex:1;height:1px;background:#e0e6ed"></div>
         </div>
-        <div style="font-size:.75rem;color:var(--grey);margin-bottom:20px">Recommendations update dynamically based on your selections.</div>
+        <div style="font-size:.75rem;color:var(--grey);margin-bottom:20px" id="recSubtitle">Enter your OpenAI API key above for AI-powered recommendations, or scroll down to see the pre-scored results.</div>
 
         <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:32px">
           <div class="lms-card primary" id="lmsPrimary">
@@ -2322,10 +2359,150 @@ function computeLMSScores() {
   document.getElementById('lms3Desc').textContent = descs[third.name];
 }
 
+
+// ─── AI Recommendations ───────────────────────────────────────────────────────
+function buildProfileSummary() {
+  var s = appState;
+  var lines = [];
+  if (s.orgName) lines.push('Organisation: ' + s.orgName);
+  if (s.orgSector) lines.push('Sector / role: ' + s.orgSector);
+  if (s.learnerCount) lines.push('Number of learners: ' + s.learnerCount);
+  if (s.hosting) lines.push('Hosting preference: ' + s.hosting);
+  if (s.costPerLearner) lines.push('Budget per learner/year: $' + s.costPerLearner + ' AUD');
+  if (s.authoring) lines.push('Authoring preference: ' + s.authoring);
+  if (s.enrolMethod) lines.push('Enrolment method: ' + s.enrolMethod);
+  if (s.apiInteg) lines.push('API integration importance: ' + s.apiInteg);
+  if (s.virtualClass) lines.push('Virtual classroom: ' + s.virtualClass);
+  if (s.devicePref) lines.push('Device preference: ' + s.devicePref);
+  if (s.involvement) lines.push('Vendor relationship style: ' + s.involvement);
+  var features = [];
+  if (s.sso) features.push('SSO');
+  if (s.ios || s.android) features.push('Mobile app');
+  if (s.learnGamify) features.push('Gamification');
+  if (s.learnAI) features.push('AI-powered learning');
+  if (s.learnForum) features.push('Discussion forums');
+  if (s.learnQuizzes) features.push('Quizzes/assessments');
+  if (s.learnEvidence) features.push('Evidence/portfolio upload');
+  if (s.learnA11y) features.push('Accessibility (WCAG)');
+  if (s.markRubric) features.push('Rubric-based marking');
+  if (s.markBulk) features.push('Bulk marking');
+  if (s.fbAnnotate) features.push('Annotation feedback');
+  if (s.fbVoice) features.push('Voice feedback');
+  if (s.adminMktg) features.push('eCommerce/marketing');
+  if (s.intHRIS) features.push('HRIS integration');
+  if (s.intFinance) features.push('Finance system integration');
+  if (s.supervisor) features.push('Supervisor/manager visibility');
+  if (s.openSource) features.push('Open source preferred');
+  if (s.dataControl) features.push('Data sovereignty/self-hosting');
+  if (features.length) lines.push('Required features: ' + features.join(', '));
+  var compliance = [];
+  if (s.rtoAvetmiss) compliance.push('AVETMISS reporting');
+  if (s.usiRealtime || s.usiBulk) compliance.push('USI validation');
+  if (s.compCurrMap) compliance.push('Curriculum/competency mapping');
+  if (s.govAuditor) compliance.push('Auditor access');
+  if (s.govPolicy) compliance.push('Policy documentation');
+  if (s.govStaff) compliance.push('Staff training records');
+  if (s.ldROI) compliance.push('Training ROI reporting');
+  if (s.ldSkillsGap) compliance.push('Skills gap analysis');
+  if (s.ldPerfReview) compliance.push('Performance review integration');
+  if (s.ldManagerView) compliance.push('Manager visibility of learner progress');
+  if (s.ldMandatory) compliance.push('Mandatory compliance training');
+  if (s.ldCertRenewal) compliance.push('Automated certification renewals');
+  if (s.ldWHS) compliance.push('WHS/safety compliance');
+  if (s.ldISO) compliance.push('ISO 9001/quality standards');
+  if (compliance.length) lines.push('Compliance/governance needs: ' + compliance.join(', '));
+  if (s.offlineNeeds) lines.push('Offline/low-bandwidth notes: ' + s.offlineNeeds);
+  if (s.trainerCollab) lines.push('Trainer collaboration notes: ' + s.trainerCollab);
+  return lines.join('\n');
+}
+
+async function generateAIRecommendations() {
+  var apiKey = (document.getElementById('aiApiKey').value || '').trim() || (localStorage.getItem('aiApiKey') || '');
+  if (!apiKey) { showAIError('Please enter your OpenAI API key above.'); return; }
+  document.getElementById('aiLoadingState').style.display = 'block';
+  document.getElementById('aiErrorState').style.display = 'none';
+  document.getElementById('aiAnalyseBtn').disabled = true;
+  document.getElementById('lmsPrimary').style.opacity = '0.4';
+  var profile = buildProfileSummary();
+  var prompt = 'You are an expert LMS consultant. Analyse this organisational profile and recommend the TOP 3 best-fit LMS platforms from the FULL global market.\n\nConsider all options including: Moodle, Wisenet, Canvas, TalentLMS, Docebo, Coassemble, Absorb LMS, Totara Learn, iSpring Learn, D2L Brightspace, A New Spring, LearnWorlds, Xen Education, OpenLearning, Go1, Cornerstone OnDemand, SAP Litmos, Blackboard, Adobe Learning Manager, 360Learning, Degreed, EdApp (SafetyCulture), Thinkific, Teachable, Kajabi, LearnUpon, WorkRamp, Lessonly by Seismic, Mindtickle, Kallidus, Meridian LMS, Arlo, Accessplanit, Gyrus LMS, Tovuti, NetDimensions, HealthStream, Relias, ProProfs LMS, WizIQ, Blue Sky eLearn, and any other relevant platforms.\n\nOrganisational Profile:\n' + profile + '\n\nReturn ONLY valid JSON in this exact format (no markdown fences, no explanation):\n{\n  "recommendations": [\n    {\n      "rank": 1,\n      "name": "Platform Name",\n      "company": "Company Name",\n      "country": "Country of origin",\n      "data_region": "Primary data hosting region",\n      "flag_code": "2-letter ISO country code lowercase",\n      "match_score": 92,\n      "why": "2-3 sentences explaining why this is the best fit.",\n      "features": ["Feature 1 relevant to their needs", "Feature 2", "Feature 3"]\n    },\n    { "rank": 2 },\n    { "rank": 3 }\n  ],\n  "summary": "One sentence summarising the overall recommendation."\n}';
+  try {
+    var resp = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
+      body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 1400 })
+    });
+    if (!resp.ok) {
+      var errData = await resp.json().catch(function(){ return {}; });
+      throw new Error((errData.error && errData.error.message) || 'API request failed (' + resp.status + ')');
+    }
+    var data = await resp.json();
+    var raw = data.choices[0].message.content.trim().replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/,'');
+    renderAIRecommendations(JSON.parse(raw));
+  } catch(e) {
+    showAIError(e.message || 'Unknown error. Check your API key and try again.');
+  } finally {
+    document.getElementById('aiLoadingState').style.display = 'none';
+    document.getElementById('aiAnalyseBtn').disabled = false;
+    document.getElementById('lmsPrimary').style.opacity = '1';
+  }
+}
+
+function showAIError(msg) {
+  document.getElementById('aiErrorState').style.display = 'block';
+  document.getElementById('aiErrorMsg').textContent = msg;
+  document.getElementById('aiLoadingState').style.display = 'none';
+}
+
+function renderAIRecommendations(result) {
+  var recs = result.recommendations;
+  if (!recs || recs.length < 3) { showAIError('Unexpected response format. Please try again.'); return; }
+  var top = recs[0], sec = recs[1], thr = recs[2];
+  function flagHTML(rec, isPrimary) {
+    var col = isPrimary ? 'rgba(255,255,255,.75)' : 'var(--grey)';
+    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><img src="https://flagcdn.com/28x21/' + (rec.flag_code||'un') + '.png" alt="" width="28" height="21" style="border-radius:2px"><span style="font-size:.78rem;color:' + col + ';font-weight:600">' + (rec.company||'') + ' — ' + (rec.country||'') + '</span></div>';
+  }
+  function residencyHTML(rec, isPrimary) {
+    var col = isPrimary ? 'rgba(255,255,255,.75)' : 'var(--grey)';
+    return '<div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:' + col + ';margin-bottom:10px"><span class="ms" style="font-size:14px">storage</span> Data stored: ' + (rec.data_region||'Unknown') + '</div>';
+  }
+  function featHTML(rec) {
+    return (rec.features||[]).map(function(f){ return '<div class="lms-feature"><span class="ms fill">check_circle</span>' + f + '</div>'; }).join('');
+  }
+  var pf = document.getElementById('lmsPrimaryFlag'); if(pf) pf.innerHTML = flagHTML(top,true);
+  var pr = document.getElementById('lmsPrimaryResidency'); if(pr) pr.innerHTML = residencyHTML(top,true);
+  document.getElementById('lmsPrimaryName').textContent = top.name;
+  document.getElementById('lmsPrimaryDesc').textContent = top.why;
+  document.getElementById('lmsPrimaryFeatures').innerHTML = featHTML(top);
+  var s2f = document.getElementById('lms2Flag'); if(s2f) s2f.innerHTML = flagHTML(sec,false);
+  var s2r = document.getElementById('lms2Residency'); if(s2r) s2r.innerHTML = residencyHTML(sec,false);
+  document.getElementById('lms2Name').textContent = sec.name;
+  document.getElementById('lms2Desc').textContent = sec.why;
+  var b2 = document.getElementById('lms2Badge'); if(b2) b2.textContent = 'MATCH ' + (sec.match_score||'') + '%';
+  var s3f = document.getElementById('lms3Flag'); if(s3f) s3f.innerHTML = flagHTML(thr,false);
+  var s3r = document.getElementById('lms3Residency'); if(s3r) s3r.innerHTML = residencyHTML(thr,false);
+  document.getElementById('lms3Name').textContent = thr.name;
+  document.getElementById('lms3Desc').textContent = thr.why;
+  var b3 = document.getElementById('lms3Badge'); if(b3) b3.textContent = 'MATCH ' + (thr.match_score||'') + '%';
+  var ds = document.getElementById('diagScore'); if(ds) ds.textContent = (top.match_score||'—') + '%';
+  var dd = document.getElementById('diagDesc'); if(dd) dd.textContent = result.summary || 'AI-generated recommendation.';
+  var sub = document.getElementById('recSubtitle'); if(sub) sub.textContent = '✅ AI has analysed your profile against the full global LMS market.';
+  var fills = ['canvasFill','moodleFill','talentFill'];
+  var scoreEls = ['canvasScore','moodleScore','talentScore'];
+  var recList = [top,sec,thr];
+  var labelEls = document.querySelectorAll('.score-bar-label span:first-child');
+  recList.forEach(function(r,i){
+    var fill = document.getElementById(fills[i]); if(fill) fill.style.width = (r.match_score||50) + '%';
+    var sc = document.getElementById(scoreEls[i]); if(sc) sc.textContent = (r.match_score||'—') + '%';
+    if(labelEls[i]) labelEls[i].textContent = r.name;
+  });
+}
+
 // ─── Init ─────────────────────────────────────────────
 loadState();
 calcTotal();
 updateSectorVisibility();
+// Restore saved API key
+(function(){ var k = localStorage.getItem('aiApiKey'); if(k){ var el = document.getElementById('aiApiKey'); if(el) el.value = k; }})();
 
 function selectToggle(key, val, activeId, inactiveId) {
   saveState(key, val);
