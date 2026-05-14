@@ -533,14 +533,20 @@ footer nav a:hover{color:var(--navy)}
           </div>
         </div>
 
+        <!-- Container 1: Learner Volume -->
         <div class="grid-12" style="margin-bottom:24px">
-          <div class="col-8 card-teal-light" style="position:relative;overflow:hidden">
-            <span class="ms" style="position:absolute;top:8px;right:8px;font-size:80px;color:var(--teal);opacity:.1">account_balance_wallet</span>
-            <div class="icon-label" style="justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-              <div style="display:flex;align-items:center;gap:8px"><span class="ms">monetization_on</span><h3>Learner &amp; Establishment Costs</h3></div>
-              <div style="background:var(--navy);color:#fff;border-radius:20px;padding:4px 14px;font-size:.8rem;font-weight:700;white-space:nowrap">Subtotal: <span id="subtotalEstab">$0.00</span></div>
+          <div class="col-4 card-teal-light" style="position:relative;overflow:hidden">
+            <span class="ms" style="position:absolute;top:8px;right:8px;font-size:80px;color:var(--teal);opacity:.1">group</span>
+            <div class="icon-label" style="justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+              <div style="display:flex;align-items:center;gap:8px"><span class="ms">group</span><h3>Learner Volume</h3></div>
+              <div style="background:var(--navy);color:#fff;border-radius:20px;padding:4px 14px;font-size:.8rem;font-weight:700;white-space:nowrap">Subtotal: <span id="subtotalLearner">$0.00</span></div>
             </div>
+            <p style="font-size:.78rem;color:var(--grey);margin-bottom:16px;line-height:1.5">How many active learners will use the platform, and what is your target cost per learner per year?</p>
             <div class="grid-2" style="position:relative;z-index:1">
+              <div>
+                <label class="field-label">Active Learner Count</label>
+                <input class="field-input" type="number" id="learnerCount" placeholder="2500" oninput="saveState('learnerCount',this.value);calcTotal()" onchange="saveState('learnerCount',this.value);calcTotal()"/>
+              </div>
               <div>
                 <label class="field-label">Cost per Learner (Annual)</label>
                 <div class="dollar-wrap">
@@ -548,6 +554,17 @@ footer nav a:hover{color:var(--navy)}
                   <input class="field-input" type="number" id="costPerLearner" placeholder="45.00" oninput="saveState('costPerLearner',this.value);calcTotal()" onchange="saveState('costPerLearner',this.value);calcTotal()"/>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Container 2: Establishment Costs -->
+          <div class="col-8 card-teal-light" style="position:relative;overflow:hidden">
+            <span class="ms" style="position:absolute;top:8px;right:8px;font-size:80px;color:var(--teal);opacity:.1">account_balance_wallet</span>
+            <div class="icon-label" style="justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px"><span class="ms">monetization_on</span><h3>Establishment &amp; Running Costs</h3></div>
+              <div style="background:var(--navy);color:#fff;border-radius:20px;padding:4px 14px;font-size:.8rem;font-weight:700;white-space:nowrap">Subtotal: <span id="subtotalEstab">$0.00</span></div>
+            </div>
+            <div class="grid-2" style="position:relative;z-index:1">
               <div>
                 <label class="field-label">One-off Establishment Fee</label>
                 <div class="dollar-wrap">
@@ -556,19 +573,11 @@ footer nav a:hover{color:var(--navy)}
                 </div>
               </div>
               <div>
-                <label class="field-label">Cloud Storage Allowance (GB)</label>
-                <input class="field-input" type="number" id="costStorage" placeholder="500" oninput="saveState('costStorage',this.value)"/>
-              </div>
-              <div>
                 <label class="field-label">Acquisition &amp; Marketing</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
                   <input class="field-input" type="number" id="costMarketing" placeholder="3200" oninput="saveState('costMarketing',this.value);calcTotal()" onchange="saveState('costMarketing',this.value);calcTotal()"/>
                 </div>
-              </div>
-              <div>
-                <label class="field-label">Active Learner Count</label>
-                <input class="field-input" type="number" id="learnerCount" placeholder="2500" oninput="saveState('learnerCount',this.value);calcTotal()" onchange="saveState('learnerCount',this.value);calcTotal()"/>
               </div>
               <div>
                 <label class="field-label">External Dev / SMEs</label>
@@ -591,8 +600,15 @@ footer nav a:hover{color:var(--navy)}
                   <input class="field-input" type="number" id="costHosting" placeholder="250" oninput="saveState('costHosting',this.value);calcTotal()" onchange="saveState('costHosting',this.value);calcTotal()"/>
                 </div>
               </div>
+              <div>
+                <label class="field-label">Cloud Storage Allowance (GB)</label>
+                <input class="field-input" type="number" id="costStorage" placeholder="500" oninput="saveState('costStorage',this.value)"/>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div class="grid-12" style="margin-bottom:24px">
 
           <div class="col-4 card-navy">
             <div class="icon-label" style="justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
@@ -2075,10 +2091,11 @@ function calcTotal() {
   var intCosts     = ['intSMS','intLLN','intMarketing','intEcomm','intCreds','intOther']
     .reduce(function(sum,k){ return sum + (parseFloat(appState[k])||0); }, 0);
 
-  var learnerTotal = perLearner * learners;
-  var hostingAnn   = hosting * 12;
-  var estabSubtotal = learnerTotal + estab + mktg + dev + train + hostingAnn;
-  var total        = estabSubtotal + intCosts;
+  var learnerTotal  = perLearner * learners;
+  var hostingAnn    = hosting * 12;
+  var learnerSubtotal = learnerTotal;
+  var estabSubtotal   = estab + mktg + dev + train + hostingAnn;
+  var total           = learnerSubtotal + estabSubtotal + intCosts;
 
   // Grand total
   set('totalCost', fmt(total));
@@ -2086,10 +2103,12 @@ function calcTotal() {
   if (bdr) bdr.style.display = total > 0 ? '' : 'none';
 
   // Subtotal chips on each box
-  set('subtotalEstab', fmt(estabSubtotal));
-  set('subtotalInt',   fmt(intCosts));
+  set('subtotalLearner', fmt(learnerSubtotal));
+  set('subtotalEstab',   fmt(estabSubtotal));
+  set('subtotalInt',     fmt(intCosts));
 
   // Breakdown line items
+  set('bkLearnerSubtotal', fmt(learnerSubtotal));
   set('bkLearners',     learners);
   set('bkPerLearner',   fmt(perLearner));
   set('bkLearnerTotal', fmt(learnerTotal));
