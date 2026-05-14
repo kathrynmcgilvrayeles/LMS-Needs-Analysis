@@ -686,31 +686,31 @@ footer nav a:hover{color:var(--navy)}
           <div style="width:100%;border-top:1px solid rgba(255,255,255,.15);padding-top:18px">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px">
               <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-                <span style="opacity:.75">💰 Learner fees (<span id="bkLearners">0</span> × <span id="bkPerLearner">$0</span>/yr)</span>
+                <span style="opacity:.75">Learner fees (<span id="bkLearners">0</span> × <span id="bkPerLearner">$0</span>/yr)</span>
                 <span style="font-weight:700" id="bkLearnerTotal">$0.00</span>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-                <span style="opacity:.75">🏗 Establishment fee</span>
+                <span style="opacity:.75">Establishment fee</span>
                 <span style="font-weight:700" id="bkEstab">$0.00</span>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-                <span style="opacity:.75">📣 Acquisition &amp; marketing</span>
+                <span style="opacity:.75">Acquisition &amp; marketing</span>
                 <span style="font-weight:700" id="bkMktg">$0.00</span>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-                <span style="opacity:.75">👩‍💻 External dev / SMEs</span>
+                <span style="opacity:.75">External dev / SMEs</span>
                 <span style="font-weight:700" id="bkDev">$0.00</span>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-                <span style="opacity:.75">🎓 Staff training</span>
+                <span style="opacity:.75">Staff training</span>
                 <span style="font-weight:700" id="bkTraining">$0.00</span>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-                <span style="opacity:.75">☁️ Hosting &amp; maintenance (12mo)</span>
+                <span style="opacity:.75">Hosting &amp; maintenance (12mo)</span>
                 <span style="font-weight:700" id="bkHosting">$0.00</span>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-                <span style="opacity:.75">🔗 Integrations</span>
+                <span style="opacity:.75">Integrations</span>
                 <span style="font-weight:700" id="bkInt">$0.00</span>
               </div>
             </div>
@@ -2057,11 +2057,9 @@ function toggleAccordion(btn) {
 function calcTotal() {
   // Read from appState first (always up to date), fall back to DOM
   function val(id, key) {
-    var v = parseFloat(appState[key]);
-    if (isNaN(v)) {
-      var el = document.getElementById(id);
-      v = (el && el.value !== '') ? parseFloat(el.value) : 0;
-    }
+    var el = document.getElementById(id);
+    var v = (el && el.value !== '') ? parseFloat(el.value) : NaN;
+    if (isNaN(v)) v = parseFloat(appState[key]);
     return isNaN(v) ? 0 : v;
   }
   function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
