@@ -1768,9 +1768,14 @@ footer nav a:hover{color:var(--navy)}
               </div>
             </div>
 
-            <div style="background:var(--navy);border-radius:12px;height:200px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;position:relative;overflow:hidden">
-              <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(31,42,82,.9),transparent)"></div>
-              <p style="position:relative;color:var(--white);font-size:.78rem;font-style:italic">Visualizing the Shared Success Model</p>
+            <div style="background:var(--navy);border-radius:12px;padding:20px;position:relative;overflow:hidden">
+              <div style="width:32px;height:32px;background:rgba(0,190,199,.2);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+                <span class="ms" style="color:var(--teal);font-size:18px">handshake</span>
+              </div>
+              <h4 style="color:var(--white);font-size:.85rem;margin-bottom:16px">Your Vendor Preferences</h4>
+              <div id="vendorSummary" style="display:flex;flex-direction:column;gap:8px">
+                <p style="color:rgba(255,255,255,.4);font-size:.78rem">Fill in this section to see your preferences summarised here.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1998,6 +2003,44 @@ function saveState(key, val) {
 }
 
 
+
+// ─── Vendor Summary Box ──────────────────────────────
+function updateVendorSummary() {
+  var s = appState;
+  var el = document.getElementById('vendorSummary');
+  if (!el) return;
+  var rows = [];
+  if (s.involvement) {
+    var labels = { 'strategic': 'Strategic Partner', 'transactional': 'Transactional Vendor', 'managed': 'Managed Service' };
+    rows.push(['Relationship style', labels[s.involvement] || s.involvement]);
+  }
+  if (s.sAcctMgmt)      rows.push(['Account management', s.sAcctMgmt]);
+  if (s.sHelpDesk)      rows.push(['Help desk', s.sHelpDesk]);
+  if (s.sContractReview) rows.push(['Contract review', s.sContractReview]);
+  if (s.sRenewal)       rows.push(['Renewal terms', s.sRenewal]);
+  var cycles = [];
+  if (s.govMonthly)  cycles.push('Monthly audit');
+  if (s.govQBR)      cycles.push('Quarterly review');
+  if (s.govAnnual)   cycles.push('Annual strategy');
+  if (cycles.length) rows.push(['Governance cycles', cycles.join(', ')]);
+  var support = [];
+  if (s.supportChat)  support.push('Chat');
+  if (s.supportPhone) support.push('Phone');
+  if (s.supportAIBot) support.push('AI Bot');
+  if (support.length) rows.push(['Support channels', support.join(', ')]);
+
+  if (rows.length === 0) {
+    el.innerHTML = '<p style="color:rgba(255,255,255,.4);font-size:.78rem">Fill in this section to see your preferences summarised here.</p>';
+    return;
+  }
+  el.innerHTML = rows.map(function(r){
+    return '<div style="display:flex;justify-content:space-between;gap:8px;font-size:.75rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:6px">'
+      + '<span style="color:rgba(255,255,255,.5)">' + r[0] + '</span>'
+      + '<span style="color:var(--white);font-weight:700;text-align:right">' + r[1] + '</span>'
+      + '</div>';
+  }).join('');
+}
+
 // ─── Email Gate ──────────────────────────────────────
 function submitGate() {
   var name  = (document.getElementById('gateName').value  || '').trim();
@@ -2204,6 +2247,7 @@ function goTo(idx) {
   });
   window.scrollTo(0, 0);
   if (idx === 9) { computeLMSScores(); setTimeout(generateAIRecommendations, 400); }
+  if (idx === 8) { updateVendorSummary(); }
   updateProgress();
 }
 
