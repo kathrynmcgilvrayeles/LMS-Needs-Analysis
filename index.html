@@ -21,6 +21,16 @@
 }
 html{font-size:16px}
 @keyframes spin{to{transform:rotate(360deg)}}
+@media print{
+  .sidebar,.top-bar,.nav-btns,.no-print,#emailGate,footer{display:none!important}
+  .body-row{display:block!important}
+  #s9{display:block!important}
+  .section{display:block!important}
+  body{background:#fff}
+  .lms-card.primary{background:var(--navy)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .card-navy{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #resultsContent{display:block!important}
+}
 body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--navy);min-height:100vh;display:flex;flex-direction:column}
 h1,h2,h3,h4,h5{font-family:'Manrope',sans-serif;font-weight:800}
 a{text-decoration:none;color:inherit}
@@ -1778,9 +1788,65 @@ footer nav a:hover{color:var(--navy)}
       <section class="section" id="s9">
         <div class="section-header">
           <div class="section-tag"><span class="ms">insights</span> Final Diagnostic Report</div>
-          <h1 class="section-title">Insights &amp; Strategic Summary</h1>
-          <p class="section-desc">Your organisational diagnostic is complete. We have synthesised your answers into a targeted LMS strategy tailored for your specific compliance and learner requirements.</p>
+          <h1 class="section-title">Your LMS Recommendation</h1>
+          <p class="section-desc">Your diagnostic is complete. Enter your details below to unlock your personalised LMS recommendation.</p>
         </div>
+
+        <!-- ── EMAIL GATE ── -->
+        <div id="emailGate" style="max-width:560px;margin:0 auto 40px">
+          <div class="card" style="border:2px solid var(--teal);text-align:center">
+            <span class="ms" style="font-size:48px;color:var(--teal);display:block;margin-bottom:12px">mark_email_unread</span>
+            <h2 style="margin-bottom:8px;font-size:1.2rem">Your report is ready!</h2>
+            <p style="font-size:.85rem;color:var(--grey);margin-bottom:24px;line-height:1.6">Enter your name and email to receive your personalised LMS Recommendation Report — short, sharp, and ready to share with your team.</p>
+            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px">
+              <input type="text" id="gateName" class="field-input" placeholder="Your name" style="text-align:center"/>
+              <input type="email" id="gateEmail" class="field-input" placeholder="Your work email" style="text-align:center"/>
+            </div>
+            <button class="btn btn-teal" style="width:100%;font-size:1rem;padding:14px" onclick="submitGate()">
+              <span class="ms" style="font-size:20px">auto_awesome</span> Unlock My Recommendations
+            </button>
+            <p style="font-size:.7rem;color:var(--grey);margin-top:12px">No spam. Just your report and an optional offer to connect.</p>
+          </div>
+        </div>
+
+        <!-- ── RESULTS (hidden until gate submitted) ── -->
+        <div id="resultsContent" style="display:none">
+
+        <!-- ── Page 1: Org Profile + Requirements Summary ── -->
+        <div style="margin-bottom:8px;display:flex;align-items:center;gap:16px">
+          <h2 style="font-size:1.1rem;font-weight:800">Organisation Profile</h2>
+          <div style="flex:1;height:1px;background:#e0e6ed"></div>
+        </div>
+        <div class="grid-12" style="margin-bottom:32px">
+          <div class="col-8 card-teal-light">
+            <div id="orgSummaryGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px"></div>
+          </div>
+          <div class="col-4 card-navy">
+            <h4 style="color:var(--white);margin-bottom:16px;font-size:.9rem">Budget Estimate</h4>
+            <div style="font-size:2rem;font-weight:800;color:var(--teal)" id="summBudget">—</div>
+            <div style="font-size:.75rem;color:rgba(255,255,255,.6);margin-top:4px">Year 1 AUD</div>
+            <div style="margin-top:20px;border-top:1px solid rgba(255,255,255,.15);padding-top:16px">
+              <div style="display:flex;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.7);margin-bottom:6px"><span>Learner volume</span><span id="summLearner">—</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.7);margin-bottom:6px"><span>Establishment</span><span id="summEstab">—</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.7)"><span>Integrations</span><span id="summInt">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:8px;display:flex;align-items:center;gap:16px">
+          <h2 style="font-size:1.1rem;font-weight:800">Key Requirements</h2>
+          <div style="flex:1;height:1px;background:#e0e6ed"></div>
+        </div>
+        <div class="card" style="margin-bottom:32px">
+          <div id="reqSummaryTags" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+        </div>
+
+        <!-- ── Page 2: AI Recommendations ── -->
+        <div style="margin-bottom:8px;display:flex;align-items:center;gap:16px">
+          <h2 style="font-size:1.1rem;font-weight:800">LMS Recommendations</h2>
+          <div style="flex:1;height:1px;background:#e0e6ed"></div>
+        </div>
+        <div style="font-size:.75rem;color:var(--grey);margin-bottom:20px" id="recSubtitle2"></div>
 
         <!-- Score + priorities -->
         <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px;margin-bottom:32px">
@@ -1878,50 +1944,32 @@ footer nav a:hover{color:var(--navy)}
           </div>
         </div>
 
-        <!-- Gap Analysis -->
-        <div class="card">
-          <h2 style="font-size:1.3rem;margin-bottom:8px">Strategic Gap Analysis</h2>
-          <p style="font-size:.85rem;color:var(--grey);margin-bottom:20px">We identified critical areas where your current internal processes deviate from best-practice LMS implementation standards.</p>
-          <div class="grid-2">
-            <div>
-              <div class="gap-item">
-                <div class="gap-icon warn"><span class="ms">warning</span></div>
-                <div>
-                  <h5 style="font-weight:800;font-size:.9rem;margin-bottom:4px">Data Migration Schema</h5>
-                  <p style="font-size:.75rem;color:var(--grey)">Current learner records lack consistent metadata for automatic porting.</p>
-                </div>
-              </div>
-              <div class="gap-item">
-                <div class="gap-icon info"><span class="ms">bolt</span></div>
-                <div>
-                  <h5 style="font-weight:800;font-size:.9rem;margin-bottom:4px">SCORM Compatibility</h5>
-                  <p style="font-size:.75rem;color:var(--grey)">40% of legacy content requires update to SCORM 1.2 or xAPI for tracking.</p>
-                </div>
-              </div>
-            </div>
-            <div style="background:linear-gradient(135deg,var(--navy),#1f2a52);border-radius:12px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px">
-              <div style="background:rgba(255,255,255,.9);backdrop-filter:blur(8px);padding:16px;border-radius:8px">
-                <h6 style="font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--navy);font-weight:900;margin-bottom:4px">Immediate Action</h6>
-                <p style="font-size:.85rem;color:var(--grey);font-weight:600">Initiate a Sandbox Pilot with the top recommendation by end of Q3.</p>
-              </div>
-            </div>
+        <!-- Click & Connect -->
+        <div style="background:linear-gradient(135deg,var(--navy) 0%,#2d3f7a 100%);border-radius:16px;padding:40px;text-align:center;margin-bottom:32px" class="no-print">
+          <span class="ms" style="font-size:48px;color:var(--teal);display:block;margin-bottom:12px">connect_without_contact</span>
+          <h2 style="color:var(--white);font-size:1.4rem;margin-bottom:8px">Want to make sense of this together?</h2>
+          <p style="color:rgba(255,255,255,.7);font-size:.9rem;line-height:1.6;max-width:480px;margin:0 auto 24px">Book a <strong style="color:var(--white)">Click &amp; Connect</strong> session — 60 minutes with an expert to turn your report into a real action plan for your team.</p>
+          <div style="display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border-radius:12px;padding:12px 24px;margin-bottom:24px">
+            <span class="ms" style="color:var(--teal)">schedule</span>
+            <span style="color:var(--white);font-weight:800;font-size:1.1rem">60-min Expert Session</span>
+            <span style="background:var(--teal);color:var(--white);font-weight:800;font-size:1rem;border-radius:8px;padding:4px 14px">$99</span>
           </div>
+          <br/>
+          <a href="https://calendar.app.google/jpQzc3NNU31L4dk98" target="_blank" class="btn btn-teal" style="font-size:1rem;padding:14px 32px;display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+            <span class="ms" style="font-size:20px">event</span> Book My Click &amp; Connect Session
+          </a>
         </div>
 
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:32px 0;border-top:1px solid #e0e6ed;margin-top:32px;flex-wrap:wrap;gap:16px">
-          <div>
-            <h4 style="font-weight:800;font-size:1.1rem">Ready to take the next step?</h4>
-            <p style="font-size:.85rem;color:var(--grey)">Download the comprehensive diagnostic PDF for your board presentation.</p>
-          </div>
-          <div style="display:flex;gap:12px">
-            <button class="btn btn-outline" onclick="goTo(0)">Edit Analysis</button>
-            <button class="btn btn-primary" onclick="window.print()"><span class="ms" style="font-size:18px">download</span> Download PDF Report</button>
-          </div>
+        <!-- PDF Actions -->
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:32px" class="no-print">
+          <button class="btn btn-outline" onclick="goTo(0)"><span class="ms" style="font-size:16px">edit</span> Edit My Responses</button>
+          <button class="btn btn-primary" onclick="window.print()"><span class="ms" style="font-size:18px">download</span> Download PDF Report</button>
         </div>
 
-        <div class="nav-btns">
+        </div><!-- end resultsContent -->
+
+        <div class="nav-btns no-print">
           <button class="btn btn-outline" onclick="goTo(8)"><span class="ms" style="font-size:18px">arrow_back</span> LMS Relationship</button>
-          <button class="btn btn-teal" onclick="window.print()"><span class="ms" style="font-size:18px">print</span> Print Report</button>
         </div>
       </section>
 
@@ -1947,6 +1995,123 @@ function saveState(key, val) {
   appState[key] = val;
   try { localStorage.setItem('lmsAppState', JSON.stringify(appState)); } catch(e) {}
   try { updateProgress(); } catch(e) {}
+}
+
+
+// ─── Email Gate ──────────────────────────────────────
+function submitGate() {
+  var name  = (document.getElementById('gateName').value  || '').trim();
+  var email = (document.getElementById('gateEmail').value || '').trim();
+  if (!name)  { alert('Please enter your name.'); return; }
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+
+  saveState('gateName', name);
+  saveState('gateEmail', email);
+
+  // Show results
+  document.getElementById('emailGate').style.display = 'none';
+  document.getElementById('resultsContent').style.display = 'block';
+
+  // Populate summaries
+  buildOrgSummary();
+  buildReqSummary();
+  buildBudgetSummary();
+
+  // Send email notification to Kath
+  sendNotification(name, email);
+}
+
+function buildOrgSummary() {
+  var s = appState;
+  var items = [];
+  if (s.orgName)       items.push(['Organisation', s.orgName]);
+  if (s.orgSector)     items.push(['Sector', s.orgSector]);
+  if (s.learnerCount)  items.push(['Learners', s.learnerCount]);
+  if (s.hosting)       items.push(['Hosting', s.hosting]);
+  if (s.authoring)     items.push(['Authoring', s.authoring]);
+  if (s.enrolMethod)   items.push(['Enrolment', s.enrolMethod]);
+  if (s.apiInteg)      items.push(['API needs', s.apiInteg]);
+  if (s.involvement)   items.push(['Vendor style', s.involvement]);
+  var grid = document.getElementById('orgSummaryGrid');
+  if (!grid) return;
+  grid.innerHTML = items.map(function(i){
+    return '<div style="padding:8px 0;border-bottom:1px solid rgba(0,190,199,.2)">'
+      + '<div style="font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--grey);margin-bottom:2px">' + i[0] + '</div>'
+      + '<div style="font-size:.85rem;font-weight:700;color:var(--navy)">' + i[1] + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function buildBudgetSummary() {
+  function n(id){ var el=document.getElementById(id); var v=el?parseFloat(el.value):NaN; if(isNaN(v)) v=parseFloat(appState[id]); return isNaN(v)?0:v; }
+  function fmt(v){ return '$'+v.toLocaleString('en-AU',{minimumFractionDigits:0,maximumFractionDigits:0}); }
+  var ls = n('costPerLearner') * n('learnerCount');
+  var es = n('costEstab') + n('costMarketing') + n('costDev') + n('costTraining') + n('costHosting')*12;
+  var it = n('intSMS')+n('intLLN')+n('intMarketing')+n('intEcomm')+n('intCreds')+n('intOther');
+  var tot = ls + es + it;
+  var sb = document.getElementById('summBudget'); if(sb) sb.textContent = tot > 0 ? fmt(tot) : '—';
+  var sl = document.getElementById('summLearner'); if(sl) sl.textContent = ls > 0 ? fmt(ls) : '—';
+  var se = document.getElementById('summEstab');  if(se) se.textContent = es > 0 ? fmt(es) : '—';
+  var si = document.getElementById('summInt');    if(si) si.textContent = it > 0 ? fmt(it) : '—';
+}
+
+function buildReqSummary() {
+  var s = appState;
+  var tags = [];
+  var checks = [
+    ['sso','SSO / Single Sign-On'],['ios','iOS Mobile App'],['android','Android Mobile App'],
+    ['learnGamify','Gamification'],['learnAI','AI-Powered Learning'],['learnForum','Discussion Forums'],
+    ['learnQuizzes','Quizzes & Assessments'],['learnEvidence','Evidence Upload'],['learnA11y','Accessibility (WCAG)'],
+    ['markRubric','Rubric Marking'],['markBulk','Bulk Marking'],['fbAnnotate','Annotation Feedback'],
+    ['fbVoice','Voice Feedback'],['adminMktg','eCommerce'],['intHRIS','HRIS Integration'],
+    ['intFinance','Finance Integration'],['supervisor','Manager/Supervisor Access'],
+    ['openSource','Open Source'],['dataControl','Data Sovereignty'],
+    ['rtoAvetmiss','AVETMISS Reporting'],['usiRealtime','USI Validation'],
+    ['compCurrMap','Curriculum Mapping'],['govAuditor','Auditor Access'],
+    ['govStaff','Staff Training Records'],['ldROI','Training ROI'],
+    ['ldSkillsGap','Skills Gap Analysis'],['ldPerfReview','Performance Review Integration'],
+    ['ldManagerView','Manager Visibility'],['ldMandatory','Mandatory Compliance Training'],
+    ['ldCertRenewal','Cert Renewal Automation'],['ldWHS','WHS Compliance'],['ldPathways','Learning Pathways']
+  ];
+  checks.forEach(function(c){ if(s[c[0]]) tags.push(c[1]); });
+  var el = document.getElementById('reqSummaryTags');
+  if (!el) return;
+  if (tags.length === 0) {
+    el.innerHTML = '<p style="color:var(--grey);font-size:.85rem">No specific requirements selected — go back to add more detail.</p>';
+    return;
+  }
+  el.innerHTML = tags.map(function(t){
+    return '<span style="background:rgba(0,190,199,.12);border:1px solid var(--teal);color:var(--navy);border-radius:20px;padding:4px 12px;font-size:.78rem;font-weight:700">' + t + '</span>';
+  }).join('');
+}
+
+function sendNotification(name, email) {
+  var s = appState;
+  var lmsRec = document.getElementById('lmsPrimaryName') ? document.getElementById('lmsPrimaryName').textContent : 'Pending';
+  var body = 'New LMS Diagnostic Submission\n\n'
+    + 'Name: ' + name + '\n'
+    + 'Email: ' + email + '\n'
+    + 'Organisation: ' + (s.orgName || '—') + '\n'
+    + 'Sector: ' + (s.orgSector || '—') + '\n'
+    + 'Learners: ' + (s.learnerCount || '—') + '\n'
+    + 'Top LMS Recommendation: ' + lmsRec + '\n'
+    + 'Budget: ' + (document.getElementById('summBudget') ? document.getElementById('summBudget').textContent : '—') + '\n';
+
+  // Send via Formsubmit (no signup needed)
+  fetch('https://formsubmit.co/ajax/kathryn.mcgilvray@eles.com.au', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _subject: 'New LMS Diagnostic: ' + name + ' — ' + (s.orgName || email),
+      name: name,
+      email: email,
+      organisation: s.orgName || '—',
+      sector: s.orgSector || '—',
+      learners: s.learnerCount || '—',
+      lms_recommendation: lmsRec,
+      message: body
+    })
+  }).catch(function(){});  // Silent fail — don't block the user
 }
 
 function clearAndRestart() {
@@ -2013,6 +2178,16 @@ function restoreUI() {
   computeLMSScores();
   updateSectorVisibility();
   syncSectorSelects();
+  // Restore gate if already submitted
+  if (appState.gateName && appState.gateEmail) {
+    var gEl = document.getElementById('emailGate');
+    var rEl = document.getElementById('resultsContent');
+    if (gEl) gEl.style.display = 'none';
+    if (rEl) rEl.style.display = 'block';
+    var gn = document.getElementById('gateName'); if(gn) gn.value = appState.gateName;
+    var ge = document.getElementById('gateEmail'); if(ge) ge.value = appState.gateEmail;
+    buildOrgSummary(); buildReqSummary(); buildBudgetSummary();
+  }
 }
 
 // ─── Navigation ──────────────────────────────────────
