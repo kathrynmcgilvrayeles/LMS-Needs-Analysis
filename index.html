@@ -1798,45 +1798,7 @@ footer nav a:hover{color:var(--navy)}
           </div>
         </div>
 
-        <!-- AI API Key Input -->
-        <div class="card" style="margin-bottom:24px;border:2px solid var(--teal)">
-          <div style="display:flex;align-items:flex-start;gap:16px">
-            <div style="width:40px;height:40px;background:rgba(0,190,199,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <span class="ms" style="color:var(--teal)">psychology</span>
-            </div>
-            <div style="flex:1">
-              <h3 style="margin-bottom:4px;font-size:1rem">AI-Powered LMS Recommendations</h3>
-              <p style="font-size:.8rem;color:var(--grey);margin-bottom:16px;line-height:1.6">The AI will analyse your profile against the <strong>full global LMS market</strong> — big vendors, small vendors, Australian-built platforms, open source, and budget-friendly options alike. No bias toward expensive enterprise tools.</p>
-
-              <!-- Provider tabs -->
-              <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
-                <button id="provBtn-gemini" class="btn btn-teal" style="font-size:.75rem;padding:6px 14px" onclick="selectProvider('gemini')">
-                  <span class="ms" style="font-size:14px">diamond</span> Google Gemini <span style="font-size:.65rem;background:rgba(255,255,255,.25);border-radius:4px;padding:2px 5px;margin-left:4px">FREE</span>
-                </button>
-                <button id="provBtn-openai" class="btn btn-outline" style="font-size:.75rem;padding:6px 14px" onclick="selectProvider('openai')">
-                  <span class="ms" style="font-size:14px">chat_bubble</span> OpenAI
-                </button>
-              </div>
-
-              <div id="provHelp-gemini" style="font-size:.75rem;color:var(--grey);margin-bottom:10px;line-height:1.5">
-                Google Gemini has a <strong>free tier</strong> — no credit card needed. <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--teal)">Get a free Gemini API key at Google AI Studio →</a>
-              </div>
-              <div id="provHelp-openai" style="font-size:.75rem;color:var(--grey);margin-bottom:10px;line-height:1.5;display:none">
-                Requires an OpenAI account. Uses gpt-4o-mini (low cost). <a href="https://platform.openai.com/api-keys" target="_blank" style="color:var(--teal)">Get an OpenAI API key →</a>
-              </div>
-
-              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-                <input type="password" id="aiApiKey" class="field-input" placeholder="Paste your API key here..." style="flex:1;min-width:260px;font-family:monospace;font-size:.85rem" oninput="localStorage.setItem('aiApiKey_'+currentProvider,this.value)"/>
-                <button class="btn btn-teal" id="aiAnalyseBtn" onclick="generateAIRecommendations()" style="white-space:nowrap">
-                  <span class="ms" style="font-size:18px">auto_awesome</span> Analyse with AI
-                </button>
-              </div>
-              <p style="font-size:.7rem;color:var(--grey);margin-top:8px">Your key is stored only in your browser and never shared with anyone except the AI provider you choose.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- AI Loading State -->
+        <!-- AI Loading State -->        <!-- AI Loading State -->
         <div id="aiLoadingState" style="display:none;text-align:center;padding:40px 0;margin-bottom:24px">
           <div style="width:48px;height:48px;border:4px solid var(--lteal);border-top-color:var(--teal);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px"></div>
           <p style="font-weight:700;color:var(--navy);margin-bottom:4px">Analysing your requirements...</p>
@@ -1857,7 +1819,7 @@ footer nav a:hover{color:var(--navy)}
           <h2 style="font-size:1.3rem;font-weight:800">Tailored LMS Recommendations</h2>
           <div style="flex:1;height:1px;background:#e0e6ed"></div>
         </div>
-        <div style="font-size:.75rem;color:var(--grey);margin-bottom:20px" id="recSubtitle">Enter your OpenAI API key above for AI-powered recommendations, or scroll down to see the pre-scored results.</div>
+        <div style="font-size:.75rem;color:var(--grey);margin-bottom:20px" id="recSubtitle">Analysing your profile against the full global LMS market...</div>
 
         <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:32px">
           <div class="lms-card primary" id="lmsPrimary">
@@ -2050,7 +2012,7 @@ function goTo(idx) {
     el.classList.toggle('active', parseInt(el.dataset.section) === idx);
   });
   window.scrollTo(0, 0);
-  if (idx === 9) computeLMSScores();
+  if (idx === 9) { computeLMSScores(); setTimeout(generateAIRecommendations, 400); }
   updateProgress();
 }
 
@@ -2380,6 +2342,7 @@ function computeLMSScores() {
 
 // ─── AI Recommendations ─────────────────────────────
 var currentProvider = 'gemini';
+var GEMINI_API_KEY = 'AIzaSyAJfI6GNVUudTz6T5ocysCN4jOO1UlpM_A';
 
 function selectProvider(p) {
   currentProvider = p;
@@ -2484,14 +2447,9 @@ async function callOpenAI(apiKey, prompt) {
 }
 
 async function generateAIRecommendations() {
-  var apiKey = (document.getElementById('aiApiKey').value || '').trim() || (localStorage.getItem('aiApiKey_' + currentProvider) || '');
-  if (!apiKey) {
-    showAIError('Please enter your API key above. ' + (currentProvider === 'gemini' ? 'Get a free Gemini key at aistudio.google.com' : 'Get an OpenAI key at platform.openai.com/api-keys'));
-    return;
-  }
+  var apiKey = GEMINI_API_KEY;
   document.getElementById('aiLoadingState').style.display = 'block';
   document.getElementById('aiErrorState').style.display = 'none';
-  document.getElementById('aiAnalyseBtn').disabled = true;
   document.getElementById('lmsPrimary').style.opacity = '0.4';
 
   var profile = buildProfileSummary();
@@ -2511,7 +2469,6 @@ async function generateAIRecommendations() {
     showAIError(e.message || 'Unknown error. Check your API key and try again.');
   } finally {
     document.getElementById('aiLoadingState').style.display = 'none';
-    document.getElementById('aiAnalyseBtn').disabled = false;
     document.getElementById('lmsPrimary').style.opacity = '1';
   }
 }
@@ -2571,7 +2528,7 @@ loadState();
 calcTotal();
 updateSectorVisibility();
 // Restore saved API key
-(function(){ var k = localStorage.getItem('aiApiKey_gemini') || localStorage.getItem('aiApiKey') || ''; if(k){ var el = document.getElementById('aiApiKey'); if(el) el.value = k; }})();
+
 
 function selectToggle(key, val, activeId, inactiveId) {
   saveState(key, val);
