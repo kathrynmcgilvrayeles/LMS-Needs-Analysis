@@ -318,7 +318,9 @@ footer nav a:hover{color:var(--navy)}
 
     </nav>
     <div class="top-bar-icons">
-      <span class="ms">notifications</span>
+      <button onclick="clearAndRestart()" title="Clear all data and start over" style="background:none;border:1px solid #e0e6ed;border-radius:8px;padding:5px 12px;font-size:.75rem;font-weight:700;color:var(--grey);cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s" onmouseover="this.style.borderColor='#e72582';this.style.color='#e72582'" onmouseout="this.style.borderColor='#e0e6ed';this.style.color='var(--grey)'">
+        <span class="ms" style="font-size:16px">restart_alt</span> Start Over
+      </button>
       <span class="ms">account_circle</span>
     </div>
   </header>
@@ -1955,6 +1957,13 @@ function saveState(key, val) {
   appState[key] = val;
   try { localStorage.setItem('lmsAppState', JSON.stringify(appState)); } catch(e) {}
   try { updateProgress(); } catch(e) {}
+}
+
+function clearAndRestart() {
+  if (!confirm('Clear all entered data and start over?')) return;
+  localStorage.removeItem('lmsAppState');
+  appState = {};
+  location.reload();
 }
 
 function setCost(key, val) {
