@@ -683,7 +683,7 @@ footer nav a:hover{color:var(--navy)}
               <span class="amount" id="totalCost">$0.00</span><span class="unit">AUD</span>
             </div>
           </div>
-          <div style="width:100%;border-top:1px solid rgba(255,255,255,.15);padding-top:18px">
+          <div id="costBreakdownRow" style="width:100%;border-top:1px solid rgba(255,255,255,.15);padding-top:18px;display:none">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px">
               <div style="display:flex;justify-content:space-between;font-size:.8rem;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.08)">
                 <span style="opacity:.75">Learner fees (<span id="bkLearners">0</span> × <span id="bkPerLearner">$0</span>/yr)</span>
@@ -2082,6 +2082,8 @@ function calcTotal() {
 
   // Grand total
   set('totalCost', fmt(total));
+  var bdr = document.getElementById('costBreakdownRow');
+  if (bdr) bdr.style.display = total > 0 ? '' : 'none';
 
   // Subtotal chips on each box
   set('subtotalEstab', fmt(estabSubtotal));
