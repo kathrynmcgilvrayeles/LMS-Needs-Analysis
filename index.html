@@ -2071,29 +2071,27 @@ function toggleAccordion(btn) {
 
 // ─── Cost Calculator ─────────────────────────────────
 function calcTotal() {
-  // Read from appState first (always up to date), fall back to DOM
-  function val(id, key) {
+  function n(id) {
+    // Read from DOM element first, fall back to appState
     var el = document.getElementById(id);
-    var v = (el && el.value !== '') ? parseFloat(el.value) : NaN;
-    if (isNaN(v)) v = parseFloat(appState[key]);
+    var v = el ? parseFloat(el.value) : NaN;
+    if (isNaN(v)) v = parseFloat(appState[id]);
     return isNaN(v) ? 0 : v;
   }
-  function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
-  function set(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
+  function fmt(v) { return '$' + v.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+  function set(id, v) { var el = document.getElementById(id); if (el) el.textContent = v; }
 
-  var perLearner   = val('costPerLearner','costPerLearner');
-  var learners     = val('learnerCount','learnerCount');
-  var estab        = val('costEstab','costEstab');
-  var mktg         = val('costMarketing','costMarketing');
-  var dev          = val('costDev','costDev');
-  var train        = val('costTraining','costTraining');
-  var hosting      = val('costHosting','costHosting');
-  var intCosts     = ['intSMS','intLLN','intMarketing','intEcomm','intCreds','intOther']
-    .reduce(function(sum,k){ return sum + (parseFloat(appState[k])||0); }, 0);
+  var perLearner  = n('costPerLearner');
+  var learners    = n('learnerCount');
+  var estab       = n('costEstab');
+  var mktg        = n('costMarketing');
+  var dev         = n('costDev');
+  var train       = n('costTraining');
+  var hosting     = n('costHosting');
+  var intCosts    = n('intSMS') + n('intLLN') + n('intMarketing') + n('intEcomm') + n('intCreds') + n('intOther');
 
-  var learnerTotal  = perLearner * learners;
-  var hostingAnn    = hosting * 12;
-  var learnerSubtotal = learnerTotal;
+  var learnerSubtotal = perLearner * learners;
+  var hostingAnn      = hosting * 12;
   var estabSubtotal   = estab + mktg + dev + train + hostingAnn;
   var total           = learnerSubtotal + estabSubtotal + intCosts;
 
@@ -2577,7 +2575,7 @@ function saveSection(idx) {
   // Mark this section as visited/saved
   if (!appState.savedSections) appState.savedSections = [];
   if (!appState.savedSections.includes(idx)) appState.savedSections.push(idx);
-  localStorage.setItem('lmsState', JSON.stringify(appState));
+  localStorage.setItem('lmsAppState', JSON.stringify(appState));
   updateTopProgress();
   // Show toast
   const toast = document.getElementById('saveToast');
