@@ -1425,7 +1425,7 @@ footer nav a:hover{color:var(--navy)}
 
         <div class="grid-12">
           <!-- L&D / Corporate Reporting (non-VET) -->
-          <div class="col-8 card-teal-light ld-only" id="ldReportingCard" style="display:none">
+          <div class="col-8 card-teal-light ld-only" id="ldReportingCard">
             <div class="icon-label"><span class="ms">bar_chart</span><h3>L&amp;D Reporting Requirements</h3></div>
             <p style="font-size:.82rem;color:var(--grey);margin-bottom:16px">Select the reports your organisation needs to track learning outcomes:</p>
             <div class="grid-2">
@@ -1470,7 +1470,7 @@ footer nav a:hover{color:var(--navy)}
           </div>
 
           <!-- L&D Learning Pathways card (non-VET) -->
-          <div class="col-4 card-navy ld-only" id="ldMapCard" style="display:none;flex-direction:column;justify-content:space-between">
+          <div class="col-4 card-navy ld-only" id="ldMapCard" style="flex-direction:column;justify-content:space-between">
             <div>
               <div style="width:40px;height:40px;background:rgba(0,190,199,.2);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
                 <span class="ms" style="color:var(--teal)">hub</span>
@@ -1503,7 +1503,7 @@ footer nav a:hover{color:var(--navy)}
           </div>
 
           <!-- L&D Governance options (non-VET) -->
-          <div class="col-8 card-teal-light ld-only" id="ldGovCard" style="display:none">
+          <div class="col-8 card-teal-light ld-only" id="ldGovCard">
             <div class="icon-label"><span class="ms">policy</span><h3>L&amp;D Governance &amp; Compliance</h3></div>
             <div class="grid-2">
               <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldPrivacy',this.checked)"/> <span style="font-size:.85rem">Privacy Act / GDPR</span></label>
@@ -1518,7 +1518,7 @@ footer nav a:hover{color:var(--navy)}
           </div>
 
           <!-- L&D Performance Integration card (non-VET) -->
-          <div class="col-4 card ld-only" id="ldPerfCard" style="display:none">
+          <div class="col-4 card ld-only" id="ldPerfCard">
             <div class="icon-label"><span class="ms">trending_up</span><h3>Performance Integration</h3></div>
             <div class="toggle-wrap light" style="margin-bottom:8px">
               <span class="toggle-label">Link to Performance Reviews</span>
@@ -2123,36 +2123,28 @@ document.querySelectorAll('input[name=hosting]').forEach(function(r){
 function updateSectorVisibility() {
   var sector = appState.orgSector || '';
   var isVET = sector === 'VET / RTO / College';
-  var isLD = !isVET && sector !== 'Select Industry Sector' && sector !== '';
 
-  // RTO number
+  // RTO number — only show for VET
   var rtoLabel = document.getElementById('rtoNumLabel');
   var rtoInput = document.getElementById('rtoNumInput');
   if (rtoLabel) rtoLabel.style.display = isVET ? '' : 'none';
   if (rtoInput) rtoInput.style.display = isVET ? '' : 'none';
 
-  // Compliance section cards
-  var vetIds = ['rtoReportingCard','currMapCard','rtoGovCard','usiCard','avetmissCard'];
-  var ldIds  = ['ldReportingCard','ldMapCard','ldGovCard','ldPerfCard'];
-
-  vetIds.forEach(function(id){
+  // VET-only cards: show only when VET selected
+  ['rtoReportingCard','rtoGovCard','usiCard','avetmissCard'].forEach(function(id){
     var el = document.getElementById(id); if (!el) return;
-    if (isVET) { el.style.display = id === 'currMapCard' ? 'flex' : ''; }
-    else { el.style.display = 'none'; }
+    el.style.display = isVET ? '' : 'none';
   });
-  ldIds.forEach(function(id){
-    var el = document.getElementById(id); if (!el) return;
-    if (isLD) { el.style.display = id === 'ldMapCard' ? 'flex' : ''; }
-    else { el.style.display = 'none'; }
-  });
+  var cm = document.getElementById('currMapCard');
+  if (cm) cm.style.display = isVET ? 'flex' : 'none';
 
-  // If neither VET nor LD yet selected, show the LD cards as default fallback
-  if (!isVET && !isLD) {
-    ldIds.forEach(function(id){
-      var el = document.getElementById(id); if (!el) return;
-      el.style.display = id === 'ldMapCard' ? 'flex' : '';
-    });
-  }
+  // L&D cards: show by default, hide only when VET selected
+  ['ldReportingCard','ldGovCard','ldPerfCard'].forEach(function(id){
+    var el = document.getElementById(id); if (!el) return;
+    el.style.display = isVET ? 'none' : '';
+  });
+  var lm = document.getElementById('ldMapCard');
+  if (lm) lm.style.display = isVET ? 'none' : 'flex';
 }
 
 // ─── LMS Scoring ─────────────────────────────────────
