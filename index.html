@@ -464,12 +464,12 @@ footer nav a:hover{color:var(--navy)}
               <input class="field-input" type="url" placeholder="www.example.com.au" oninput="saveState('orgWeb',this.value)"/>
             </div>
             <div>
-              <label class="field-label">Organisation/RTO Number</label>
-              <input class="field-input" type="text" placeholder="91234" oninput="saveState('rtoNum',this.value)"/>
+              <label class="field-label vet-only" id="rtoNumLabel" style="display:none">RTO Number</label>
+              <input class="field-input vet-only" id="rtoNumInput" type="text" placeholder="91234" style="display:none" oninput="saveState('rtoNum',this.value)"/>
             </div>
             <div>
               <label class="field-label">Sector</label>
-              <select class="field-input" onchange="saveState('orgSector',this.value)">
+              <select class="field-input" onchange="saveState('orgSector',this.value);updateSectorVisibility()">
                 <option>Select Industry Sector</option>
                 <optgroup label="Organisation Size">
                   <option>Small Organisation (under 50 staff)</option>
@@ -1433,13 +1433,27 @@ footer nav a:hover{color:var(--navy)}
           <h1 class="section-title">Compliance Assessment</h1>
 <div class="section-top-actions"><button class="btn-save" onclick="saveSection(7)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(7);goTo(8)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: LMS Relationship <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
 
-          <p class="section-desc">Ensure your future LMS adheres to Australian regulatory standards and organisational data security mandates.</p>
+          <p class="section-desc" id="compDesc">Select the compliance and governance requirements that apply to your organisation.</p>
         </div>
 
         <div class="grid-12">
-          <!-- RTO Reporting -->
-          <div class="col-8 card-teal-light">
-            <div class="icon-label"><span class="ms">description</span><h3>Compliance Reporting Requirements</h3></div>
+          <!-- L&D / Corporate Reporting (non-VET) -->
+          <div class="col-8 card-teal-light ld-only" id="ldReportingCard" style="display:none">
+            <div class="icon-label"><span class="ms">bar_chart</span><h3>L&amp;D Reporting Requirements</h3></div>
+            <p style="font-size:.82rem;color:var(--grey);margin-bottom:16px">Select the reports your organisation needs to track learning outcomes:</p>
+            <div class="grid-2">
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldCompletion',this.checked)"/> <span style="font-size:.85rem">Course Completion Rates</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldEngagement',this.checked)"/> <span style="font-size:.85rem">Learner Engagement</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldROI',this.checked)"/> <span style="font-size:.85rem">Training ROI / Impact</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldSkillsGap',this.checked)"/> <span style="font-size:.85rem">Skills Gap Analysis</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldOnboarding',this.checked)"/> <span style="font-size:.85rem">Onboarding Progress</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldMandatory',this.checked)"/> <span style="font-size:.85rem">Mandatory Training Compliance</span></label>
+            </div>
+          </div>
+
+          <!-- RTO Reporting (VET only) -->
+          <div class="col-8 card-teal-light vet-only" id="rtoReportingCard" style="display:none">
+            <div class="icon-label"><span class="ms">description</span><h3>VET Compliance Reporting</h3></div>
             <p style="font-size:.82rem;color:var(--grey);margin-bottom:16px">Select the standard reports required for your automated delivery cycle:</p>
             <div class="grid-2">
               <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('rtoAvetmiss',this.checked)"/> <span style="font-size:.85rem">AVETMISS</span></label>
@@ -1450,8 +1464,8 @@ footer nav a:hover{color:var(--navy)}
             </div>
           </div>
 
-          <!-- Curriculum Mapping navy card -->
-          <div class="col-4 card-navy" style="display:flex;flex-direction:column;justify-content:space-between">
+          <!-- Curriculum Mapping navy card (VET only) -->
+          <div class="col-4 card-navy vet-only" id="currMapCard" style="display:none;flex-direction:column;justify-content:space-between">
             <div>
               <div style="width:40px;height:40px;background:rgba(0,190,199,.2);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
                 <span class="ms" style="color:var(--teal)">account_tree</span>
@@ -1463,6 +1477,24 @@ footer nav a:hover{color:var(--navy)}
               <span class="toggle-label" style="color:var(--white)">Enable Mapping</span>
               <label class="toggle">
                 <input type="checkbox" onchange="saveState('compCurrMap',this.checked)"/>
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- L&D Learning Pathways card (non-VET) -->
+          <div class="col-4 card-navy ld-only" id="ldMapCard" style="display:none;flex-direction:column;justify-content:space-between">
+            <div>
+              <div style="width:40px;height:40px;background:rgba(0,190,199,.2);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+                <span class="ms" style="color:var(--teal)">hub</span>
+              </div>
+              <h3 style="color:var(--white);margin-bottom:10px">Learning Pathways</h3>
+              <p style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:20px">Do you need structured learning pathways mapped to role profiles, competency frameworks or performance goals?</p>
+            </div>
+            <div class="toggle-wrap">
+              <span class="toggle-label" style="color:var(--white)">Enable Pathways</span>
+              <label class="toggle">
+                <input type="checkbox" onchange="saveState('ldPathways',this.checked)"/>
                 <span class="slider"></span>
               </label>
             </div>
@@ -1483,8 +1515,41 @@ footer nav a:hover{color:var(--navy)}
             </div>
           </div>
 
-          <!-- Regulatory -->
-          <div class="col-8 card-teal-light">
+          <!-- L&D Governance options (non-VET) -->
+          <div class="col-8 card-teal-light ld-only" id="ldGovCard" style="display:none">
+            <div class="icon-label"><span class="ms">policy</span><h3>L&amp;D Governance &amp; Compliance</h3></div>
+            <div class="grid-2">
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldPrivacy',this.checked)"/> <span style="font-size:.85rem">Privacy Act / GDPR</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldWHS',this.checked)"/> <span style="font-size:.85rem">WHS / Safety Compliance</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('govPolicy',this.checked)"/> <span style="font-size:.85rem">Policy Documentation</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('govRisk',this.checked)"/> <span style="font-size:.85rem">Risk Management</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('govStaff',this.checked)"/> <span style="font-size:.85rem">Staff Training Records</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldISO',this.checked)"/> <span style="font-size:.85rem">ISO 9001 / Quality Standards</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('ldAudit',this.checked)"/> <span style="font-size:.85rem">Internal Audit Trail</span></label>
+              <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('gov3rd',this.checked)"/> <span style="font-size:.85rem">3rd Party Monitoring</span></label>
+            </div>
+          </div>
+
+          <!-- L&D Performance Integration card (non-VET) -->
+          <div class="col-4 card ld-only" id="ldPerfCard" style="display:none">
+            <div class="icon-label"><span class="ms">trending_up</span><h3>Performance Integration</h3></div>
+            <div class="toggle-wrap light" style="margin-bottom:8px">
+              <span class="toggle-label">Link to Performance Reviews</span>
+              <label class="toggle"><input type="checkbox" onchange="saveState('ldPerfReview',this.checked)"/><span class="slider"></span></label>
+            </div>
+            <div class="toggle-wrap light" style="margin-bottom:8px">
+              <span class="toggle-label">Manager Visibility of Progress</span>
+              <label class="toggle"><input type="checkbox" onchange="saveState('ldManagerView',this.checked)"/><span class="slider"></span></label>
+            </div>
+            <div class="toggle-wrap light" style="margin-bottom:12px">
+              <span class="toggle-label">Automated Cert Renewals</span>
+              <label class="toggle"><input type="checkbox" onchange="saveState('ldCertRenewal',this.checked)"/><span class="slider"></span></label>
+            </div>
+            <p style="font-size:.7rem;color:var(--grey);line-height:1.5">Connects learning records to performance cycles and manager dashboards.</p>
+          </div>
+
+          <!-- Regulatory (VET only) -->
+          <div class="col-8 card-teal-light vet-only" id="rtoGovCard" style="display:none">
             <div class="icon-label"><span class="ms">policy</span><h3>Regulatory Compliance &amp; Governance</h3></div>
             <div class="grid-2">
               <label class="check-row" style="background:var(--white);border-radius:6px;padding:10px;margin-bottom:0"><input type="checkbox" onchange="saveState('govAuditor',this.checked)"/> <span style="font-size:.85rem">Auditor Access</span></label>
@@ -1496,8 +1561,8 @@ footer nav a:hover{color:var(--navy)}
             </div>
           </div>
 
-          <!-- USI -->
-          <div class="col-4 card">
+          <!-- USI (VET only) -->
+          <div class="col-4 card vet-only" id="usiCard" style="display:none">
             <h3 style="font-size:.95rem;margin-bottom:16px">USI Validation</h3>
             <div class="toggle-wrap light" style="margin-bottom:8px">
               <span class="toggle-label">Real-time Web Services</span>
@@ -1514,8 +1579,8 @@ footer nav a:hover{color:var(--navy)}
             <p style="font-size:.7rem;color:var(--grey);line-height:1.5">Unique Student Identifier (USI) connectivity is mandatory for all nationally recognised training providers.</p>
           </div>
 
-          <!-- AVETMISS Config -->
-          <div class="col-12 card">
+          <!-- AVETMISS Config (VET only) -->
+          <div class="col-12 card vet-only" id="avetmissCard" style="display:none">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px">
               <div>
                 <h3 style="margin-bottom:4px">AVETMISS Detailed Config</h3>
@@ -1914,6 +1979,7 @@ function restoreUI() {
   calcTotal();
   updateProgress();
   computeLMSScores();
+  updateSectorVisibility();
 }
 
 // ─── Navigation ──────────────────────────────────────
@@ -2053,39 +2119,124 @@ document.querySelectorAll('input[name=hosting]').forEach(function(r){
   });
 });
 
+// ─── Sector Visibility ───────────────────────────────
+function updateSectorVisibility() {
+  var sector = appState.orgSector || '';
+  var isVET = sector === 'VET / RTO / College';
+  var isLD = !isVET && sector !== 'Select Industry Sector' && sector !== '';
+
+  // RTO number
+  var rtoLabel = document.getElementById('rtoNumLabel');
+  var rtoInput = document.getElementById('rtoNumInput');
+  if (rtoLabel) rtoLabel.style.display = isVET ? '' : 'none';
+  if (rtoInput) rtoInput.style.display = isVET ? '' : 'none';
+
+  // Compliance section cards
+  var vetIds = ['rtoReportingCard','currMapCard','rtoGovCard','usiCard','avetmissCard'];
+  var ldIds  = ['ldReportingCard','ldMapCard','ldGovCard','ldPerfCard'];
+
+  vetIds.forEach(function(id){
+    var el = document.getElementById(id); if (!el) return;
+    if (isVET) { el.style.display = id === 'currMapCard' ? 'flex' : ''; }
+    else { el.style.display = 'none'; }
+  });
+  ldIds.forEach(function(id){
+    var el = document.getElementById(id); if (!el) return;
+    if (isLD) { el.style.display = id === 'ldMapCard' ? 'flex' : ''; }
+    else { el.style.display = 'none'; }
+  });
+
+  // If neither VET nor LD yet selected, show the LD cards as default fallback
+  if (!isVET && !isLD) {
+    ldIds.forEach(function(id){
+      var el = document.getElementById(id); if (!el) return;
+      el.style.display = id === 'ldMapCard' ? 'flex' : '';
+    });
+  }
+}
+
 // ─── LMS Scoring ─────────────────────────────────────
 function computeLMSScores() {
   var s = appState;
-  var canvas = 0, moodle = 0, talent = 0;
-  var total = 0;
+  var sector = s.orgSector || '';
+  var isVET = sector === 'VET / RTO / College';
+  var isLarge = sector.indexOf('Large') !== -1;
+  var isMedium = sector.indexOf('Medium') !== -1;
+  var isSmall = sector.indexOf('Small') !== -1;
+  var isCorp = sector === 'Corporate' || sector === 'Government' || sector === 'Healthcare';
 
-  // Compliance signals → Moodle
-  if (s.rtoAvetmiss) { moodle += 3; total++; }
-  if (s.govAuditor) { moodle += 2; total++; }
-  if (s.compCurrMap) { moodle += 2; total++; }
-  if (s.usiRealtime) { moodle += 2; total++; }
-  if (s.govPolicy) { moodle += 1; total++; }
+  // Platform scores
+  var scores = {
+    'Moodle / Wisenet': 0,
+    'Canvas LMS': 0,
+    'TalentLMS': 0,
+    'Docebo': 0,
+    'Coassemble': 0,
+    'Absorb LMS': 0,
+    'Totara Learn': 0,
+    'iSpring Learn': 0
+  };
 
-  // API + integrations → Canvas
-  if (s.apiInteg === 'Mandatory') { canvas += 3; total++; }
-  if (s.ios || s.android) { canvas += 2; total++; }
-  if (s.sso) { canvas += 2; total++; }
-  if (s.learnForum) { canvas += 1; total++; }
-  if (s.markRubric) { canvas += 2; total++; }
-  if (s.authoring === 'native') { canvas += 1; total++; }
+  // ── VET / Compliance signals ──
+  if (s.rtoAvetmiss) { scores['Moodle / Wisenet'] += 5; }
+  if (s.usiRealtime || s.usiBulk) { scores['Moodle / Wisenet'] += 4; }
+  if (s.compCurrMap) { scores['Moodle / Wisenet'] += 3; }
+  if (s.govAuditor) { scores['Moodle / Wisenet'] += 2; }
+  if (isVET) { scores['Moodle / Wisenet'] += 4; scores['Canvas LMS'] += 2; }
 
-  // Budget / scalability → TalentLMS
+  // ── API / integration signals ──
+  if (s.apiInteg === 'Mandatory') { scores['Canvas LMS'] += 3; scores['Docebo'] += 3; }
+  if (s.sso) { scores['Canvas LMS'] += 2; scores['Docebo'] += 2; scores['Absorb LMS'] += 2; }
+  if (s.markRubric) { scores['Canvas LMS'] += 3; }
+  if (s.learnForum) { scores['Canvas LMS'] += 1; scores['Totara Learn'] += 1; }
+  if (s.intHRIS) { scores['Docebo'] += 3; scores['Totara Learn'] += 3; scores['Absorb LMS'] += 2; }
+  if (s.learnAI) { scores['Docebo'] += 3; scores['Canvas LMS'] += 1; }
+
+  // ── L&D / Corporate signals ──
+  if (isCorp || s.ldROI || s.ldSkillsGap) { scores['Docebo'] += 3; scores['Totara Learn'] += 2; scores['Absorb LMS'] += 2; }
+  if (s.ldPerfReview || s.ldManagerView) { scores['Docebo'] += 3; scores['Totara Learn'] += 3; }
+  if (s.ldPathways) { scores['Docebo'] += 2; scores['Totara Learn'] += 2; scores['Absorb LMS'] += 1; }
+  if (s.ldOnboarding) { scores['TalentLMS'] += 2; scores['Coassemble'] += 2; scores['Docebo'] += 1; }
+  if (s.ldMandatory) { scores['Absorb LMS'] += 2; scores['Docebo'] += 2; scores['TalentLMS'] += 1; }
+  if (s.ldCertRenewal) { scores['Absorb LMS'] += 2; scores['TalentLMS'] += 1; }
+
+  // ── Size signals ──
+  if (isLarge) { scores['Docebo'] += 3; scores['Totara Learn'] += 3; scores['Canvas LMS'] += 2; }
+  if (isMedium) { scores['Absorb LMS'] += 2; scores['Canvas LMS'] += 2; scores['TalentLMS'] += 1; }
+  if (isSmall) { scores['TalentLMS'] += 3; scores['Coassemble'] += 3; scores['iSpring Learn'] += 2; }
+
+  // ── Authoring / content signals ──
+  if (s.authoring === 'native') { scores['Coassemble'] += 3; scores['Canvas LMS'] += 1; scores['iSpring Learn'] += 2; }
+  if (s.authoring === 'external') { scores['iSpring Learn'] += 3; scores['Absorb LMS'] += 1; }
+  if (s.learnGamify) { scores['TalentLMS'] += 2; scores['Docebo'] += 1; }
+
+  // ── Budget signals ──
   var costPL = parseFloat(s.costPerLearner) || 0;
-  if (costPL > 0 && costPL < 30) { talent += 3; total++; }
-  if (s.adminSelfEnrol) { talent += 2; total++; }
-  if (s.involvement === 'transactional') { talent += 1; total++; }
-  if (!s.rtoAvetmiss && !s.govAuditor) { talent += 2; }
+  if (costPL > 0 && costPL < 20) { scores['TalentLMS'] += 3; scores['Coassemble'] += 3; scores['iSpring Learn'] += 2; }
+  if (costPL >= 20 && costPL < 60) { scores['Absorb LMS'] += 2; scores['Canvas LMS'] += 1; }
+  if (costPL >= 60) { scores['Docebo'] += 2; scores['Totara Learn'] += 2; }
 
-  var maxScore = Math.max(canvas, moodle, talent, 1);
-  var cp = Math.round(canvas / maxScore * 100);
-  var mp = Math.round(moodle / maxScore * 100);
-  var tp = Math.round(talent / maxScore * 100);
+  // ── Mobile / access signals ──
+  if (s.ios || s.android) { scores['Canvas LMS'] += 2; scores['Docebo'] += 2; scores['TalentLMS'] += 1; }
+  if (s.adminSelfEnrol) { scores['TalentLMS'] += 2; scores['Coassemble'] += 2; }
 
+  // ── Open source / data sovereignty ──
+  if (s.dataControl) { scores['Moodle / Wisenet'] += 3; scores['Totara Learn'] += 3; }
+  if (s.openSource) { scores['Moodle / Wisenet'] += 3; scores['Totara Learn'] += 3; }
+
+  // ── eCommerce signals ──
+  if (s.adminMktg) { scores['Coassemble'] += 2; scores['TalentLMS'] += 2; scores['Absorb LMS'] += 2; }
+
+  // Convert to sorted array
+  var sorted = Object.keys(scores).map(function(k){ return {name:k, score:scores[k]}; });
+  sorted.sort(function(a,b){ return b.score - a.score; });
+
+  var maxScore = Math.max(sorted[0].score, 1);
+
+  // Update bar chart (still show canvas/moodle/talent for the mini bars on results page)
+  var cp = Math.round((scores['Canvas LMS'] / maxScore) * 100);
+  var mp = Math.round((scores['Moodle / Wisenet'] / maxScore) * 100);
+  var tp = Math.round((scores['TalentLMS'] / maxScore) * 100);
   document.getElementById('canvasFill').style.width = cp + '%';
   document.getElementById('moodleFill').style.width = mp + '%';
   document.getElementById('talentFill').style.width = tp + '%';
@@ -2096,9 +2247,14 @@ function computeLMSScores() {
   // Primary recommendation
 
   var lmsMeta = {
-    'Canvas LMS':        { cc:'us', country:'United States', company:'Instructure, Inc.', region:'USA (AWS us-east-1)', regionClass:'us' },
-    'Moodle / Wisenet':  { cc:'au', country:'Australia',     company:'Moodle HQ / Wisenet', region:'Australia (AWS ap-southeast-2)', regionClass:'au' },
-    'TalentLMS':         { cc:'gr', country:'Greece / EU',   company:'Epignosis LLC',     region:'European Union (AWS eu-west-1)', regionClass:'eu' }
+    'Canvas LMS':        { cc:'us', country:'United States', company:'Instructure, Inc.', region:'USA (AWS us-east-1)' },
+    'Moodle / Wisenet':  { cc:'au', country:'Australia',     company:'Moodle HQ / Wisenet', region:'Australia (AWS ap-southeast-2)' },
+    'TalentLMS':         { cc:'gr', country:'Greece / EU',   company:'Epignosis LLC',     region:'European Union (AWS eu-west-1)' },
+    'Docebo':            { cc:'ca', country:'Canada / US',   company:'Docebo Inc.',        region:'USA / EU (AWS multi-region)' },
+    'Coassemble':        { cc:'au', country:'Australia',     company:'Coassemble Pty Ltd', region:'Australia (AWS ap-southeast-2)' },
+    'Absorb LMS':        { cc:'ca', country:'Canada',        company:'Absorb Software Inc.', region:'USA / Canada (AWS)' },
+    'Totara Learn':      { cc:'nz', country:'New Zealand',   company:'Totara Learning Solutions', region:'Self-hosted / Cloud (global)' },
+    'iSpring Learn':     { cc:'us', country:'United States', company:'iSpring Solutions', region:'USA (AWS us-east-1)' }
   };
 
   function lmsFlagHTML(name, isPrimary) {
@@ -2114,9 +2270,7 @@ function computeLMSScores() {
     var iconCol = isPrimary ? '#00bec7' : '#00bec7';
     return '<div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:' + col + ';margin-bottom:10px"><span class="ms" style="font-size:14px">storage</span> Data stored: ' + m.region + '</div>';
   }
-  var scores = [{name:'Canvas LMS', score:canvas}, {name:'Moodle / Wisenet', score:moodle}, {name:'TalentLMS', score:talent}];
-  scores.sort(function(a,b){ return b.score - a.score; });
-  var top = scores[0];
+  var top = sorted[0];
 
   var diagPct = total > 0 ? Math.min(98, Math.round((maxScore / (total * 3 + 1)) * 100 + 50)) : 0;
   document.getElementById('diagScore').textContent = diagPct > 0 ? diagPct + '%' : '—';
@@ -2126,14 +2280,24 @@ function computeLMSScores() {
 
   // Descriptions
   var descs = {
-    'Canvas LMS': 'The industry gold standard for flexible assessment and LTI integration. Best suited for high-volume learner needs and complex pedagogical requirements.',
-    'Moodle / Wisenet': 'Ideal if data sovereignty and granular multi-tenancy are your non-negotiables. Offers 100% customisability with strong AVETMISS and compliance support.',
-    'TalentLMS': 'Best for rapid onboarding and commercial short courses. Lower overheads and intuitive UI for non-technical administrators.'
+    'Canvas LMS': 'The gold standard for flexible assessment and LTI integration. Excellent for complex pedagogical needs, rubric-based marking, and API-driven integrations.',
+    'Moodle / Wisenet': 'Ideal when data sovereignty and compliance are non-negotiable. 100% customisable with deep AVETMISS, USI, and VET regulatory support.',
+    'TalentLMS': 'Best for rapid onboarding and commercial short courses. Low overhead, intuitive UI, and cost-effective per-learner pricing for SMBs.',
+    'Docebo': 'Enterprise-grade L&D platform with AI-powered recommendations, deep HRIS integration, and performance management connectivity. Built for large organisations.',
+    'Coassemble': 'Australian-built, beautifully simple. Ideal for small-to-medium teams who need fast content creation and clean learner experiences without IT overhead.',
+    'Absorb LMS': 'A polished mid-market platform strong in mandatory compliance training, certification renewals, and eCommerce. Scalable and mobile-ready.',
+    'Totara Learn': 'Open-source enterprise L&D suite with performance appraisals, learning plans, and competency frameworks. Strong data sovereignty and deep customisation.',
+    'iSpring Learn': 'Authoring-first LMS perfect for teams building their own SCORM content. Fast deployment, clean UI, and tight integration with PowerPoint-based tools.'
   };
   var features = {
-    'Canvas LMS': ['Superior SpeedGrader interface for trainers.', 'Robust mobile application for asynchronous learning.', 'Extensive API documentation for CRM syncing.'],
-    'Moodle / Wisenet': ['Full AVETMISS / NAT file generation support.', 'Open source — 100% customisable by developers.', 'Granular multi-tenancy and data sovereignty controls.'],
-    'TalentLMS': ['Simple intuitive UI for non-technical teams.', 'Cost-effective per-learner pricing model.', 'Quick deployment with minimal IT overhead.']
+    'Canvas LMS': ['Superior SpeedGrader interface for assessors and trainers.', 'Robust LTI ecosystem for 3rd-party tool integration.', 'Strong mobile app and API documentation for CRM syncing.'],
+    'Moodle / Wisenet': ['Full AVETMISS / NAT file generation support.', 'Open source — 100% customisable for Australian RTOs.', 'Granular multi-tenancy and data sovereignty controls.'],
+    'TalentLMS': ['Simple UI for non-technical L&D and HR teams.', 'Cost-effective per-learner pricing model.', 'Quick deployment with minimal IT involvement.'],
+    'Docebo': ['AI-powered content recommendations and skills tagging.', 'Native HRIS connectors (Workday, SAP, BambooHR).', 'Performance review and learning pathway integration.'],
+    'Coassemble': ['Australian-built with local support and data residency.', 'Drag-and-drop course builder — no coding required.', 'Great for SMBs, consultancies, and onboarding programs.'],
+    'Absorb LMS': ['Automated compliance certification and renewal reminders.', 'Built-in eCommerce for selling training programs.', 'Clean reporting dashboards for L&D and HR managers.'],
+    'Totara Learn': ['Full competency framework and learning plan management.', 'Open source — self-hosted or cloud with full data control.', 'Performance appraisals natively linked to learning records.'],
+    'iSpring Learn': ['Seamless PowerPoint-to-course conversion workflow.', 'Built-in SCORM authoring without extra software.', 'Fast cloud deployment — up and running in hours.']
   };
 
   document.getElementById('lmsPrimaryName').textContent = top.name;
@@ -2146,8 +2310,8 @@ function computeLMSScores() {
   });
   document.getElementById('lmsPrimaryFeatures').innerHTML = featHtml;
 
-  var second = scores[1];
-  var third = scores[2];
+  var second = sorted[1];
+  var third = sorted[2];
   document.getElementById('lms2Name').textContent = second.name;
   var s2f = document.getElementById('lms2Flag'); if(s2f) s2f.innerHTML = lmsFlagHTML(second.name, false);
   var s2r = document.getElementById('lms2Residency'); if(s2r) s2r.innerHTML = lmsResidencyHTML(second.name, false);
@@ -2161,6 +2325,7 @@ function computeLMSScores() {
 // ─── Init ─────────────────────────────────────────────
 loadState();
 calcTotal();
+updateSectorVisibility();
 
 function selectToggle(key, val, activeId, inactiveId) {
   saveState(key, val);
