@@ -2342,7 +2342,7 @@ function computeLMSScores() {
 
 // ─── AI Recommendations ─────────────────────────────
 var currentProvider = 'gemini';
-var GEMINI_API_KEY = 'AIzaSyAJfI6GNVUudTz6T5ocysCN4jOO1UlpM_A';
+var GEMINI_API_KEY = 'proxy';
 
 function selectProvider(p) {
   currentProvider = p;
@@ -2418,7 +2418,7 @@ function buildAIPrompt(profile) {
 }
 
 async function callGemini(apiKey, prompt) {
-  var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + apiKey;
+  var url = 'https://broken-limit-453c.kathryn-mcgilvray.workers.dev/';
   var resp = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
