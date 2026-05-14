@@ -1806,14 +1806,32 @@ footer nav a:hover{color:var(--navy)}
             </div>
             <div style="flex:1">
               <h3 style="margin-bottom:4px;font-size:1rem">AI-Powered LMS Recommendations</h3>
-              <p style="font-size:.8rem;color:var(--grey);margin-bottom:16px;line-height:1.6">Enter your OpenAI API key to let AI analyse your requirements against the full LMS market — including Docebo, D2L Brightspace, A New Spring, LearnWorlds, Xen Education, OpenLearning, Absorb, TalentLMS, Coassemble, Moodle, Canvas, Go1, iSpring, Totara, Cornerstone, and many more.</p>
+              <p style="font-size:.8rem;color:var(--grey);margin-bottom:16px;line-height:1.6">The AI will analyse your profile against the <strong>full global LMS market</strong> — big vendors, small vendors, Australian-built platforms, open source, and budget-friendly options alike. No bias toward expensive enterprise tools.</p>
+
+              <!-- Provider tabs -->
+              <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+                <button id="provBtn-gemini" class="btn btn-teal" style="font-size:.75rem;padding:6px 14px" onclick="selectProvider('gemini')">
+                  <span class="ms" style="font-size:14px">diamond</span> Google Gemini <span style="font-size:.65rem;background:rgba(255,255,255,.25);border-radius:4px;padding:2px 5px;margin-left:4px">FREE</span>
+                </button>
+                <button id="provBtn-openai" class="btn btn-outline" style="font-size:.75rem;padding:6px 14px" onclick="selectProvider('openai')">
+                  <span class="ms" style="font-size:14px">chat_bubble</span> OpenAI
+                </button>
+              </div>
+
+              <div id="provHelp-gemini" style="font-size:.75rem;color:var(--grey);margin-bottom:10px;line-height:1.5">
+                Google Gemini has a <strong>free tier</strong> — no credit card needed. <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--teal)">Get a free Gemini API key at Google AI Studio →</a>
+              </div>
+              <div id="provHelp-openai" style="font-size:.75rem;color:var(--grey);margin-bottom:10px;line-height:1.5;display:none">
+                Requires an OpenAI account. Uses gpt-4o-mini (low cost). <a href="https://platform.openai.com/api-keys" target="_blank" style="color:var(--teal)">Get an OpenAI API key →</a>
+              </div>
+
               <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-                <input type="password" id="aiApiKey" class="field-input" placeholder="sk-..." style="flex:1;min-width:260px;font-family:monospace;font-size:.85rem" oninput="localStorage.setItem('aiApiKey',this.value)"/>
+                <input type="password" id="aiApiKey" class="field-input" placeholder="Paste your API key here..." style="flex:1;min-width:260px;font-family:monospace;font-size:.85rem" oninput="localStorage.setItem('aiApiKey_'+currentProvider,this.value)"/>
                 <button class="btn btn-teal" id="aiAnalyseBtn" onclick="generateAIRecommendations()" style="white-space:nowrap">
                   <span class="ms" style="font-size:18px">auto_awesome</span> Analyse with AI
                 </button>
               </div>
-              <p style="font-size:.7rem;color:var(--grey);margin-top:8px">Your key is stored only in your browser and never sent anywhere except OpenAI. <a href="https://platform.openai.com/api-keys" target="_blank" style="color:var(--teal)">Get an API key →</a></p>
+              <p style="font-size:.7rem;color:var(--grey);margin-top:8px">Your key is stored only in your browser and never shared with anyone except the AI provider you choose.</p>
             </div>
           </div>
         </div>
@@ -2360,7 +2378,23 @@ function computeLMSScores() {
 }
 
 
-// ─── AI Recommendations ───────────────────────────────────────────────────────
+// ─── AI Recommendations ─────────────────────────────
+var currentProvider = 'gemini';
+
+function selectProvider(p) {
+  currentProvider = p;
+  ['gemini','openai'].forEach(function(id){
+    var btn = document.getElementById('provBtn-' + id);
+    var help = document.getElementById('provHelp-' + id);
+    if (btn) btn.className = 'btn ' + (id === p ? 'btn-teal' : 'btn-outline');
+    if (help) help.style.display = id === p ? '' : 'none';
+  });
+  // Restore saved key for this provider
+  var saved = localStorage.getItem('aiApiKey_' + p) || '';
+  var el = document.getElementById('aiApiKey');
+  if (el) el.value = saved;
+}
+
 function buildProfileSummary() {
   var s = appState;
   var lines = [];
@@ -2388,12 +2422,12 @@ function buildProfileSummary() {
   if (s.markBulk) features.push('Bulk marking');
   if (s.fbAnnotate) features.push('Annotation feedback');
   if (s.fbVoice) features.push('Voice feedback');
-  if (s.adminMktg) features.push('eCommerce/marketing');
+  if (s.adminMktg) features.push('eCommerce/marketing integration');
   if (s.intHRIS) features.push('HRIS integration');
   if (s.intFinance) features.push('Finance system integration');
   if (s.supervisor) features.push('Supervisor/manager visibility');
   if (s.openSource) features.push('Open source preferred');
-  if (s.dataControl) features.push('Data sovereignty/self-hosting');
+  if (s.dataControl) features.push('Data sovereignty/self-hosting required');
   if (features.length) lines.push('Required features: ' + features.join(', '));
   var compliance = [];
   if (s.rtoAvetmiss) compliance.push('AVETMISS reporting');
@@ -2416,27 +2450,62 @@ function buildProfileSummary() {
   return lines.join('\n');
 }
 
+function buildAIPrompt(profile) {
+  return 'You are an independent, unbiased LMS consultant. Your job is to recommend the BEST-FIT learning management system for this organisation based purely on their requirements — not on vendor popularity, market share, or price tag.\n\nCRITICAL RULES:\n- Do NOT default to well-known expensive enterprise platforms (Cornerstone, SAP SuccessFactors, Workday Learning, Blackboard) unless they are genuinely the best fit.\n- Actively consider smaller, indie, Australian-built, and budget-friendly platforms that may be a better fit.\n- If the organisation is small or medium, lean toward right-sized tools, not enterprise overkill.\n- Australian-built platforms (Coassemble, Xen Education, OpenLearning, Wisenet, Arlo, Velpic) should be given fair consideration for Australian organisations.\n\nConsider the FULL global LMS market including: Moodle, Wisenet, Canvas LMS, TalentLMS, Docebo, Coassemble, Absorb LMS, Totara Learn, iSpring Learn, D2L Brightspace, A New Spring, LearnWorlds, Xen Education, OpenLearning, Go1, Cornerstone OnDemand, SAP Litmos, Adobe Learning Manager, 360Learning, Degreed, EdApp by SafetyCulture, Thinkific, Teachable, Kajabi, LearnUpon, WorkRamp, Seismic Learning, Mindtickle, Kallidus, Meridian LMS, Arlo, Accessplanit, Gyrus LMS, Tovuti, NetDimensions, HealthStream, Relias, ProProfs LMS, WizIQ, Blue Sky eLearn, Velpic, Janison, Elmo, Employment Hero Learning, Intellum, Litmos by SAP, Paylocity Learning, Lattice, and any other relevant platforms.\n\nOrganisational Profile:\n' + profile + '\n\nReturn ONLY valid JSON — no markdown, no explanation, just the JSON object:\n{\n  "recommendations": [\n    {\n      "rank": 1,\n      "name": "Platform Name",\n      "company": "Company Name",\n      "country": "Country of origin",\n      "data_region": "Primary data hosting region (e.g. Australia - AWS ap-southeast-2)",\n      "flag_code": "2-letter ISO country code lowercase (e.g. au, us, ca)",\n      "match_score": 91,\n      "why": "2-3 sentences explaining specifically why this platform fits THIS organisation\'s profile — reference their actual requirements.",\n      "features": ["Specific feature relevant to their needs", "Another relevant feature", "Third relevant feature"]\n    },\n    { "rank": 2, "name": "...", "company": "...", "country": "...", "data_region": "...", "flag_code": "...", "match_score": 85, "why": "...", "features": ["...","...","..."] },\n    { "rank": 3, "name": "...", "company": "...", "country": "...", "data_region": "...", "flag_code": "...", "match_score": 78, "why": "...", "features": ["...","...","..."] }\n  ],\n  "summary": "One sentence summarising why these three platforms were chosen over larger/more expensive alternatives."\n}';
+}
+
+async function callGemini(apiKey, prompt) {
+  var url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + apiKey;
+  var resp = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 1600 } })
+  });
+  if (!resp.ok) {
+    var e = await resp.json().catch(function(){ return {}; });
+    throw new Error((e.error && e.error.message) || 'Gemini API error (' + resp.status + ')');
+  }
+  var data = await resp.json();
+  return data.candidates[0].content.parts[0].text.trim();
+}
+
+async function callOpenAI(apiKey, prompt) {
+  var resp = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
+    body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 1600 })
+  });
+  if (!resp.ok) {
+    var e = await resp.json().catch(function(){ return {}; });
+    throw new Error((e.error && e.error.message) || 'OpenAI API error (' + resp.status + ')');
+  }
+  var data = await resp.json();
+  return data.choices[0].message.content.trim();
+}
+
 async function generateAIRecommendations() {
-  var apiKey = (document.getElementById('aiApiKey').value || '').trim() || (localStorage.getItem('aiApiKey') || '');
-  if (!apiKey) { showAIError('Please enter your OpenAI API key above.'); return; }
+  var apiKey = (document.getElementById('aiApiKey').value || '').trim() || (localStorage.getItem('aiApiKey_' + currentProvider) || '');
+  if (!apiKey) {
+    showAIError('Please enter your API key above. ' + (currentProvider === 'gemini' ? 'Get a free Gemini key at aistudio.google.com' : 'Get an OpenAI key at platform.openai.com/api-keys'));
+    return;
+  }
   document.getElementById('aiLoadingState').style.display = 'block';
   document.getElementById('aiErrorState').style.display = 'none';
   document.getElementById('aiAnalyseBtn').disabled = true;
   document.getElementById('lmsPrimary').style.opacity = '0.4';
+
   var profile = buildProfileSummary();
-  var prompt = 'You are an expert LMS consultant. Analyse this organisational profile and recommend the TOP 3 best-fit LMS platforms from the FULL global market.\n\nConsider all options including: Moodle, Wisenet, Canvas, TalentLMS, Docebo, Coassemble, Absorb LMS, Totara Learn, iSpring Learn, D2L Brightspace, A New Spring, LearnWorlds, Xen Education, OpenLearning, Go1, Cornerstone OnDemand, SAP Litmos, Blackboard, Adobe Learning Manager, 360Learning, Degreed, EdApp (SafetyCulture), Thinkific, Teachable, Kajabi, LearnUpon, WorkRamp, Lessonly by Seismic, Mindtickle, Kallidus, Meridian LMS, Arlo, Accessplanit, Gyrus LMS, Tovuti, NetDimensions, HealthStream, Relias, ProProfs LMS, WizIQ, Blue Sky eLearn, and any other relevant platforms.\n\nOrganisational Profile:\n' + profile + '\n\nReturn ONLY valid JSON in this exact format (no markdown fences, no explanation):\n{\n  "recommendations": [\n    {\n      "rank": 1,\n      "name": "Platform Name",\n      "company": "Company Name",\n      "country": "Country of origin",\n      "data_region": "Primary data hosting region",\n      "flag_code": "2-letter ISO country code lowercase",\n      "match_score": 92,\n      "why": "2-3 sentences explaining why this is the best fit.",\n      "features": ["Feature 1 relevant to their needs", "Feature 2", "Feature 3"]\n    },\n    { "rank": 2 },\n    { "rank": 3 }\n  ],\n  "summary": "One sentence summarising the overall recommendation."\n}';
+  var prompt = buildAIPrompt(profile);
+
   try {
-    var resp = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
-      body: JSON.stringify({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: prompt }], temperature: 0.3, max_tokens: 1400 })
-    });
-    if (!resp.ok) {
-      var errData = await resp.json().catch(function(){ return {}; });
-      throw new Error((errData.error && errData.error.message) || 'API request failed (' + resp.status + ')');
+    var raw;
+    if (currentProvider === 'gemini') {
+      raw = await callGemini(apiKey, prompt);
+    } else {
+      raw = await callOpenAI(apiKey, prompt);
     }
-    var data = await resp.json();
-    var raw = data.choices[0].message.content.trim().replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/,'');
+    // Strip markdown fences
+    raw = raw.replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/,'').trim();
     renderAIRecommendations(JSON.parse(raw));
   } catch(e) {
     showAIError(e.message || 'Unknown error. Check your API key and try again.');
@@ -2502,7 +2571,7 @@ loadState();
 calcTotal();
 updateSectorVisibility();
 // Restore saved API key
-(function(){ var k = localStorage.getItem('aiApiKey'); if(k){ var el = document.getElementById('aiApiKey'); if(el) el.value = k; }})();
+(function(){ var k = localStorage.getItem('aiApiKey_gemini') || localStorage.getItem('aiApiKey') || ''; if(k){ var el = document.getElementById('aiApiKey'); if(el) el.value = k; }})();
 
 function selectToggle(key, val, activeId, inactiveId) {
   saveState(key, val);
