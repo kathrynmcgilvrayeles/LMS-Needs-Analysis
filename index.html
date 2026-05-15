@@ -2498,19 +2498,7 @@ function computeLMSScores() {
 
   var maxScore = Math.max(sorted[0].score, 1);
 
-  // Update bar chart (still show canvas/moodle/talent for the mini bars on results page)
-  var cp = Math.round((scores['Canvas LMS'] / maxScore) * 100);
-  var mp = Math.round((scores['Moodle / Wisenet'] / maxScore) * 100);
-  var tp = Math.round((scores['TalentLMS'] / maxScore) * 100);
-  document.getElementById('canvasFill').style.width = cp + '%';
-  document.getElementById('moodleFill').style.width = mp + '%';
-  document.getElementById('talentFill').style.width = tp + '%';
-  document.getElementById('canvasScore').textContent = cp + '%';
-  document.getElementById('moodleScore').textContent = mp + '%';
-  document.getElementById('talentScore').textContent = tp + '%';
-
   // Primary recommendation
-
   var lmsMeta = {
     'Canvas LMS':        { cc:'us', country:'United States', company:'Instructure, Inc.', region:'USA (AWS us-east-1)' },
     'Moodle / Wisenet':  { cc:'au', country:'Australia',     company:'Moodle HQ / Wisenet', region:'Australia (AWS ap-southeast-2)' },
@@ -2537,54 +2525,6 @@ function computeLMSScores() {
   }
   var top = sorted[0];
 
-  var diagPct = total > 0 ? Math.min(98, Math.round((maxScore / (total * 3 + 1)) * 100 + 50)) : 0;
-  document.getElementById('diagScore').textContent = diagPct > 0 ? diagPct + '%' : '—';
-  document.getElementById('diagDesc').textContent = diagPct > 0
-    ? 'Alignment with target architecture and regulatory standards.'
-    : 'Complete sections to generate your score.';
-
-  // Descriptions
-  var descs = {
-    'Canvas LMS': 'The gold standard for flexible assessment and LTI integration. Excellent for complex pedagogical needs, rubric-based marking, and API-driven integrations.',
-    'Moodle / Wisenet': 'Ideal when data sovereignty and compliance are non-negotiable. 100% customisable with deep AVETMISS, USI, and VET regulatory support.',
-    'TalentLMS': 'Best for rapid onboarding and commercial short courses. Low overhead, intuitive UI, and cost-effective per-learner pricing for SMBs.',
-    'Docebo': 'Enterprise-grade L&D platform with AI-powered recommendations, deep HRIS integration, and performance management connectivity. Built for large organisations.',
-    'Coassemble': 'Australian-built, beautifully simple. Ideal for small-to-medium teams who need fast content creation and clean learner experiences without IT overhead.',
-    'Absorb LMS': 'A polished mid-market platform strong in mandatory compliance training, certification renewals, and eCommerce. Scalable and mobile-ready.',
-    'Totara Learn': 'Open-source enterprise L&D suite with performance appraisals, learning plans, and competency frameworks. Strong data sovereignty and deep customisation.',
-    'iSpring Learn': 'Authoring-first LMS perfect for teams building their own SCORM content. Fast deployment, clean UI, and tight integration with PowerPoint-based tools.'
-  };
-  var features = {
-    'Canvas LMS': ['Superior SpeedGrader interface for assessors and trainers.', 'Robust LTI ecosystem for 3rd-party tool integration.', 'Strong mobile app and API documentation for CRM syncing.'],
-    'Moodle / Wisenet': ['Full AVETMISS / NAT file generation support.', 'Open source — 100% customisable for Australian RTOs.', 'Granular multi-tenancy and data sovereignty controls.'],
-    'TalentLMS': ['Simple UI for non-technical L&D and HR teams.', 'Cost-effective per-learner pricing model.', 'Quick deployment with minimal IT involvement.'],
-    'Docebo': ['AI-powered content recommendations and skills tagging.', 'Native HRIS connectors (Workday, SAP, BambooHR).', 'Performance review and learning pathway integration.'],
-    'Coassemble': ['Australian-built with local support and data residency.', 'Drag-and-drop course builder — no coding required.', 'Great for SMBs, consultancies, and onboarding programs.'],
-    'Absorb LMS': ['Automated compliance certification and renewal reminders.', 'Built-in eCommerce for selling training programs.', 'Clean reporting dashboards for L&D and HR managers.'],
-    'Totara Learn': ['Full competency framework and learning plan management.', 'Open source — self-hosted or cloud with full data control.', 'Performance appraisals natively linked to learning records.'],
-    'iSpring Learn': ['Seamless PowerPoint-to-course conversion workflow.', 'Built-in SCORM authoring without extra software.', 'Fast cloud deployment — up and running in hours.']
-  };
-
-  document.getElementById('lmsPrimaryName').textContent = top.name;
-  var pf = document.getElementById('lmsPrimaryFlag'); if(pf) pf.innerHTML = lmsFlagHTML(top.name, true);
-  var pr = document.getElementById('lmsPrimaryResidency'); if(pr) pr.innerHTML = lmsResidencyHTML(top.name, true);
-  document.getElementById('lmsPrimaryDesc').textContent = descs[top.name];
-  var featHtml = '';
-  features[top.name].forEach(function(f){
-    featHtml += '<div class="lms-feature"><span class="ms fill">check_circle</span>' + f + '</div>';
-  });
-  document.getElementById('lmsPrimaryFeatures').innerHTML = featHtml;
-
-  var second = sorted[1];
-  var third = sorted[2];
-  document.getElementById('lms2Name').textContent = second.name;
-  var s2f = document.getElementById('lms2Flag'); if(s2f) s2f.innerHTML = lmsFlagHTML(second.name, false);
-  var s2r = document.getElementById('lms2Residency'); if(s2r) s2r.innerHTML = lmsResidencyHTML(second.name, false);
-  document.getElementById('lms2Desc').textContent = descs[second.name];
-  document.getElementById('lms3Name').textContent = third.name;
-  var s3f = document.getElementById('lms3Flag'); if(s3f) s3f.innerHTML = lmsFlagHTML(third.name, false);
-  var s3r = document.getElementById('lms3Residency'); if(s3r) s3r.innerHTML = lmsResidencyHTML(third.name, false);
-  document.getElementById('lms3Desc').textContent = descs[third.name];
 }
 
 
