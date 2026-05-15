@@ -1827,7 +1827,7 @@ footer nav a:hover{color:var(--navy)}
         <!-- ── RESULTS (hidden until gate submitted) ── -->
         <div id="resultsContent" style="display:none">
 
-        <!-- ── Page 1: Org Profile + Requirements Summary ── -->
+        <!-- ── Org Profile + Budget ── -->
         <div style="margin-bottom:8px;display:flex;align-items:center;gap:16px">
           <h2 style="font-size:1.1rem;font-weight:800">Organisation Profile</h2>
           <div style="flex:1;height:1px;background:#e0e6ed"></div>
@@ -1848,6 +1848,18 @@ footer nav a:hover{color:var(--navy)}
           </div>
         </div>
 
+        <!-- ── Strategic Summary (populated by AI) ── -->
+        <div id="strategicSummaryWrap" style="display:none;margin-bottom:32px">
+          <div style="margin-bottom:12px;display:flex;align-items:center;gap:16px">
+            <h2 style="font-size:1.1rem;font-weight:800">Strategic Summary</h2>
+            <div style="flex:1;height:1px;background:#e0e6ed"></div>
+          </div>
+          <div class="card" style="border-left:4px solid var(--teal)">
+            <div id="strategicSummaryText" style="font-size:.9rem;color:rgba(31,42,82,.8);line-height:1.75"></div>
+          </div>
+        </div>
+
+        <!-- ── Key Requirements ── -->
         <div style="margin-bottom:8px;display:flex;align-items:center;gap:16px">
           <h2 style="font-size:1.1rem;font-weight:800">Key Requirements</h2>
           <div style="flex:1;height:1px;background:#e0e6ed"></div>
@@ -1856,106 +1868,88 @@ footer nav a:hover{color:var(--navy)}
           <div id="reqSummaryTags" style="display:flex;flex-wrap:wrap;gap:8px"></div>
         </div>
 
-        <!-- ── Page 2: AI Recommendations ── -->
-        <div style="margin-bottom:8px;display:flex;align-items:center;gap:16px">
-          <h2 style="font-size:1.1rem;font-weight:800">LMS Recommendations</h2>
-          <div style="flex:1;height:1px;background:#e0e6ed"></div>
-        </div>
-        <div style="font-size:.75rem;color:var(--grey);margin-bottom:20px" id="recSubtitle2"></div>
-
-        <!-- Score + priorities -->
-        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px;margin-bottom:32px">
-          <div class="card" style="border-left:4px solid var(--navy);position:relative;overflow:hidden">
-            <span class="ms" style="position:absolute;top:8px;right:8px;font-size:100px;color:rgba(31,42,82,.05)">analytics</span>
-            <p style="font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:var(--grey);margin-bottom:8px">Diagnostic Match</p>
-            <div class="score-ring-wrap" style="padding:0">
-              <div class="score-number" id="diagScore">—</div>
-            </div>
-            <p style="font-size:.85rem;color:var(--grey);margin-top:8px" id="diagDesc">Complete sections to generate your score.</p>
-          </div>
-          <div class="card">
-            <span class="ms" style="color:var(--teal);margin-bottom:12px;display:block">security</span>
-            <h4 style="font-weight:800;margin-bottom:6px;font-size:.95rem">Compliance Readiness</h4>
-            <p style="font-size:.75rem;color:var(--grey);line-height:1.5;margin-bottom:12px">High priority for ASQA/TEQSA frameworks identified in administration module.</p>
-            <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#e72582;display:inline-block"></span><span style="font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--grey)">Immediate Focus</span></div>
-          </div>
-          <div class="card">
-            <span class="ms" style="color:var(--teal);margin-bottom:12px;display:block">integration_instructions</span>
-            <h4 style="font-weight:800;margin-bottom:6px;font-size:.95rem">API Ecosystem</h4>
-            <p style="font-size:.75rem;color:var(--grey);line-height:1.5;margin-bottom:12px">Seamless integration requirement for existing CRM and payroll tools.</p>
-            <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block"></span><span style="font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--grey)">Optimisation</span></div>
-          </div>
-        </div>
-
-        <!-- AI Loading State -->        <!-- AI Loading State -->
+        <!-- ── Loading State ── -->
         <div id="aiLoadingState" style="display:none;text-align:center;padding:40px 0;margin-bottom:24px">
           <div style="width:48px;height:48px;border:4px solid var(--lteal);border-top-color:var(--teal);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px"></div>
           <p style="font-weight:700;color:var(--navy);margin-bottom:4px">Analysing your requirements...</p>
-          <p style="font-size:.8rem;color:var(--grey)">AI is reviewing the full LMS market against your profile</p>
+          <p style="font-size:.8rem;color:var(--grey)">Reviewing the full LMS market against your profile</p>
         </div>
 
-        <!-- AI Error State -->
+        <!-- ── Error State ── -->
         <div id="aiErrorState" style="display:none;background:#fff0f5;border:1px solid #e72582;border-radius:12px;padding:16px;margin-bottom:24px">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
             <span class="ms" style="color:#e72582">error</span>
-            <strong style="color:var(--navy)">API Error</strong>
+            <strong style="color:var(--navy)">Recommendation Error</strong>
           </div>
           <p id="aiErrorMsg" style="font-size:.8rem;color:var(--grey)"></p>
+          <button class="btn btn-outline" style="margin-top:12px;font-size:.8rem" onclick="generateAIRecommendations()">Try Again</button>
         </div>
 
-        <!-- LMS Recommendations -->
+        <!-- ── Top 3 LMS Recommendations ── -->
         <div style="margin-bottom:8px;display:flex;align-items:center;gap:16px">
-          <h2 style="font-size:1.3rem;font-weight:800">Tailored LMS Recommendations</h2>
+          <h2 style="font-size:1.1rem;font-weight:800">Top 3 LMS Recommendations</h2>
           <div style="flex:1;height:1px;background:#e0e6ed"></div>
         </div>
         <div style="font-size:.75rem;color:var(--grey);margin-bottom:20px" id="recSubtitle">Analysing your profile against the full global LMS market...</div>
 
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:32px">
-          <div class="lms-card primary" id="lmsPrimary">
-            <div class="tag">Primary Recommendation</div>
-            <div id="lmsPrimaryFlag"></div>
-            <h3 id="lmsPrimaryName">—</h3>
-            <div id="lmsPrimaryResidency"></div>
-            <p id="lmsPrimaryDesc" style="margin-bottom:20px">Complete more sections to generate your recommendation.</p>
-            <div id="lmsPrimaryFeatures"></div>
-            <button class="btn" style="background:var(--white);color:var(--navy);margin-top:20px" onclick="window.print()">
-              <span class="ms" style="font-size:18px">print</span> Download / Print Report
-            </button>
+        <!-- 3-card grid -->
+        <div id="lmsCardsGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px">
+          <!-- Card 1 -->
+          <div style="background:var(--navy);border-radius:14px;padding:24px;display:flex;flex-direction:column">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+              <span style="background:var(--teal);color:var(--white);font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;border-radius:99px;padding:3px 10px">#1 Best Match</span>
+              <span style="font-size:1.1rem;font-weight:800;color:var(--teal)" id="lms1Score">—</span>
+            </div>
+            <div id="lms1Flag" style="margin-bottom:6px"></div>
+            <h3 style="color:var(--white);font-size:1.2rem;margin-bottom:4px" id="lms1Name">—</h3>
+            <div id="lms1Residency" style="margin-bottom:12px"></div>
+            <p style="font-size:.82rem;color:rgba(255,255,255,.75);line-height:1.6;flex:1;margin-bottom:16px" id="lms1Desc"></p>
+            <div id="lms1Features"></div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:16px">
-            <div class="lms-card secondary">
-              <div class="badge badge-teal" id="lms2Badge">COMPLIANCE HEAVY</div>
-              <div id="lms2Flag"></div>
-              <h4 id="lms2Name">Moodle Workplace</h4>
-              <div id="lms2Residency" style="margin-bottom:8px"></div>
-              <p style="font-size:.82rem;color:var(--grey);line-height:1.6" id="lms2Desc">Ideal if data sovereignty and granular multi-tenancy are your non-negotiables. Requires more internal IT support but offers 100% customisability.</p>
+          <!-- Card 2 -->
+          <div style="background:var(--white);border:2px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+              <span style="background:rgba(0,190,199,.12);color:var(--teal);font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;border-radius:99px;padding:3px 10px">#2 Strong Fit</span>
+              <span style="font-size:1.1rem;font-weight:800;color:var(--navy)" id="lms2Score">—</span>
             </div>
-            <div class="lms-card secondary">
-              <div class="badge badge-grey" id="lms3Badge">COST EFFICIENT</div>
-              <div id="lms3Flag"></div>
-              <h4 id="lms3Name">TalentLMS</h4>
-              <div id="lms3Residency" style="margin-bottom:8px"></div>
-              <p style="font-size:.82rem;color:var(--grey);line-height:1.6" id="lms3Desc">Best for rapid onboarding and commercial short courses. Lower overheads and intuitive UI for non-technical administrators.</p>
+            <div id="lms2Flag" style="margin-bottom:6px"></div>
+            <h3 style="color:var(--navy);font-size:1.1rem;margin-bottom:4px" id="lms2Name">—</h3>
+            <div id="lms2Residency" style="margin-bottom:12px"></div>
+            <p style="font-size:.82rem;color:var(--grey);line-height:1.6;flex:1;margin-bottom:16px" id="lms2Desc"></p>
+            <div id="lms2Features"></div>
+          </div>
+          <!-- Card 3 -->
+          <div style="background:var(--white);border:2px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+              <span style="background:rgba(171,181,191,.15);color:var(--grey);font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;border-radius:99px;padding:3px 10px">#3 Consider Also</span>
+              <span style="font-size:1.1rem;font-weight:800;color:var(--navy)" id="lms3Score">—</span>
             </div>
+            <div id="lms3Flag" style="margin-bottom:6px"></div>
+            <h3 style="color:var(--navy);font-size:1.1rem;margin-bottom:4px" id="lms3Name">—</h3>
+            <div id="lms3Residency" style="margin-bottom:12px"></div>
+            <p style="font-size:.82rem;color:var(--grey);line-height:1.6;flex:1;margin-bottom:16px" id="lms3Desc"></p>
+            <div id="lms3Features"></div>
           </div>
         </div>
 
-        <!-- LMS Score bars -->
-        <div class="card" style="margin-bottom:32px">
-          <h3 style="margin-bottom:20px;font-size:1rem">LMS Fit Scores</h3>
-          <div class="score-bar-wrap">
-            <div class="score-bar-label"><span>Canvas LMS</span><span id="canvasScore">—</span></div>
-            <div class="score-bar"><div class="score-bar-fill" id="canvasFill" style="width:0%;background:var(--navy)"></div></div>
+        <!-- Comparison table -->
+        <div id="comparisonWrap" style="display:none;margin-bottom:32px">
+          <div style="margin-bottom:12px;display:flex;align-items:center;gap:16px">
+            <h2 style="font-size:1rem;font-weight:800">Side-by-Side Comparison</h2>
+            <div style="flex:1;height:1px;background:#e0e6ed"></div>
           </div>
-          <div style="height:12px"></div>
-          <div class="score-bar-wrap">
-            <div class="score-bar-label"><span>Moodle / Wisenet</span><span id="moodleScore">—</span></div>
-            <div class="score-bar"><div class="score-bar-fill" id="moodleFill" style="width:0%;background:var(--teal)"></div></div>
-          </div>
-          <div style="height:12px"></div>
-          <div class="score-bar-wrap">
-            <div class="score-bar-label"><span>TalentLMS</span><span id="talentScore">—</span></div>
-            <div class="score-bar"><div class="score-bar-fill" id="talentFill" style="width:0%;background:var(--grey)"></div></div>
+          <div class="card" style="overflow-x:auto">
+            <table style="width:100%;border-collapse:collapse;font-size:.82rem">
+              <thead>
+                <tr style="border-bottom:2px solid var(--border)">
+                  <th style="text-align:left;padding:10px 12px;color:var(--grey);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em">Feature</th>
+                  <th style="text-align:center;padding:10px 12px;color:var(--teal);font-weight:800" id="compHead1">—</th>
+                  <th style="text-align:center;padding:10px 12px;color:var(--navy);font-weight:800" id="compHead2">—</th>
+                  <th style="text-align:center;padding:10px 12px;color:var(--navy);font-weight:800" id="compHead3">—</th>
+                </tr>
+              </thead>
+              <tbody id="comparisonBody"></tbody>
+            </table>
           </div>
         </div>
 
@@ -2072,6 +2066,9 @@ function submitGate() {
 
   // Send email notification to Kath
   sendNotification(name, email);
+
+  // Trigger recommendations
+  generateAIRecommendations();
 }
 
 function buildOrgSummary() {
@@ -2665,7 +2662,8 @@ function buildProfileSummary() {
 }
 
 function buildAIPrompt(profile) {
-  return 'You are an independent, unbiased LMS consultant. Your ONLY job is to recommend the best-fit LMS for this organisation based purely on their requirements.\n\nCRITICAL RULES:\n- Recommend whatever genuinely fits best — large enterprise platform, small indie tool, or anything in between.\n- If a premium enterprise platform (e.g. Cornerstone, D2L Brightspace, Docebo) is the right fit, recommend it.\n- If a small or Australian-built tool is the right fit (e.g. Coassemble, Xen Education, OpenLearning, Arlo), recommend it.\n- Base recommendations ONLY on the organisational profile below — not on vendor popularity, price, or market share.\n- Vary your recommendations genuinely. Do not default to the same platforms every time.\n- For small/medium organisations, right-sized tools often fit better than enterprise platforms — but not always.\n- For large/complex organisations, enterprise platforms may be justified — but only if the profile supports it.\n\nConsider the FULL global LMS market including but not limited to: Moodle, Wisenet, Canvas LMS, TalentLMS, Docebo, Coassemble, Absorb LMS, Totara Learn, iSpring Learn, D2L Brightspace, A New Spring, LearnWorlds, Xen Education, OpenLearning, Go1, Cornerstone OnDemand, SAP Litmos, Adobe Learning Manager, 360Learning, Degreed, EdApp by SafetyCulture, Thinkific, Teachable, Kajabi, LearnUpon, WorkRamp, Seismic Learning, Mindtickle, Kallidus, Meridian LMS, Arlo, Accessplanit, Gyrus LMS, Tovuti, HealthStream, Relias, ProProfs LMS, WizIQ, Velpic, Janison, Elmo, Employment Hero Learning, Intellum, Paylocity Learning, and any other relevant platforms.\n\nOrganisational Profile:\n' + profile + '\n\nReturn ONLY valid JSON — no markdown, no explanation, just the JSON object:\n{\n  "recommendations": [\n    {\n      "rank": 1,\n      "name": "Platform Name",\n      "company": "Company Name",\n      "country": "Country of origin",\n      "data_region": "Primary data hosting region (e.g. Australia - AWS ap-southeast-2)",\n      "flag_code": "2-letter ISO country code lowercase (e.g. au, us, ca)",\n      "match_score": 91,\n      "why": "2-3 sentences explaining specifically why this platform fits THIS organisation\'s profile — reference their actual requirements.",\n      "features": ["Specific feature relevant to their needs", "Another relevant feature", "Third relevant feature"]\n    },\n    { "rank": 2, "name": "...", "company": "...", "country": "...", "data_region": "...", "flag_code": "...", "match_score": 85, "why": "...", "features": ["...","...","..."] },\n    { "rank": 3, "name": "...", "company": "...", "country": "...", "data_region": "...", "flag_code": "...", "match_score": 78, "why": "...", "features": ["...","...","..."] }\n  ],\n  "summary": "One sentence summarising why these three platforms best match this specific organisation\'s needs."\n}';
+  return 'You are an independent, unbiased LMS consultant. Your ONLY job is to recommend the best-fit LMS for this organisation based purely on their requirements.\n\nCRITICAL RULES:\n- Recommend whatever genuinely fits best — large enterprise platform, small indie tool, or anything in between.\n- If a premium enterprise platform (e.g. Cornerstone, D2L Brightspace, Docebo) is the right fit, recommend it.\n- If a small or Australian-built tool is the right fit (e.g. Coassemble, Xen Education, OpenLearning, Arlo), recommend it.\n- Base recommendations ONLY on the organisational profile below — not on vendor popularity, price, or market share.\n- Vary your recommendations genuinely. Do not default to the same platforms every time.\n- For small/medium organisations, right-sized tools often fit better than enterprise platforms — but not always.\n- For large/complex organisations, enterprise platforms may be justified — but only if the profile supports it.\n\nConsider the FULL global LMS market including but not limited to: Moodle, Wisenet, Canvas LMS, TalentLMS, Docebo, Coassemble, Absorb LMS, Totara Learn, iSpring Learn, D2L Brightspace, A New Spring, LearnWorlds, Xen Education, OpenLearning, Go1, Cornerstone OnDemand, SAP Litmos, Adobe Learning Manager, 360Learning, Degreed, EdApp by SafetyCulture, Thinkific, Teachable, Kajabi, LearnUpon, WorkRamp, Seismic Learning, Mindtickle, Kallidus, Meridian LMS, Arlo, Accessplanit, Gyrus LMS, Tovuti, HealthStream, Relias, ProProfs LMS, WizIQ, Velpic, Janison, Elmo, Employment Hero Learning, Intellum, Paylocity Learning, and any other relevant platforms.\n\nOrganisational Profile:\n' + profile + '\n\nReturn ONLY valid JSON — no markdown, no explanation, just the JSON object:\n{\n  "recommendations": [\n    {\n      "rank": 1,\n      "name": "Platform Name",\n      "company": "Company Name",\n      "country": "Country of origin",\n      "data_region": "Primary data hosting region (e.g. Australia - AWS ap-southeast-2)",\n      "flag_code": "2-letter ISO country code lowercase (e.g. au, us, ca)",\n      "match_score": 91,\n      "why": "2-3 sentences explaining specifically why this platform fits THIS organisation\'s profile — reference their actual requirements.",\n      "features": ["Specific feature relevant to their needs", "Another relevant feature", "Third relevant feature"]\n    },\n    { "rank": 2, "name": "...", "company": "...", "country": "...", "data_region": "...", "flag_code": "...", "match_score": 85, "why": "...", "features": ["...","...","..."] },\n    { "rank": 3, "name": "...", "company": "...", "country": "...", "data_region": "...", "flag_code": "...", "match_score": 78, "why": "...", "features": ["...","...","..."] }\n  ],\n  "narrative": "2-3 paragraphs (separated by \\n\\n) giving a plain-English strategic summary of this organisation\'s LMS needs and why these platforms were selected. Reference specific details from their profile.",
+      "features_comparison": { "feature names as keys": "array of 3 booleans for each platform" }\n}';
 }
 
 async function callGemini(apiKey, prompt) {
@@ -2701,7 +2699,7 @@ async function generateAIRecommendations() {
   var apiKey = GEMINI_API_KEY;
   document.getElementById('aiLoadingState').style.display = 'block';
   document.getElementById('aiErrorState').style.display = 'none';
-  document.getElementById('lmsPrimary').style.opacity = '0.4';
+  var grid = document.getElementById('lmsCardsGrid'); if(grid) grid.style.opacity = '0.4';
 
   var profile = buildProfileSummary();
   var prompt = buildAIPrompt(profile);
@@ -2720,7 +2718,7 @@ async function generateAIRecommendations() {
     showAIError(e.message || 'Unknown error. Check your API key and try again.');
   } finally {
     document.getElementById('aiLoadingState').style.display = 'none';
-    document.getElementById('lmsPrimary').style.opacity = '1';
+    var grid2 = document.getElementById('lmsCardsGrid'); if(grid2) grid2.style.opacity = '1';
   }
 }
 
@@ -2736,42 +2734,54 @@ function renderAIRecommendations(result) {
   var top = recs[0], sec = recs[1], thr = recs[2];
   function flagHTML(rec, isPrimary) {
     var col = isPrimary ? 'rgba(255,255,255,.75)' : 'var(--grey)';
-    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><img src="https://flagcdn.com/28x21/' + (rec.flag_code||'un') + '.png" alt="" width="28" height="21" style="border-radius:2px"><span style="font-size:.78rem;color:' + col + ';font-weight:600">' + (rec.company||'') + ' — ' + (rec.country||'') + '</span></div>';
+    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><img src="https://flagcdn.com/28x21/' + (rec.flag_code||'un') + '.png" alt="" width="28" height="21" style="border-radius:2px"><span style="font-size:.75rem;color:' + col + ';font-weight:600">' + (rec.company||'') + ' — ' + (rec.country||'') + '</span></div>';
   }
   function residencyHTML(rec, isPrimary) {
-    var col = isPrimary ? 'rgba(255,255,255,.75)' : 'var(--grey)';
-    return '<div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:' + col + ';margin-bottom:10px"><span class="ms" style="font-size:14px">storage</span> Data stored: ' + (rec.data_region||'Unknown') + '</div>';
+    var col = isPrimary ? 'rgba(255,255,255,.6)' : 'var(--grey)';
+    return '<div style="display:flex;align-items:center;gap:5px;font-size:.7rem;color:' + col + ';margin-bottom:10px"><span class="ms" style="font-size:13px">storage</span> ' + (rec.data_region||'Unknown') + '</div>';
   }
-  function featHTML(rec) {
-    return (rec.features||[]).map(function(f){ return '<div class="lms-feature"><span class="ms fill">check_circle</span>' + f + '</div>'; }).join('');
+  function featHTML(rec, isPrimary) {
+    var col = isPrimary ? 'rgba(255,255,255,.85)' : 'var(--navy)';
+    var bg = isPrimary ? 'rgba(255,255,255,.12)' : 'rgba(0,190,199,.08)';
+    return (rec.features||[]).map(function(f){
+      return '<div style="display:flex;align-items:flex-start;gap:6px;font-size:.78rem;color:' + col + ';margin-bottom:6px"><span class="ms fill" style="font-size:14px;color:var(--teal);flex-shrink:0">check_circle</span>' + f + '</div>';
+    }).join('');
   }
-  var pf = document.getElementById('lmsPrimaryFlag'); if(pf) pf.innerHTML = flagHTML(top,true);
-  var pr = document.getElementById('lmsPrimaryResidency'); if(pr) pr.innerHTML = residencyHTML(top,true);
-  document.getElementById('lmsPrimaryName').textContent = top.name;
-  document.getElementById('lmsPrimaryDesc').textContent = top.why;
-  document.getElementById('lmsPrimaryFeatures').innerHTML = featHTML(top);
-  var s2f = document.getElementById('lms2Flag'); if(s2f) s2f.innerHTML = flagHTML(sec,false);
-  var s2r = document.getElementById('lms2Residency'); if(s2r) s2r.innerHTML = residencyHTML(sec,false);
-  document.getElementById('lms2Name').textContent = sec.name;
-  document.getElementById('lms2Desc').textContent = sec.why;
-  var b2 = document.getElementById('lms2Badge'); if(b2) b2.textContent = 'MATCH ' + (sec.match_score||'') + '%';
-  var s3f = document.getElementById('lms3Flag'); if(s3f) s3f.innerHTML = flagHTML(thr,false);
-  var s3r = document.getElementById('lms3Residency'); if(s3r) s3r.innerHTML = residencyHTML(thr,false);
-  document.getElementById('lms3Name').textContent = thr.name;
-  document.getElementById('lms3Desc').textContent = thr.why;
-  var b3 = document.getElementById('lms3Badge'); if(b3) b3.textContent = 'MATCH ' + (thr.match_score||'') + '%';
-  var ds = document.getElementById('diagScore'); if(ds) ds.textContent = (top.match_score||'—') + '%';
-  var dd = document.getElementById('diagDesc'); if(dd) dd.textContent = result.summary || 'AI-generated recommendation.';
-  var sub = document.getElementById('recSubtitle'); if(sub) sub.textContent = '✅ AI has analysed your profile against the full global LMS market.';
-  var fills = ['canvasFill','moodleFill','talentFill'];
-  var scoreEls = ['canvasScore','moodleScore','talentScore'];
-  var recList = [top,sec,thr];
-  var labelEls = document.querySelectorAll('.score-bar-label span:first-child');
-  recList.forEach(function(r,i){
-    var fill = document.getElementById(fills[i]); if(fill) fill.style.width = (r.match_score||50) + '%';
-    var sc = document.getElementById(scoreEls[i]); if(sc) sc.textContent = (r.match_score||'—') + '%';
-    if(labelEls[i]) labelEls[i].textContent = r.name;
+  function watchHTML(rec, isPrimary) {
+    if (!rec.watch_out) return '';
+    var col = isPrimary ? 'rgba(255,255,255,.6)' : 'var(--grey)';
+    return '<div style="display:flex;align-items:flex-start;gap:6px;font-size:.75rem;color:' + col + ';margin-top:10px;padding-top:10px;border-top:1px solid ' + (isPrimary ? 'rgba(255,255,255,.15)' : '#e0e6ed') + '"><span class="ms" style="font-size:14px;color:#e72582;flex-shrink:0">info</span> ' + rec.watch_out + '</div>';
+  }
+
+  // Populate narrative summary
+  if (result.narrative) {
+    var sw = document.getElementById('strategicSummaryWrap');
+    var st = document.getElementById('strategicSummaryText');
+    if (sw && st) {
+      st.innerHTML = result.narrative.split('\n\n').map(function(p){
+        return '<p style="margin-bottom:12px">' + p + '</p>';
+      }).join('');
+      sw.style.display = 'block';
+    }
+  }
+
+  // Populate 3 cards
+  var cards = [top, sec, thr];
+  var nums = [1, 2, 3];
+  var isPrimArr = [true, false, false];
+  cards.forEach(function(rec, i) {
+    var n = nums[i];
+    var isPrim = isPrimArr[i];
+    var f = document.getElementById('lms' + n + 'Flag'); if(f) f.innerHTML = flagHTML(rec, isPrim);
+    var r = document.getElementById('lms' + n + 'Residency'); if(r) r.innerHTML = residencyHTML(rec, isPrim);
+    var nm = document.getElementById('lms' + n + 'Name'); if(nm) nm.textContent = rec.name;
+    var sc = document.getElementById('lms' + n + 'Score'); if(sc) sc.textContent = (rec.match_score||'—') + '%';
+    var d = document.getElementById('lms' + n + 'Desc'); if(d) d.textContent = rec.why;
+    var ft = document.getElementById('lms' + n + 'Features'); if(ft) ft.innerHTML = featHTML(rec, isPrim) + watchHTML(rec, isPrim);
   });
+
+  var sub = document.getElementById('recSubtitle');
+  if(sub) sub.textContent = '✅ Recommendations generated based on your full organisational profile.';
 }
 
 // ─── Init ─────────────────────────────────────────────
