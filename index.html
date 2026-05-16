@@ -2156,7 +2156,13 @@ function clearAndRestart() {
   if (!confirm('Clear all entered data and start over?')) return;
   localStorage.removeItem('lmsAppState');
   appState = {};
-  location.reload();
+  // Clear all inputs, textareas, selects so browser doesn't restore cached values
+  document.querySelectorAll('input, textarea, select').forEach(function(el) {
+    if (el.type === 'checkbox' || el.type === 'radio') { el.checked = false; }
+    else { el.value = ''; }
+  });
+  // Force a cache-busted reload so browser doesn't restore form values
+  location.href = location.pathname + '?t=' + Date.now();
 }
 
 function setCost(key, val) {
