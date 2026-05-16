@@ -2610,7 +2610,7 @@ async function callGemini(apiKey, prompt) {
   var resp = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 4000 } })
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 8192 } })
   });
   if (!resp.ok) {
     var e = await resp.json().catch(function(){ return {}; });
@@ -2650,8 +2650,8 @@ async function generateAIRecommendations() {
     } else {
       raw = await callOpenAI(apiKey, prompt);
     }
-    // Strip markdown fences
-    raw = raw.replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/\s*```$/,'').trim();
+    // Strip markdown fences (Gemini sometimes wraps in ```json ... ``` despite instructions)
+    raw = raw.replace(/^```[a-z]*\s*/im,'').replace(/\s*```\s*$/,'').trim();
     renderAIRecommendations(JSON.parse(raw));
   } catch(e) {
     showAIError(e.message || 'Unknown error. Check your API key and try again.');
