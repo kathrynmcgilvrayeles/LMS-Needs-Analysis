@@ -572,13 +572,13 @@ footer nav a:hover{color:var(--navy)}
             <div class="grid-2" style="position:relative;z-index:1">
               <div>
                 <label class="field-label">Active Learner Count</label>
-                <input class="field-input" type="number" id="learnerCount" placeholder="2500" oninput="saveState('learnerCount',this.value);calcTotal()" onchange="saveState('learnerCount',this.value);calcTotal()"/>
+                <input class="field-input" type="number" id="learnerCount" placeholder="0" oninput="saveState('learnerCount',this.value);calcTotal()" onchange="saveState('learnerCount',this.value);calcTotal()"/>
               </div>
               <div>
                 <label class="field-label">Cost per Learner (Annual)</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costPerLearner" placeholder="45.00" oninput="saveState('costPerLearner',this.value);calcTotal()" onchange="saveState('costPerLearner',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costPerLearner" placeholder="0" oninput="saveState('costPerLearner',this.value);calcTotal()" onchange="saveState('costPerLearner',this.value);calcTotal()"/>
                 </div>
               </div>
             </div>
@@ -596,40 +596,40 @@ footer nav a:hover{color:var(--navy)}
                 <label class="field-label">One-off Establishment Fee</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costEstab" placeholder="12500" oninput="saveState('costEstab',this.value);calcTotal()" onchange="saveState('costEstab',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costEstab" placeholder="0" oninput="saveState('costEstab',this.value);calcTotal()" onchange="saveState('costEstab',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">Acquisition &amp; Marketing</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costMarketing" placeholder="3200" oninput="saveState('costMarketing',this.value);calcTotal()" onchange="saveState('costMarketing',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costMarketing" placeholder="0" oninput="saveState('costMarketing',this.value);calcTotal()" onchange="saveState('costMarketing',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">External Dev / SMEs</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costDev" placeholder="8400" oninput="saveState('costDev',this.value);calcTotal()" onchange="saveState('costDev',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costDev" placeholder="0" oninput="saveState('costDev',this.value);calcTotal()" onchange="saveState('costDev',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">Staff Training Phase</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costTraining" placeholder="3500" oninput="saveState('costTraining',this.value);calcTotal()" onchange="saveState('costTraining',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costTraining" placeholder="0" oninput="saveState('costTraining',this.value);calcTotal()" onchange="saveState('costTraining',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">Hosting &amp; Maintenance /Mo</label>
                 <div class="dollar-wrap">
                   <span class="dollar">$</span>
-                  <input class="field-input" type="number" id="costHosting" placeholder="250" oninput="saveState('costHosting',this.value);calcTotal()" onchange="saveState('costHosting',this.value);calcTotal()"/>
+                  <input class="field-input" type="number" id="costHosting" placeholder="0" oninput="saveState('costHosting',this.value);calcTotal()" onchange="saveState('costHosting',this.value);calcTotal()"/>
                 </div>
               </div>
               <div>
                 <label class="field-label">Cloud Storage Allowance (GB)</label>
-                <input class="field-input" type="number" id="costStorage" placeholder="500" oninput="saveState('costStorage',this.value)"/>
+                <input class="field-input" type="number" id="costStorage" placeholder="0" oninput="saveState('costStorage',this.value)"/>
               </div>
             </div>
           </div>
@@ -686,7 +686,7 @@ footer nav a:hover{color:var(--navy)}
                 <input type="number" min="0" placeholder="0" id="intOther" style="background:transparent;border:none;outline:none;color:#fff;font-weight:700;font-size:.8rem;width:70px;padding:4px 4px" oninput="setCost('intOther',parseFloat(this.value)||0);calcTotal()" />
               </div>
             </div>
-            <input type="text" placeholder="Name the other tool..." style="width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 10px;color:#fff;font-size:.75rem;margin-top:8px;outline:none" oninput="saveState('intOtherName',this.value)" />
+            <input type="text" placeholder="" style="width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:6px 10px;color:#fff;font-size:.75rem;margin-top:8px;outline:none" oninput="saveState('intOtherName',this.value)" />
           </div>
         </div>
 
