@@ -1074,6 +1074,22 @@ footer nav a:hover{color:var(--navy)}
 <div class="section-top-actions"><button class="btn-save" onclick="saveSection(4)"><span class="ms">save</span> Save</button><button class="btn btn-primary" onclick="saveSection(4);goTo(5)" style="display:flex;align-items:center;gap:6px"><span class="ms" style="font-size:16px">save</span> Save &amp; Next: Learner Needs <span class="ms" style="font-size:16px">arrow_forward</span></button></div>
 
           <p class="section-desc">Define the administrative architecture, integration ecosystem, and fiscal oversight requirements for your future learning environment.</p>
+          <div style="margin-top:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:rgba(31,42,82,.5)">Your Sector</span>
+            <select class="field-input" id="adminSectorSelect" style="flex:1;min-width:220px;max-width:360px" onchange="saveState('orgSector',this.value);updateSectorVisibility();syncSectorSelects()">
+              <option>Select Industry Sector</option>
+              <optgroup label="Sector">
+                <option>VET / RTO / College</option>
+              </optgroup>
+              <optgroup label="L&amp;D / Corporate">
+                <option>Corporate / Enterprise</option>
+                <option>Government / Public Sector</option>
+                <option>Not-for-Profit</option>
+                <option>Healthcare</option>
+                <option>Other</option>
+              </optgroup>
+            </select>
+          </div>
         </div>
 
         <div class="grid-12">
@@ -2379,7 +2395,7 @@ document.querySelectorAll('input[name=hosting]').forEach(function(r){
 function syncSectorSelects() {
   // Keep both sector dropdowns in sync
   var val = appState.orgSector || '';
-  ['orgSector', 'compSectorSelect'].forEach(function(id) {
+  ['orgSector', 'compSectorSelect', 'adminSectorSelect'].forEach(function(id) {
     var el = document.querySelector('[onchange*="' + id + '"]') || document.getElementById(id);
     if (el && el.tagName === 'SELECT') {
       for (var i = 0; i < el.options.length; i++) {
@@ -2389,7 +2405,15 @@ function syncSectorSelects() {
       }
     }
   });
-  // Also sync the compliance page select directly
+  // Also sync the compliance and admin page selects directly
+  ['compSectorSelect','adminSectorSelect'].forEach(function(sid){
+    var cs = document.getElementById(sid);
+    if (cs) {
+      for (var i = 0; i < cs.options.length; i++) {
+        if (cs.options[i].text === val || cs.options[i].value === val) { cs.selectedIndex = i; break; }
+      }
+    }
+  });
   var cs = document.getElementById('compSectorSelect');
   if (cs) {
     for (var i = 0; i < cs.options.length; i++) {
