@@ -1127,7 +1127,7 @@ footer nav a:hover{color:var(--navy)}
                 <input type="checkbox" onchange="saveState('adminSMS',this.checked)"/>
                 <span>Enrolment information and communication via SMS?</span>
               </label>
-              <label class="check-row">
+              <label class="check-row" id="adminParentRow" style="display:none">
                 <input type="checkbox" onchange="saveState('adminParent',this.checked)"/>
                 <span>Checklist information and communication with parents in the first term?</span>
               </label>
@@ -2401,6 +2401,10 @@ function updateSectorVisibility() {
   var rtoInput = document.getElementById('rtoNumInput');
   if (rtoLabel) rtoLabel.style.display = isVET ? '' : 'none';
   if (rtoInput) rtoInput.style.display = isVET ? '' : 'none';
+
+  // VET-only admin fields
+  var adminParentRow = document.getElementById('adminParentRow');
+  if (adminParentRow) adminParentRow.style.display = isVET ? '' : 'none';
 
   // VET-only cards: show only when VET selected
   ['rtoReportingCard','rtoGovCard','usiCard','avetmissCard'].forEach(function(id){
