@@ -1820,7 +1820,7 @@ footer nav a:hover{color:var(--navy)}
             <button class="btn btn-teal" style="width:100%;font-size:1rem;padding:14px" onclick="submitGate()">
               <span class="ms" style="font-size:20px">auto_awesome</span> Unlock My Recommendations
             </button>
-            <p style="font-size:.7rem;color:var(--grey);margin-top:12px">No spam. Just your report and an optional offer to connect.</p>
+            <p style="font-size:.7rem;color:var(--grey);margin-top:12px">🔒 Your details are collected by eLearning Educational Solutions Pty Ltd and used only to deliver your report and follow up on your session. We will never sell, rent, or share your information with third parties. By submitting you agree to our <a href="#privacy" onclick="showPrivacy()" style="color:var(--teal);text-decoration:underline">Privacy Policy</a>.</p>
           </div>
         </div>
 
@@ -2150,6 +2150,11 @@ function sendNotification(name, email) {
       message: body
     })
   }).catch(function(){});  // Silent fail — don't block the user
+}
+
+function showPrivacy() {
+  document.getElementById('privacyModal').style.display = 'block';
+  document.getElementById('privacyModal').scrollTop = 0;
 }
 
 function clearAndRestart() {
@@ -2773,5 +2778,44 @@ function updateTopProgress() {
 }
 
 </script>
+<!-- Privacy Policy Modal -->
+<div id="privacyModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;overflow-y:auto;padding:40px 20px">
+  <div style="background:#fff;max-width:700px;margin:0 auto;border-radius:16px;padding:40px;position:relative">
+    <button onclick="document.getElementById('privacyModal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#666">&times;</button>
+    <h2 style="color:#1f2a52;margin-bottom:4px">Privacy Policy</h2>
+    <p style="font-size:.75rem;color:#888;margin-bottom:24px">eLearning Educational Solutions Pty Ltd &mdash; LMS Needs Analysis Tool</p>
+
+    <h3 style="color:#1f2a52;font-size:.9rem;margin-bottom:6px">Who we are</h3>
+    <p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:16px">eLearning Educational Solutions Pty Ltd (&ldquo;ELES&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) operates the LMS Needs Analysis Tool at <a href="https://kathrynmcgilvrayeles.github.io/LMS-Needs-Analysis/" style="color:#00bec7">this address</a>. We are committed to protecting your personal information in accordance with the <em>Privacy Act 1988</em> (Cth) and the 13 Australian Privacy Principles.</p>
+
+    <h3 style="color:#1f2a52;font-size:.9rem;margin-bottom:6px">What we collect</h3>
+    <p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:16px">When you unlock your report, we collect your <strong>name</strong> and <strong>work email address</strong>. We also collect the responses you enter into the tool (organisational profile, cost estimates, requirements) for the purpose of generating your personalised LMS recommendation.</p>
+
+    <h3 style="color:#1f2a52;font-size:.9rem;margin-bottom:6px">How we use your information</h3>
+    <p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:8px">Your information is used to:</p>
+    <ul style="font-size:.85rem;color:#555;line-height:1.9;margin-bottom:16px;padding-left:20px">
+      <li>Deliver your personalised LMS Recommendation Report</li>
+      <li>Follow up with you about your LMS needs (where relevant)</li>
+      <li>Improve the accuracy and quality of our tool</li>
+      <li>Contact you about our Click &amp; Connect consulting sessions</li>
+    </ul>
+
+    <h3 style="color:#1f2a52;font-size:.9rem;margin-bottom:6px">Third parties</h3>
+    <p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:16px">We will <strong>never sell, rent, trade, or share</strong> your personal information with third parties for marketing purposes. We use the following trusted service providers who are bound by confidentiality obligations: <strong>Google (email &amp; calendar)</strong>, <strong>Stripe (payment processing)</strong>, and <strong>GitHub/Vercel (hosting)</strong>. Stripe processes payment data independently and we do not store your card details.</p>
+
+    <h3 style="color:#1f2a52;font-size:.9rem;margin-bottom:6px">Data storage &amp; security</h3>
+    <p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:16px">Your tool responses are stored locally in your browser. Your name and email are stored securely and retained only as long as necessary to provide our services, after which they are deleted or anonymised. We take reasonable steps to protect your information from misuse, loss, and unauthorised access.</p>
+
+    <h3 style="color:#1f2a52;font-size:.9rem;margin-bottom:6px">Your rights</h3>
+    <p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:16px">You may request access to, or correction of, the personal information we hold about you at any time. You may also opt out of any follow-up communications. To exercise these rights, contact us at <a href="mailto:kathryn.mcgilvray@eles.com.au" style="color:#00bec7">kathryn.mcgilvray@eles.com.au</a>.</p>
+
+    <h3 style="color:#1f2a52;font-size:.9rem;margin-bottom:6px">Contact</h3>
+    <p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:24px">For any privacy-related queries, please contact:<br><strong>Kathryn McGilvray</strong><br>eLearning Educational Solutions Pty Ltd<br><a href="mailto:kathryn.mcgilvray@eles.com.au" style="color:#00bec7">kathryn.mcgilvray@eles.com.au</a></p>
+
+    <p style="font-size:.7rem;color:#aaa">This policy is governed by the laws of New South Wales, Australia. Last updated: May 2026.</p>
+    <button onclick="document.getElementById('privacyModal').style.display='none'" class="btn btn-teal" style="width:100%;margin-top:8px">Close</button>
+  </div>
+</div>
+
 </body>
 </html>
