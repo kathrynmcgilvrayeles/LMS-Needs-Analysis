@@ -2610,7 +2610,7 @@ async function callGemini(apiKey, prompt) {
   var resp = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 1600 } })
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.3, maxOutputTokens: 4000 } })
   });
   if (!resp.ok) {
     var e = await resp.json().catch(function(){ return {}; });
