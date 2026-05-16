@@ -1131,6 +1131,14 @@ footer nav a:hover{color:var(--navy)}
                 <input type="checkbox" onchange="saveState('adminParent',this.checked)"/>
                 <span>Checklist information and communication with parents in the first term?</span>
               </label>
+              <label class="check-row" id="adminPreTrainingRow" style="display:none">
+                <input type="checkbox" onchange="saveState('adminPreTraining',this.checked)"/>
+                <span>Pre-training review and LLN survey managed within the LMS at enrolment?</span>
+              </label>
+              <label class="check-row" id="adminEnrolDeclarationRow" style="display:none">
+                <input type="checkbox" onchange="saveState('adminEnrolDeclaration',this.checked)"/>
+                <span>Enrolment declaration and consent forms (including collection of demographic data) managed within the LMS?</span>
+              </label>
             </div>
 
             <!-- Ecosystem -->
@@ -2195,7 +2203,7 @@ function restoreUI() {
     if (el && appState[k] !== undefined) el.value = appState[k];
   });
   // Checkboxes
-  ['openSource','uploadSpeed','idVerify','sso','extUsers','dataControl','ios','android','adminEnrolReporting','adminSelfEnrol','adminYearAccess','adminSignature','adminSMS','adminParent','intHRIS','intFinance','intSSO','intSMS','finAlerts','finReporting','finAvetmiss','adminMktg','adminWriting','adminStakeholders','portalSSO','portalNav','portalUI','learnQuizzes','learnGamify','learnForum','learnAI','learnEvidence','learnA11y','supportTrainer','supportCalendar','supportAdmin','supervisor','markRubric','markBulk','markAnon','fbAnnotate','fbVoice','fbDocs','remSubmit','remOverdue','remResit','remManualResult','remRPL','rtoAvetmiss','rtoCompletion','rtoActivity','rtoCompetency','rtoFinancial','govAuditor','govFinInfo','govPolicy','govRisk','govStaff','gov3rd','usiRealtime','usiBulk','usiReminders','compReporting','compCurrMap','govMonthly','govQBR','govAnnual','supportChat','supportPhone','supportAIBot'].forEach(function(k){
+  ['openSource','uploadSpeed','idVerify','sso','extUsers','dataControl','ios','android','adminEnrolReporting','adminSelfEnrol','adminYearAccess','adminSignature','adminSMS','adminParent','adminPreTraining','adminEnrolDeclaration','intHRIS','intFinance','intSSO','intSMS','finAlerts','finReporting','finAvetmiss','adminMktg','adminWriting','adminStakeholders','portalSSO','portalNav','portalUI','learnQuizzes','learnGamify','learnForum','learnAI','learnEvidence','learnA11y','supportTrainer','supportCalendar','supportAdmin','supervisor','markRubric','markBulk','markAnon','fbAnnotate','fbVoice','fbDocs','remSubmit','remOverdue','remResit','remManualResult','remRPL','rtoAvetmiss','rtoCompletion','rtoActivity','rtoCompetency','rtoFinancial','govAuditor','govFinInfo','govPolicy','govRisk','govStaff','gov3rd','usiRealtime','usiBulk','usiReminders','compReporting','compCurrMap','govMonthly','govQBR','govAnnual','supportChat','supportPhone','supportAIBot'].forEach(function(k){
     var el = document.querySelector('[onchange*="' + k + '"]');
     if (el && appState[k] !== undefined) { el.checked = appState[k]; }
   });
@@ -2403,8 +2411,9 @@ function updateSectorVisibility() {
   if (rtoInput) rtoInput.style.display = isVET ? '' : 'none';
 
   // VET-only admin fields
-  var adminParentRow = document.getElementById('adminParentRow');
-  if (adminParentRow) adminParentRow.style.display = isVET ? '' : 'none';
+  ['adminParentRow','adminPreTrainingRow','adminEnrolDeclarationRow'].forEach(function(id){
+    var el = document.getElementById(id); if (el) el.style.display = isVET ? '' : 'none';
+  });
 
   // VET-only cards: show only when VET selected
   ['rtoReportingCard','rtoGovCard','usiCard','avetmissCard'].forEach(function(id){
