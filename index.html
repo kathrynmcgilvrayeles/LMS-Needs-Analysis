@@ -2079,7 +2079,23 @@ function submitGate() {
 
   // Send email notification to Kath
   sendNotification(name, email);
-
+// Send data to your Supabase 'leads' table
+    supabaseClient
+      .from('leads')
+      .insert([
+        { 
+          name: name, 
+          email: email, 
+          answers: { ...localStorage } // Safely packages all their quiz selections
+        }
+      ])
+      .then(response => {
+        if (response.error) {
+          console.error('Supabase Error:', response.error);
+        } else {
+          console.log('Lead successfully captured in Supabase!');
+        }
+      });
   // Trigger recommendations
   generateAIRecommendations();
 }
