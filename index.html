@@ -4,6 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>LMS Needs Analysis</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet"/>
 <style>
@@ -2853,6 +2854,11 @@ function updateTopProgress() {
     <button onclick="document.getElementById('privacyModal').style.display='none'" class="btn btn-teal" style="width:100%;margin-top:8px">Close</button>
   </div>
 </div>
-
+<script>
+  // This connects your website frontend to your Supabase database
+  const supabaseUrl = 'https://btaybrimcgyqhgqeisdn.supabase.co';
+  const supabaseKey = 'sb_publishable_xwbOXJPcKuQ9pMXsOhHVKg_I0bUc_9w';
+  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
 </body>
 </html>
